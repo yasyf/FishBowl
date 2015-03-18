@@ -14,6 +14,11 @@
 		0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764631AB8F81900DD88A8 /* Images.xcassets */; };
 		0C0764671AB8F81900DD88A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764651AB8F81900DD88A8 /* LaunchScreen.xib */; };
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
+		0C9CFFDE1AB8FA6600ECAF11 /* Broadcaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */; };
+		0C9CFFE01AB8FDFF00ECAF11 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */; };
+		0C9CFFE21AB9076700ECAF11 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE11AB9076700ECAF11 /* Session.swift */; };
+		0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */; };
+		0C9CFFE61AB90D2600ECAF11 /* PeerID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE51AB90D2600ECAF11 /* PeerID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		0C07646C1AB8F81900DD88A8 /* PersonLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
+		0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Broadcaster.swift; sourceTree = "<group>"; };
+		0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		0C9CFFE11AB9076700ECAF11 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discoverer.swift; sourceTree = "<group>"; };
+		0C9CFFE51AB90D2600ECAF11 /* PeerID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +96,11 @@
 				0C0764651AB8F81900DD88A8 /* LaunchScreen.xib */,
 				0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */,
 				0C0764571AB8F81900DD88A8 /* Supporting Files */,
+				0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */,
+				0C9CFFE51AB90D2600ECAF11 /* PeerID.swift */,
+				0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */,
+				0C9CFFE11AB9076700ECAF11 /* Session.swift */,
+				0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */,
 			);
 			path = PersonLog;
 			sourceTree = "<group>";
@@ -215,9 +230,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C9CFFE61AB90D2600ECAF11 /* PeerID.swift in Sources */,
 				0C07645F1AB8F81900DD88A8 /* ViewController.swift in Sources */,
 				0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */,
+				0C9CFFE21AB9076700ECAF11 /* Session.swift in Sources */,
+				0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */,
+				0C9CFFDE1AB8FA6600ECAF11 /* Broadcaster.swift in Sources */,
 				0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */,
+				0C9CFFE01AB8FDFF00ECAF11 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +429,7 @@
 				0C0764781AB8F81900DD88A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C0764791AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "PersonLogTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +438,7 @@
 				0C07647B1AB8F81900DD88A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
