@@ -13,6 +13,7 @@ let settings = Settings()
 
 class Peer: NSObject {
     let peerID: MCPeerID
+    var isProcessed = false
     
     init(peerID: MCPeerID) {
         self.peerID = peerID
@@ -22,6 +23,11 @@ class Peer: NSObject {
         //#TODO GET from server all available data
         return ["name": "#TODO"]
     }()
+    
+    func process() {
+        isProcessed = true
+        // #TODO create CoreData model, persist
+    }
     
     class func defaultPeerID() -> MCPeerID {
         var uuid = settings.uuid()

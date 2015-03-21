@@ -12,7 +12,7 @@ import MultipeerConnectivity
 class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
     let browser: MCNearbyServiceBrowser
     let peerID: MCPeerID
-    var sessions: [Session] = []
+    var peers: [Peer] = []
     var isDiscovering: Bool = false
     
     init(peerID: MCPeerID, serviceType: String) {
@@ -32,14 +32,25 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
         browser.stopBrowsingForPeers()
     }
     
+    func process() {
+        peers.filter({!$0.isProcessed}).map(Peer.process)
+    }
+    
+    // MARK: - MCNearbyServiceBrowserDelegate
+    
     func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-        NSLog("Found peer \(peerID) with discovery info \(info)")
-        let session = Session(peerID: peerID)
-        sessions.append(session)
-        browser.invitePeer(peerID, toSession: session.session, withContext: nil, timeout: 20)
+        NSLog("Found peer \(peerID.displayName)")
+        let peer = Peer(peerID: peerID)
+        peers.append(peer)
     }
     
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
         NSLog("Lost peer \(peerID)")
+        for (i, peer) in enumerate(peers) {
+            if peer.peerID == peerID {
+                peers.removeAtIndex(i)
+                break
+            }
+        }
     }
 }

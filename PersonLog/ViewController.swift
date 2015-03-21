@@ -52,6 +52,7 @@ class ViewController: UIViewController {
         } else {
             if discoverer.isDiscovering {
                 discoverer.kill()
+                discoverer.process()
                 sender.setTitle("Start Discovering", forState: UIControlState.Normal)
             } else {
                 discoverer.discover()

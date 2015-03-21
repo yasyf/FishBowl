@@ -12,7 +12,6 @@ import MultipeerConnectivity
 class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate {
     let peerID: MCPeerID
     let advertiser: MCNearbyServiceAdvertiser
-    var sessions: [Session] = []
     var isBroadcasting: Bool = false
     
     init(peerID: MCPeerID, serviceType: String) {
@@ -35,14 +34,8 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate {
     // MARK: - MCNearbyServiceAdvertiserDelegate
     
     func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
-        if peerID == self.peerID {
-            NSLog("Ignoring invitation from \(peerID)")
-            invitationHandler(false, nil)
-        } else {
-            let session = Session(peerID: peerID)
-            sessions.append(session)
-            invitationHandler(true, session.session)
-        }
+        NSLog("Ignoring invitation from \(peerID)")
+        invitationHandler(false, nil)
     }
     
 }
