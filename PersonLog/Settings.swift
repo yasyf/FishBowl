@@ -16,4 +16,7 @@ class Settings {
     func name() -> String? {
         return _string("name")
     }
+    func uuid() -> String? {
+        return _string("uuid")
+    }
 }

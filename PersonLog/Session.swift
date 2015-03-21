@@ -11,8 +11,10 @@ import MultipeerConnectivity
 
 class Session: NSObject, MCSessionDelegate {
     let session: MCSession
+    let peerID: MCPeerID
     
     init(peerID: MCPeerID) {
+        self.peerID = peerID
         session = MCSession(peer: peerID)
         super.init()
         session.delegate = self

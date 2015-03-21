@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var discoveringButton: UIButton!
     
     let serviceType = "personlog-disc"
-    let peerID = PeerID.defaultPeerID()
+    let peerID = Peer.defaultPeerID()
     let broadcaster: Broadcaster
     let discoverer: Discoverer
     
