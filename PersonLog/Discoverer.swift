@@ -12,6 +12,8 @@ import MultipeerConnectivity
 class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
     let browser: MCNearbyServiceBrowser
     let peerID: MCPeerID
+    var sessions: [Session] = []
+    var isDiscovering: Bool = false
     
     init(peerID: MCPeerID, serviceType: String) {
         self.peerID = peerID
@@ -22,14 +24,19 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
     
     func discover() {
         browser.startBrowsingForPeers()
+        isDiscovering = true
     }
     
     func kill() {
+        isDiscovering = false
         browser.stopBrowsingForPeers()
     }
     
     func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
         NSLog("Found peer \(peerID) with discovery info \(info)")
+        let session = Session(peerID: peerID)
+        sessions.append(session)
+        browser.invitePeer(peerID, toSession: session.session, withContext: nil, timeout: 20)
     }
     
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {

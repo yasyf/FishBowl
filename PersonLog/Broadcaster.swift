@@ -13,19 +13,22 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate {
     let peerID: MCPeerID
     let advertiser: MCNearbyServiceAdvertiser
     var sessions: [Session] = []
+    var isBroadcasting: Bool = false
     
     init(peerID: MCPeerID, serviceType: String) {
         self.peerID = peerID
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
+        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType as NSString)
         super.init()
         advertiser.delegate = self
     }
     
     func broadcast() {
         advertiser.startAdvertisingPeer()
+        isBroadcasting = true
     }
     
     func kill() {
+        isBroadcasting = false
         advertiser.startAdvertisingPeer()
     }
     

@@ -9,8 +9,28 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var advertisingButton: UIButton!
+    @IBOutlet weak var discoveringButton: UIButton!
+    
+    let serviceType = "personlog-disc"
+    let peerID = PeerID.defaultPeerID()
+    let broadcaster: Broadcaster
+    let discoverer: Discoverer
+    
+    override init() {
+        broadcaster = Broadcaster(peerID: peerID, serviceType: serviceType)
+        discoverer = Discoverer(peerID: peerID, serviceType: serviceType)
+        super.init()
+    }
 
-    override func viewDidLoad() {
+    required init(coder aDecoder: NSCoder) {
+        broadcaster = Broadcaster(peerID: peerID, serviceType: serviceType)
+        discoverer = Discoverer(peerID: peerID, serviceType: serviceType)
+        super.init(coder: aDecoder)
+    }
+ 
+   
+   override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -20,6 +40,25 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func buttonDidTouchUpInside(sender: UIButton) {
+        if sender == advertisingButton {
+            if broadcaster.isBroadcasting {
+                broadcaster.kill()
+                sender.setTitle("Start Advertising", forState: UIControlState.Normal)
+            } else {
+                broadcaster.broadcast()
+                sender.setTitle("Stop Advertising", forState: UIControlState.Normal)
+            }
+        } else {
+            if discoverer.isDiscovering {
+                discoverer.kill()
+                sender.setTitle("Start Discovering", forState: UIControlState.Normal)
+            } else {
+                discoverer.discover()
+                sender.setTitle("Stop Discovering", forState: UIControlState.Normal)
+            }
+        }
+    }
 
 }
 
