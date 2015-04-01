@@ -37,10 +37,14 @@ class API {
     
     
     func get(route: NSString, parameters: Dictionary<String, String>?, success: (Dictionary<String, AnyObject>) -> Void) {
-        doRequest(buildRequest().GET, route: route, parameters: parameters, success)
+        doRequest({(url: String, parameters: Dictionary<String, AnyObject>?, success: (HTTPResponse) -> Void, failure: (NSError, HTTPResponse?) -> Void) in
+                self.buildRequest().GET(url, parameters: parameters, success: success, failure: failure)
+            }, route: route, parameters: parameters, success)
     }
     
-    func post(route: NSString, parameters: Dictionary<String, String>, success: (Dictionary<String, AnyObject>) -> Void) {
-       doRequest(buildRequest().POST, route: route, parameters: parameters, success)
+    func post(route: NSString, parameters: Dictionary<String, String>?, success: (Dictionary<String, AnyObject>) -> Void) {
+        doRequest({(url: String, parameters: Dictionary<String, AnyObject>?, success: (HTTPResponse) -> Void, failure: (NSError, HTTPResponse?) -> Void) in
+                self.buildRequest().POST(url, parameters: parameters, success: success, failure: failure)
+            }, route: route, parameters: parameters, success)
     }
 }
