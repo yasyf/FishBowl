@@ -10,36 +10,95 @@ import Foundation
 import MultipeerConnectivity
 
 let settings = Settings()
+let api: API = API()
 
 class Peer: NSObject {
-    let peerID: MCPeerID
+    var peerID: MCPeerID?
     var isProcessed = false
+    var isFetchingPeerID = false
+    var isFetchingData = false
+    var data: Dictionary<String, AnyObject>?
+    var peerIDCallbacks: [(MCPeerID) -> Void] = []
+    var dataCallbacks: [(Dictionary<String, AnyObject>) -> Void] = []
+    
+    override init(){
+        super.init()
+        self.peerID = defaultPeerID()
+    }
     
     init(peerID: MCPeerID) {
         self.peerID = peerID
     }
-    
-    lazy var data: NSMutableDictionary = {
-        //#TODO GET from server all available data
-        return ["name": "#TODO"]
-    }()
     
     func process() {
         isProcessed = true
         // #TODO create CoreData model, persist
     }
     
-    class func defaultPeerID() -> MCPeerID {
-        var uuid = settings.uuid()
-        if uuid == nil {
-            uuid = fetchNewID()
+    func onData(completion: (Dictionary<String, AnyObject> -> Void)) {
+        if data != nil {
+            completion(data!)
+        } else {
+            dataCallbacks.append(completion)
+            fetchData()
         }
-        return MCPeerID(displayName: uuid)
     }
     
-    class func fetchNewID() -> String {
-        let data = ["name", "phone", "photo"].map(settings._string)
-        // #TODO POST to server with data
-        return "#TODO"
+    func onPeerID(completion: (MCPeerID) -> Void) {
+        if peerID != nil {
+            completion(peerID!)
+        } else {
+            peerIDCallbacks.append(completion)
+            fetchNewID()
+        }
+    }
+    
+    func defaultPeerID() -> MCPeerID? {
+        var uuid = settings.uuid()
+        if uuid == nil {
+            fetchNewID()
+            return nil
+        } else {
+            return MCPeerID(displayName: uuid)
+        }
+    }
+    
+    func fetchData() {
+        if isFetchingData {
+            return
+        } else {
+            isFetchingData = true
+        }
+        onPeerID({(peerID: MCPeerID) in
+            let uuid = peerID.displayName
+            api.get("/\(uuid)", parameters: nil, success: {(response: Dictionary) in
+                self.data = response
+                for completion in self.dataCallbacks {
+                    completion(self.data!)
+                }
+                self.dataCallbacks = []
+            })
+        })
+    }
+    
+    func fetchNewID() {
+        if isFetchingPeerID {
+            return
+        } else {
+            isFetchingPeerID = true
+        }
+        var data = [String:String]()
+        for key in ["name", "phone", "photo"] {
+            data[key] = settings._string(key)
+        }
+        api.post("/register", parameters: data, success: {(response: Dictionary) in
+            let uuid = response["uuid"] as String
+            println("Registered new user with uuid \(uuid)")
+            self.peerID = MCPeerID(displayName: uuid)
+            for completion in self.peerIDCallbacks {
+                completion(self.peerID!)
+            }
+            self.peerIDCallbacks = []
+        })
     }
 }

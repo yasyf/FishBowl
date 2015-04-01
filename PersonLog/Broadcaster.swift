@@ -10,25 +10,31 @@ import Foundation
 import MultipeerConnectivity
 
 class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate {
-    let peerID: MCPeerID
-    let advertiser: MCNearbyServiceAdvertiser
+    let serviceType: String
+    let peer: Peer
+    var advertiser: MCNearbyServiceAdvertiser?
     var isBroadcasting: Bool = false
     
-    init(peerID: MCPeerID, serviceType: String) {
-        self.peerID = peerID
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType as NSString)
+    init(peer: Peer, serviceType: String) {
+        self.peer = peer
+        self.serviceType = serviceType
         super.init()
-        advertiser.delegate = self
     }
     
     func broadcast() {
-        advertiser.startAdvertisingPeer()
-        isBroadcasting = true
+        peer.onPeerID({(peerID: MCPeerID) in
+            if self.advertiser == nil {
+                self.advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: self.serviceType as NSString)
+                self.advertiser!.delegate = self
+            }
+            self.advertiser!.startAdvertisingPeer()
+            self.isBroadcasting = true
+        })
     }
     
     func kill() {
         isBroadcasting = false
-        advertiser.startAdvertisingPeer()
+        advertiser?.startAdvertisingPeer()
     }
     
     // MARK: - MCNearbyServiceAdvertiserDelegate

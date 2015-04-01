@@ -10,26 +10,33 @@ import Foundation
 import MultipeerConnectivity
 
 class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
-    let browser: MCNearbyServiceBrowser
-    let peerID: MCPeerID
+    let serviceType: String
+    var browser: MCNearbyServiceBrowser?
+    let peer: Peer
     var peers: [Peer] = []
     var isDiscovering: Bool = false
     
-    init(peerID: MCPeerID, serviceType: String) {
-        self.peerID = peerID
-        browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
+    init(peer: Peer, serviceType: String) {
+        self.peer = peer
+        self.serviceType = serviceType
         super.init()
-        browser.delegate = self
     }
     
+    
     func discover() {
-        browser.startBrowsingForPeers()
-        isDiscovering = true
+        peer.onPeerID({(peerID: MCPeerID) in
+            if self.browser == nil {
+                self.browser = MCNearbyServiceBrowser(peer: peerID, serviceType: self.serviceType)
+                self.browser!.delegate = self
+            }
+            self.browser!.startBrowsingForPeers()
+            self.isDiscovering = true
+        })
     }
     
     func kill() {
         isDiscovering = false
-        browser.stopBrowsingForPeers()
+        browser?.stopBrowsingForPeers()
     }
     
     func process() {
@@ -39,13 +46,16 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
     // MARK: - MCNearbyServiceBrowserDelegate
     
     func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-        NSLog("Found peer \(peerID.displayName)")
         let peer = Peer(peerID: peerID)
+        println("Found peer \(peerID.displayName)")
+        peer.onData({(data: Dictionary<String, AnyObject>) in
+            println(data)
+        })
         peers.append(peer)
     }
     
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
-        NSLog("Lost peer \(peerID)")
+        println("Lost peer \(peerID)")
         for (i, peer) in enumerate(peers) {
             if peer.peerID == peerID {
                 peers.removeAtIndex(i)

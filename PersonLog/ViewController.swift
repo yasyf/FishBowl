@@ -13,19 +13,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var discoveringButton: UIButton!
     
     let serviceType = "personlog-disc"
-    let peerID = Peer.defaultPeerID()
+    let peer = Peer()
     let broadcaster: Broadcaster
     let discoverer: Discoverer
     
     override init() {
-        broadcaster = Broadcaster(peerID: peerID, serviceType: serviceType)
-        discoverer = Discoverer(peerID: peerID, serviceType: serviceType)
+        broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
+        discoverer = Discoverer(peer: peer, serviceType: serviceType)
         super.init()
     }
 
     required init(coder aDecoder: NSCoder) {
-        broadcaster = Broadcaster(peerID: peerID, serviceType: serviceType)
-        discoverer = Discoverer(peerID: peerID, serviceType: serviceType)
+        broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
+        discoverer = Discoverer(peer: peer, serviceType: serviceType)
         super.init(coder: aDecoder)
     }
  
