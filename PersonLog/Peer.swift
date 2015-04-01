@@ -72,12 +72,18 @@ class Peer: NSObject {
         onPeerID({(peerID: MCPeerID) in
             let uuid = peerID.displayName
             api.get("/\(uuid)", parameters: nil, success: {(response: Dictionary) in
-                self.data = response
-                for completion in self.dataCallbacks {
-                    completion(self.data!)
-                }
-                self.dataCallbacks = []
-            })
+                    self.data = response["user"] as? Dictionary
+                    for completion in self.dataCallbacks {
+                        completion(self.data!)
+                    }
+                    self.dataCallbacks = []
+                }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
+                    if data != nil {
+                        println("Error: \(data)")
+                    } else {
+                        println("Error: \(error)")
+                    }
+                })
         })
     }
     
@@ -92,13 +98,20 @@ class Peer: NSObject {
             data[key] = settings._string(key)
         }
         api.post("/register", parameters: data, success: {(response: Dictionary) in
-            let uuid = response["uuid"] as String
-            println("Registered new user with uuid \(uuid)")
-            self.peerID = MCPeerID(displayName: uuid)
-            for completion in self.peerIDCallbacks {
-                completion(self.peerID!)
-            }
-            self.peerIDCallbacks = []
+                let uuid = response["uuid"] as String
+                println("Registered new user with uuid \(uuid)")
+                self.peerID = MCPeerID(displayName: uuid)
+                for completion in self.peerIDCallbacks {
+                    completion(self.peerID!)
+                }
+                self.peerIDCallbacks = []
+            }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
+                if data != nil {
+                    println("Error: \(data)")
+                } else {
+                    println("Error: \(error)")
+                }
+
         })
     }
 }
