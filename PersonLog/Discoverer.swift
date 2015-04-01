@@ -14,6 +14,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
     var browser: MCNearbyServiceBrowser?
     let peer: Peer
     var peers: [Peer] = []
+    var peerCallbacks: [(Peer) -> Void] = []
     var isDiscovering: Bool = false
     
     init(peer: Peer, serviceType: String) {
@@ -22,6 +23,10 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
         super.init()
     }
     
+    func onPeer(callback: (Peer) -> Void) {
+        peerCallbacks.append(callback)
+        peers.map(callback)
+    }
     
     func discover() {
         peer.onPeerID({(peerID: MCPeerID) in
@@ -39,10 +44,6 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
         browser?.stopBrowsingForPeers()
     }
     
-    func process() {
-        peers.filter({!$0.isProcessed}).map(Peer.process)
-    }
-    
     // MARK: - MCNearbyServiceBrowserDelegate
     
     func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
@@ -52,6 +53,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
             println(data)
         })
         peers.append(peer)
+        for callback in peerCallbacks {
+            callback(peer)
+        }
     }
     
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {

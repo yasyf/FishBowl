@@ -14,7 +14,6 @@ let api: API = API()
 
 class Peer: NSObject {
     var peerID: MCPeerID?
-    var isProcessed = false
     var isFetchingPeerID = false
     var isFetchingData = false
     var data: Dictionary<String, AnyObject>?
@@ -29,12 +28,7 @@ class Peer: NSObject {
     init(peerID: MCPeerID) {
         self.peerID = peerID
     }
-    
-    func process() {
-        isProcessed = true
-        // #TODO create CoreData model, persist
-    }
-    
+
     func onData(completion: (Dictionary<String, AnyObject> -> Void)) {
         if data != nil {
             completion(data!)
@@ -79,7 +73,8 @@ class Peer: NSObject {
                     self.dataCallbacks = []
                 }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
                     if data != nil {
-                        println("Error: \(data)")
+                        let message = data!["message"] as String
+                        println("Error: \(message)")
                     } else {
                         println("Error: \(error)")
                     }
@@ -107,7 +102,8 @@ class Peer: NSObject {
                 self.peerIDCallbacks = []
             }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
                 if data != nil {
-                    println("Error: \(data)")
+                    let message = data!["message"] as String
+                    println("Error: \(message)")
                 } else {
                     println("Error: \(error)")
                 }

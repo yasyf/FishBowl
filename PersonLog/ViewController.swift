@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class ViewController: UIViewController {
     @IBOutlet weak var advertisingButton: UIButton!
     @IBOutlet weak var discoveringButton: UIButton!
+    @IBOutlet weak var peerIDLabel: UILabel!
+    @IBOutlet weak var textLogView: UITextView!
     
     let serviceType = "personlog-disc"
     let peer = Peer()
@@ -32,7 +35,18 @@ class ViewController: UIViewController {
    
    override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        peer.onPeerID({(peerID: MCPeerID) in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.peerIDLabel.text = "PeerID: \(peerID.displayName)"
+            })
+        })
+        discoverer.onPeer({(peer: Peer) in
+            peer.onData({(data: Dictionary<String, AnyObject>) in
+                dispatch_async(dispatch_get_main_queue(), {
+                     self.textLogView.text = data.description
+                })
+            })
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,7 +66,6 @@ class ViewController: UIViewController {
         } else {
             if discoverer.isDiscovering {
                 discoverer.kill()
-                discoverer.process()
                 sender.setTitle("Start Discovering", forState: UIControlState.Normal)
             } else {
                 discoverer.discover()
