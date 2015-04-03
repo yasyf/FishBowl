@@ -156,12 +156,12 @@ class Peer: NSObject, CLLocationManagerDelegate {
         println(error)
     }
 
-    func newInteraction(person: Person) -> Interaction {
+    func newInteraction(otherPerson: Person, callback: ((Interaction) -> Void)?) {
         let entityDescription = NSEntityDescription.entityForName("Interaction", inManagedObjectContext: managedObjectContext)
         let interaction = Interaction(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
         var error: NSError?
         
-        interaction.person = person
+        interaction.person = otherPerson
 
         if let lat = location?.coordinate.latitude {
             if let lon = location?.coordinate.latitude {
@@ -170,18 +170,26 @@ class Peer: NSObject, CLLocationManagerDelegate {
             }
         }
         
-        managedObjectContext.save(&error)
-        if let err = error {
-            println(err)
-        }
-        return interaction
+        onPerson({(person: Person) in
+            interaction.owner = person
+            self.managedObjectContext.save(&error)
+            if let err = error {
+                println(err)
+            }
+            callback?(interaction)
+        })
     }
     
-    func recordInteraction(callback: ((Interaction) -> Void)?) {
+    func onPerson(callback: (Person) -> Void) {
         onData({(data: Dictionary<String, AnyObject>) in
             let person = self.findOrCreatePerson(data)
-            let interaction = self.newInteraction(person)
-            callback?(interaction)
+            callback(person)
+        })
+    }
+    
+    func recordInteraction(other: Peer, callback: ((Interaction) -> Void)?) {
+        other.onPerson({(otherPerson: Person) in
+            self.newInteraction(otherPerson, callback)
         })
     }
 }

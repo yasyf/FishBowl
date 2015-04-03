@@ -40,11 +40,19 @@ class ViewController: UIViewController {
                 self.peerIDLabel.text = "PeerID: \(peerID.displayName)"
             })
         })
-        discoverer.onPeer({(peer: Peer) in
-            peer.recordInteraction({(interaction: Interaction) in
+        peer.onPerson({(person: Person) in
+            if let interaction = person.interactions.lastObject as? Interaction {
+                let otherPerson = interaction.person
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.textLogView.text = "Previously interacted with \(otherPerson.name) (\(otherPerson.phone))"
+                })
+            }
+        })
+        discoverer.onPeer({(otherPeer: Peer) in
+            self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction) in
                 println(interaction)
             })
-            peer.onData({(data: Dictionary<String, AnyObject>) in
+            otherPeer.onData({(data: Dictionary<String, AnyObject>) in
                 dispatch_async(dispatch_get_main_queue(), {
                      self.textLogView.text = data.description
                 })
