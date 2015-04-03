@@ -12,13 +12,13 @@
         <!--Navigation Controller-->
         <scene sceneID="6BU-f1-bv9">
             <objects>
-                <navigationController title="Navigation Controller" hidesBarsOnSwipe="YES" id="5Y2-ag-FZn" customClass="NavViewController" customModule="PersonLog" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Navigation Controller" id="5Y2-ag-FZn" customClass="NavViewController" customModule="PersonLog" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="4lz-3p-ONC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.26013964410000001" green="0.60329639909999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="50"/>
+                            <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
                             <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -82,8 +82,8 @@
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="nIy-kg-hV8"/>
                                                             <exclude reference="QQJ-NV-RCB"/>
+                                                            <exclude reference="nIy-kg-hV8"/>
                                                         </mask>
                                                     </variation>
                                                 </label>
@@ -206,7 +206,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PeerID: nil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baW-if-EVl">
                                 <rect key="frame" x="270" y="60" width="62" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
