@@ -41,6 +41,9 @@ class ViewController: UIViewController {
             })
         })
         discoverer.onPeer({(peer: Peer) in
+            peer.recordInteraction({(interaction: Interaction) in
+                println(interaction)
+            })
             peer.onData({(data: Dictionary<String, AnyObject>) in
                 dispatch_async(dispatch_get_main_queue(), {
                      self.textLogView.text = data.description

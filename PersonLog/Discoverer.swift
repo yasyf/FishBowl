@@ -8,6 +8,7 @@
 
 import Foundation
 import MultipeerConnectivity
+import CoreLocation
 
 class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
     let serviceType: String
@@ -16,9 +17,11 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
     var peers: [Peer] = []
     var peerCallbacks: [(Peer) -> Void] = []
     var isDiscovering: Bool = false
+    var locManager = CLLocationManager()
     
     init(peer: Peer, serviceType: String) {
         self.peer = peer
+        self.locManager.delegate = peer
         self.serviceType = serviceType
         super.init()
     }
@@ -35,6 +38,8 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
                 self.browser!.delegate = self
             }
             self.browser!.startBrowsingForPeers()
+            self.locManager.requestAlwaysAuthorization()
+            self.locManager.startUpdatingLocation()
             self.isDiscovering = true
         })
     }
@@ -42,6 +47,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
     func kill() {
         isDiscovering = false
         browser?.stopBrowsingForPeers()
+        self.locManager.stopUpdatingLocation()
     }
     
     // MARK: - MCNearbyServiceBrowserDelegate

@@ -8,17 +8,21 @@
 
 import Foundation
 import MultipeerConnectivity
+import CoreData
+import CoreLocation
 
 let settings = Settings()
 let api: API = API()
 
-class Peer: NSObject {
+class Peer: NSObject, CLLocationManagerDelegate {
     var peerID: MCPeerID?
     var isFetchingPeerID = false
     var isFetchingData = false
     var data: Dictionary<String, AnyObject>?
     var peerIDCallbacks: [(MCPeerID) -> Void] = []
     var dataCallbacks: [(Dictionary<String, AnyObject>) -> Void] = []
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    var location: CLLocation?
     
     override init(){
         super.init()
@@ -108,6 +112,76 @@ class Peer: NSObject {
                     println("Error: \(error)")
                 }
 
+        })
+    }
+    
+    func findOrCreatePerson(data: Dictionary<String, AnyObject>) -> Person {
+        let entityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: managedObjectContext)
+        let request = NSFetchRequest()
+        
+        request.entity = entityDescription!
+        request.predicate = NSPredicate(format: "(phone = %@)", data["phone"] as String)
+        
+        var objects = managedObjectContext.executeFetchRequest(request, error: nil)
+        if let results = objects {
+            if results.count > 0 {
+                return results[0] as Person
+            }
+        }
+        
+        let person = Person(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        var error: NSError?
+        
+        let fields = ["name", "phone", "photo", "fb_id", "twitter", "meta"]
+        for field in fields {
+            person.setValue(data[field], forKey: field)
+        }
+        
+        managedObjectContext.save(&error)
+        if let err = error {
+            println(err)
+        }
+        return person
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
+        self.location = locations.last
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        self.location = newLocation
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println(error)
+    }
+
+    func newInteraction(person: Person) -> Interaction {
+        let entityDescription = NSEntityDescription.entityForName("Interaction", inManagedObjectContext: managedObjectContext)
+        let interaction = Interaction(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        var error: NSError?
+        
+        interaction.person = person
+
+        if let lat = location?.coordinate.latitude {
+            if let lon = location?.coordinate.latitude {
+                interaction.lat = lat
+                interaction.lon = lat
+            }
+        }
+        
+        managedObjectContext.save(&error)
+        if let err = error {
+            println(err)
+        }
+        return interaction
+    }
+    
+    func recordInteraction(callback: ((Interaction) -> Void)?) {
+        onData({(data: Dictionary<String, AnyObject>) in
+            let person = self.findOrCreatePerson(data)
+            let interaction = self.newInteraction(person)
+            callback?(interaction)
         })
     }
 }

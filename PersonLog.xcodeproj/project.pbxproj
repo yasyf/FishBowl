@@ -19,6 +19,8 @@
 		0C9CFFE01AB8FDFF00ECAF11 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */; };
 		0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */; };
 		0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE51AB90D2600ECAF11 /* Peer.swift */; };
+		0CFC9D7C1ACE5B5A00336404 /* Interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC9D7B1ACE5B5A00336404 /* Interaction.swift */; };
+		0CFC9D821ACE6B7A00336404 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC9D811ACE6B7A00336404 /* Person.swift */; };
 		6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454E43B44E5900429842DB84 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,8 @@
 		0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discoverer.swift; sourceTree = "<group>"; };
 		0C9CFFE51AB90D2600ECAF11 /* Peer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
+		0CFC9D7B1ACE5B5A00336404 /* Interaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interaction.swift; sourceTree = "<group>"; };
+		0CFC9D811ACE6B7A00336404 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		454E43B44E5900429842DB84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A89BBE52A09BED8C7F9A749 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9D2C04CE43982C10D9E72732 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				0C0764631AB8F81900DD88A8 /* Images.xcassets */,
 				0C0764651AB8F81900DD88A8 /* LaunchScreen.xib */,
 				0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */,
+				0CFC9D811ACE6B7A00336404 /* Person.swift */,
+				0CFC9D7B1ACE5B5A00336404 /* Interaction.swift */,
 				0C0764571AB8F81900DD88A8 /* Supporting Files */,
 				0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */,
 				0C9CFFE51AB90D2600ECAF11 /* Peer.swift */,
@@ -206,6 +212,7 @@
 				TargetAttributes = {
 					0C0764531AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = SXKCTF23Q2;
 					};
 					0C07646B1AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -305,12 +312,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CFC9D821ACE6B7A00336404 /* Person.swift in Sources */,
 				0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */,
 				0C07645F1AB8F81900DD88A8 /* ViewController.swift in Sources */,
 				0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */,
 				0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */,
 				0C9CFFDE1AB8FA6600ECAF11 /* Broadcaster.swift in Sources */,
 				0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */,
+				0CFC9D7C1ACE5B5A00336404 /* Interaction.swift in Sources */,
 				0C88E5B21AC4A6C100671E49 /* API.swift in Sources */,
 				0C9CFFE01AB8FDFF00ECAF11 /* Settings.swift in Sources */,
 			);
@@ -436,6 +445,7 @@
 			baseConfigurationReference = 4A89BBE52A09BED8C7F9A749 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PersonLog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -448,6 +458,7 @@
 			baseConfigurationReference = 9D2C04CE43982C10D9E72732 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PersonLog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
