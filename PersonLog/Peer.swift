@@ -162,6 +162,7 @@ class Peer: NSObject, CLLocationManagerDelegate {
         var error: NSError?
         
         interaction.person = otherPerson
+        interaction.date = NSDate()
 
         if let lat = location?.coordinate.latitude {
             if let lon = location?.coordinate.latitude {

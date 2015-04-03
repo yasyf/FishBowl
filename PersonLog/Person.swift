@@ -18,6 +18,6 @@ class Person: NSManagedObject {
     @NSManaged var photo: String
     @NSManaged var twitter: String
     @NSManaged var interactions: NSOrderedSet
-    @NSManaged var visited: NSSet
+    @NSManaged var visited: NSOrderedSet
 
 }
