@@ -23,7 +23,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="l3e-Nj-POL" kind="relationship" relationship="rootViewController" id="4WV-yP-cnm"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="PrU-J1-sV6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khc-Y6-Upl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,7 +128,6 @@
                                             <outlet property="name" destination="hrh-nG-cp3" id="zdb-3L-Mx4"/>
                                             <outlet property="profilePicture" destination="bB8-gy-kbj" id="xdP-d7-udw"/>
                                             <outlet property="timeStamp" destination="68k-uX-ouM" id="az6-aC-JFa"/>
-                                            <segue destination="vXZ-lx-hvc" kind="show" id="kPN-QY-Ver"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -162,12 +161,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Cr-fK-ysr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-174" y="-146"/>
+            <point key="canvasLocation" x="526" y="-146"/>
         </scene>
-        <!--View Controller-->
+        <!--Test-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="PersonLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Test" id="vXZ-lx-hvc" customClass="ViewController" customModule="PersonLog" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -177,7 +176,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckQ-93-kkl">
-                                <rect key="frame" x="243" y="220" width="114" height="30"/>
+                                <rect key="frame" x="243" y="136" width="114" height="30"/>
                                 <state key="normal" title="Start Advertising">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -186,7 +185,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcR-1R-hce">
-                                <rect key="frame" x="241" y="276" width="118" height="30"/>
+                                <rect key="frame" x="241" y="192" width="118" height="30"/>
                                 <state key="normal" title="Start Discovering">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -209,20 +208,32 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elc-gw-q2q">
+                                <rect key="frame" x="284" y="269" width="33" height="30"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="l3e-Nj-POL" kind="show" id="eRf-J8-YmK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="baW-if-EVl" secondAttribute="centerY" constant="200.5" id="11c-Vy-Pnv"/>
-                            <constraint firstAttribute="centerY" secondItem="ckQ-93-kkl" secondAttribute="centerY" constant="33" id="Lhv-ye-mQV"/>
+                            <constraint firstItem="NRG-8Z-KSc" firstAttribute="top" secondItem="elc-gw-q2q" secondAttribute="bottom" constant="100" id="HuS-vp-bYQ"/>
                             <constraint firstItem="NRG-8Z-KSc" firstAttribute="centerX" secondItem="zcR-1R-hce" secondAttribute="centerX" id="Onz-LX-sQ9"/>
+                            <constraint firstItem="zcR-1R-hce" firstAttribute="top" secondItem="ckQ-93-kkl" secondAttribute="bottom" constant="26" id="Vj1-Tp-BsJ"/>
                             <constraint firstAttribute="centerX" secondItem="ckQ-93-kkl" secondAttribute="centerX" id="Wlj-4j-3wl"/>
+                            <constraint firstItem="ckQ-93-kkl" firstAttribute="top" secondItem="baW-if-EVl" secondAttribute="bottom" constant="60" id="XgB-aP-mYY"/>
+                            <constraint firstItem="elc-gw-q2q" firstAttribute="top" secondItem="zcR-1R-hce" secondAttribute="bottom" constant="47" id="YOW-dd-Gws"/>
                             <constraint firstAttribute="centerX" secondItem="baW-if-EVl" secondAttribute="centerX" constant="-0.5" id="iiP-Tu-WjG"/>
+                            <constraint firstAttribute="centerX" secondItem="elc-gw-q2q" secondAttribute="centerX" id="isz-I5-Myl"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="NRG-8Z-KSc" secondAttribute="bottom" constant="41" id="kAc-ox-fxf"/>
-                            <constraint firstItem="NRG-8Z-KSc" firstAttribute="top" secondItem="zcR-1R-hce" secondAttribute="bottom" constant="93" id="kra-aW-aOA"/>
-                            <constraint firstAttribute="centerY" secondItem="zcR-1R-hce" secondAttribute="centerY" constant="-23" id="oUl-tY-0EH"/>
                             <constraint firstAttribute="centerX" secondItem="zcR-1R-hce" secondAttribute="centerX" id="pkg-9h-LWz"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Welcome" id="qWC-He-kN4"/>
                     <connections>
                         <outlet property="advertisingButton" destination="ckQ-93-kkl" id="zbV-te-3el"/>
                         <outlet property="discoveringButton" destination="zcR-1R-hce" id="CK9-Wj-0dq"/>
@@ -232,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="535" y="-146"/>
+            <point key="canvasLocation" x="-203" y="-146"/>
         </scene>
     </scenes>
 </document>

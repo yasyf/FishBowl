@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -24,12 +25,40 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         (time: "4:29 PM", image: UIImage(named: "blake.png"), name: "Blake"),
     ]
     
+    let serviceType = "personlog-disc"
+    let peer = Peer()
+    let broadcaster: Broadcaster
+    let discoverer: Discoverer
+    
+    override init() {
+        broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
+        discoverer = Discoverer(peer: peer, serviceType: serviceType)
+        super.init()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
+        discoverer = Discoverer(peer: peer, serviceType: serviceType)
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let footer = UIView()
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
+        
+        broadcaster.broadcast()
+        discoverer.discover()
+        
+        discoverer.onPeer({(otherPeer: Peer) in
+            self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction) in
+                //Timelineview.refresh
+                //refresh queries DB for all people to show in timeline
+                println(interaction)
+            })
+        })
     }
     
     // MARK: - Table view data source
