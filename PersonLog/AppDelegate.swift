@@ -13,7 +13,19 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let serviceType = "personlog-disc"
+    
+    lazy var peer: Peer = {
+        return Peer()
+    }()
+    
+    lazy var broadcaster: Broadcaster = {
+        return Broadcaster(peer: self.peer, serviceType: self.serviceType)
+    }()
+    
+    lazy var discoverer: Discoverer = {
+        return Discoverer(peer: self.peer, serviceType: self.serviceType)
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

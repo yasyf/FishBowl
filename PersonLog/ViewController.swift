@@ -16,24 +16,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var textLogView: UITextView!
     @IBOutlet weak var numInteractionsLabel: UILabel!
     
-    let serviceType = "personlog-disc"
-    let peer = Peer()
     let database = Database()
-    let broadcaster: Broadcaster
-    let discoverer: Discoverer
     
-    override init() {
-        broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
-        discoverer = Discoverer(peer: peer, serviceType: serviceType)
-        super.init()
-    }
+    let peer = (UIApplication.sharedApplication().delegate as AppDelegate).peer
+    let broadcaster = (UIApplication.sharedApplication().delegate as AppDelegate).broadcaster
+    let discoverer = (UIApplication.sharedApplication().delegate as AppDelegate).discoverer
 
-    required init(coder aDecoder: NSCoder) {
-        broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
-        discoverer = Discoverer(peer: peer, serviceType: serviceType)
-        super.init(coder: aDecoder)
-    }
- 
    
    override func viewDidLoad() {
         super.viewDidLoad()
