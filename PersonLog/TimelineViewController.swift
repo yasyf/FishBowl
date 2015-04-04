@@ -42,7 +42,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         broadcaster.broadcast()
         discoverer.discover()
         updateInteractions()
-        println(interactions)
         
         discoverer.onPeer({(otherPeer: Peer) in
             self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction) in
@@ -55,12 +54,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func updateInteractions() {
-        if let newInteractions = database.allInteractions() {
+        if let newInteractions = database.allInteractions(sorted: true) {
             interactions = newInteractions
         }
-//        dispatch_async(dispatch_get_main_queue(), {
-//            self.table.reloadData()
-//        })
     }
     
     // MARK: - Table view data source
@@ -74,11 +70,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let interaction = interactions[indexPath.row]
         let person = interaction.person
         
-        println(interaction)
-        println(person.name)
-        println(interaction.date)
-        println(interaction.date.description)
-        
         cell.timeStamp.text = interaction.date.description
         cell.profilePicture.image = UIImage(named: "yasyf.png")
         let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
@@ -88,15 +79,11 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
  
-    
-    /*
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        broadcaster.kill()
+        discoverer.kill()
+        println("killtimeline")
     }
-    */
 
 }

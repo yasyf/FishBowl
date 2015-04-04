@@ -96,6 +96,7 @@ class ViewController: UIViewController {
         advertisingButton.setTitle("Start Advertising", forState: UIControlState.Normal)
         discoverer.kill()
         discoveringButton.setTitle("Start Discovering", forState: UIControlState.Normal)
+        println("killtest")
     }
 
 }

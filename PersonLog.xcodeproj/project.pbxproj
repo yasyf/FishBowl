@@ -20,6 +20,7 @@
 		0C9CFFE01AB8FDFF00ECAF11 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */; };
 		0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */; };
 		0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE51AB90D2600ECAF11 /* Peer.swift */; };
+		0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBABF821ACF3CB300D7F0F4 /* Database.swift */; };
 		4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181461ACF2C0B004A0B68 /* NavViewController.swift */; };
 		4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181471ACF2C0B004A0B68 /* PersonCell.swift */; };
 		4611814D1ACF2C0B004A0B68 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181491ACF2C0B004A0B68 /* TimelineViewController.swift */; };
@@ -33,7 +34,6 @@
 		4611815E1ACF2C2B004A0B68 /* tim.png in Resources */ = {isa = PBXBuildFile; fileRef = 461181551ACF2C2B004A0B68 /* tim.png */; };
 		4611815F1ACF2C2B004A0B68 /* yasyf.png in Resources */ = {isa = PBXBuildFile; fileRef = 461181561ACF2C2B004A0B68 /* yasyf.png */; };
 		461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 461181601ACF2C34004A0B68 /* Bariol_Regular.otf */; };
-		0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBABF821ACF3CB300D7F0F4 /* Database.swift */; };
 		6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454E43B44E5900429842DB84 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 

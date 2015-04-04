@@ -27,9 +27,6 @@ class Database: NSObject {
             println(err)
             return nil
         } else {
-            println(objects!.count)
-            println(objects![0] as Interaction)
-            
             return objects as? [Interaction]
         }
     }
