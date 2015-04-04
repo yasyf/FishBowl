@@ -93,7 +93,7 @@ class Peer: NSObject, CLLocationManagerDelegate {
             isFetchingPeerID = true
         }
         var data = [String:String]()
-        for key in ["name", "phone", "photo"] {
+        for key in ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter"] {
             data[key] = settings._string(key)
         }
         api.post("/register", parameters: data, success: {(response: Dictionary) in
@@ -132,9 +132,11 @@ class Peer: NSObject, CLLocationManagerDelegate {
         let person = Person(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
         var error: NSError?
         
-        let fields = ["name", "phone", "photo", "fb_id", "twitter", "meta"]
+        let fields = ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter", "meta"]
         for field in fields {
-            person.setValue(data[field], forKey: field)
+            if let value: AnyObject = data[field] {
+                person.setValue(value, forKey: field)
+            }
         }
         
         managedObjectContext.save(&error)

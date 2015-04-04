@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             if let interaction = person.interactions.lastObject as? Interaction {
                 let otherPerson = interaction.person
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.textLogView.text = "Previously interacted with \(otherPerson.name) (\(otherPerson.phone)) at \(interaction.date)"
+                    self.textLogView.text = "Previously interacted with \(otherPerson.f_name) \(otherPerson.l_name) (\(otherPerson.phone)) at \(interaction.date)"
                 })
             }
         })
