@@ -34,6 +34,7 @@
 		4611815E1ACF2C2B004A0B68 /* tim.png in Resources */ = {isa = PBXBuildFile; fileRef = 461181551ACF2C2B004A0B68 /* tim.png */; };
 		4611815F1ACF2C2B004A0B68 /* yasyf.png in Resources */ = {isa = PBXBuildFile; fileRef = 461181561ACF2C2B004A0B68 /* yasyf.png */; };
 		461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 461181601ACF2C34004A0B68 /* Bariol_Regular.otf */; };
+		4645D30F1ACFC3DA00F92285 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4645D30E1ACFC3DA00F92285 /* ProfileView.swift */; };
 		6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454E43B44E5900429842DB84 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		461181551ACF2C2B004A0B68 /* tim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tim.png; sourceTree = "<group>"; };
 		461181561ACF2C2B004A0B68 /* yasyf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yasyf.png; sourceTree = "<group>"; };
 		461181601ACF2C34004A0B68 /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular.otf; sourceTree = "<group>"; };
+		4645D30E1ACFC3DA00F92285 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4A89BBE52A09BED8C7F9A749 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9D2C04CE43982C10D9E72732 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +204,7 @@
 				461181491ACF2C0B004A0B68 /* TimelineViewController.swift */,
 				0C07645E1AB8F81900DD88A8 /* ViewController.swift */,
 				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
+				4645D30E1ACFC3DA00F92285 /* ProfileView.swift */,
 				461181471ACF2C0B004A0B68 /* PersonCell.swift */,
 			);
 			name = Views;
@@ -375,6 +378,7 @@
 				0C07645F1AB8F81900DD88A8 /* ViewController.swift in Sources */,
 				0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */,
 				0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */,
+				4645D30F1ACFC3DA00F92285 /* ProfileView.swift in Sources */,
 				4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */,
 				0C9CFFDE1AB8FA6600ECAF11 /* Broadcaster.swift in Sources */,
 				0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */,
