@@ -14,7 +14,19 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let serviceType = "personlog-disc"
+    
+    lazy var peer: Peer = {
+        return Peer()
+    }()
+    
+    lazy var broadcaster: Broadcaster = {
+        return Broadcaster(peer: self.peer, serviceType: self.serviceType)
+    }()
+    
+    lazy var discoverer: Discoverer = {
+        return Discoverer(peer: self.peer, serviceType: self.serviceType)
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,9 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue("Larry Zhang", forKey: "name")
+        defaults.setValue("Larry", forKey: "f_name")
+        defaults.setValue("Zhang", forKey: "l_name")
         defaults.setValue("000-000-0000", forKey: "phone")
-        defaults.setValue("hxxp://foo.bar", forKey: "photo")
+        defaults.setValue("hxxp://foo.bar", forKey: "photo_url")
+        defaults.setValue("LarryZ", forKey: "fb_id")
         
         return true
     }

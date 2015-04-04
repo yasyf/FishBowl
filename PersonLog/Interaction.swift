@@ -14,7 +14,7 @@ class Interaction: NSManagedObject {
     @NSManaged var date: NSDate
     @NSManaged var lat: NSNumber
     @NSManaged var lon: NSNumber
-    @NSManaged var owner: PersonLog.Person
-    @NSManaged var person: PersonLog.Person
+    @NSManaged var owner: FishBowl.Person
+    @NSManaged var person: FishBowl.Person
 
 }
