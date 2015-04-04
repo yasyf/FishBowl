@@ -52,8 +52,6 @@
 		0C07645E1AB8F81900DD88A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C0764611AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C0764631AB8F81900DD88A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0C07646C1AB8F81900DD88A8 /* PersonLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C0764661AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
@@ -188,8 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				461181461ACF2C0B004A0B68 /* NavViewController.swift */,
-				461181491ACF2C0B004A0B68 /* TimelineViewController.swift */,
 				0C07645E1AB8F81900DD88A8 /* ViewController.swift */,
+				461181491ACF2C0B004A0B68 /* TimelineViewController.swift */,
 				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
 				4645D30E1ACFC3DA00F92285 /* ProfileView.swift */,
 				461181471ACF2C0B004A0B68 /* PersonCell.swift */,
@@ -258,7 +256,7 @@
 				TargetAttributes = {
 					0C0764531AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = SXKCTF23Q2;
+						DevelopmentTeam = 7Z29FWQKX6;
 					};
 					0C07646B1AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -492,6 +490,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PersonLog",
@@ -500,6 +499,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = FishBowl;
+				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PersonLog/Bridging-Header.h";
 			};
@@ -513,6 +513,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PersonLog",
@@ -521,6 +522,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = FishBowl;
+				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PersonLog/Bridging-Header.h";
 			};

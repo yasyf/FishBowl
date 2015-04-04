@@ -14,10 +14,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var table: UITableView!
     
     let serviceType = "personlog-disc"
-    let peer = Peer()
     let database = Database()
-    let broadcaster: Broadcaster
-    let discoverer: Discoverer
+    let peer = (UIApplication.sharedApplication().delegate as AppDelegate).peer
+    let broadcaster = (UIApplication.sharedApplication().delegate as AppDelegate).broadcaster
+    let discoverer = (UIApplication.sharedApplication().delegate as AppDelegate).discoverer
     var interactions = [Interaction]()
     
     override init() {
@@ -74,7 +74,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.profilePicture.image = UIImage(named: "yasyf.png")
         let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
         cell.profilePicture.layer.borderColor = lineColor
-        cell.name.text = person.name
+        cell.name.text = person.f_name
         
         return cell
     }

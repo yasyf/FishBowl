@@ -19,7 +19,7 @@
         <!--Navigation Controller-->
         <scene sceneID="6BU-f1-bv9">
             <objects>
-                <navigationController title="Navigation Controller" id="5Y2-ag-FZn" customClass="NavViewController" customModule="PersonLog" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Navigation Controller" id="5Y2-ag-FZn" customClass="NavViewController" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="4lz-3p-ONC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -40,7 +40,7 @@
         <!--Timeline-->
         <scene sceneID="OqO-5P-EgL">
             <objects>
-                <viewController title="Timeline" id="l3e-Nj-POL" customClass="TimelineViewController" customModule="PersonLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Timeline" id="l3e-Nj-POL" customClass="TimelineViewController" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6vL-Vy-ikc"/>
                         <viewControllerLayoutGuide type="bottom" id="p0y-d7-Cqo"/>
@@ -61,7 +61,7 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PersonCell" rowHeight="140" id="h3v-Oe-Q8s" customClass="PersonCell" customModule="PersonLog" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PersonCell" rowHeight="140" id="h3v-Oe-Q8s" customClass="PersonCell" customModule="FishBowl" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h3v-Oe-Q8s" id="inj-Wl-IUI">
@@ -186,7 +186,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ri-It-UUF">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1136"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWU-0a-fet" userLabel="Content View" customClass="ProfileView" customModule="PersonLog" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWU-0a-fet" userLabel="Content View" customClass="ProfileView" customModule="FishBowl" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="1135"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbe-Q3-8oJ">
@@ -307,30 +307,26 @@
                                                         <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-yb-wWh">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCc-ym-tAA">
                                                         <rect key="frame" x="0.0" y="50" width="550" height="550"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.25" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="jiM-yb-wWh" secondAttribute="height" multiplier="1:1" id="XCs-1j-iyn"/>
-                                                            <constraint firstAttribute="height" constant="250" id="upH-2N-cEt"/>
+                                                            <constraint firstAttribute="width" secondItem="nCc-ym-tAA" secondAttribute="height" multiplier="1:1" id="rzu-kl-Msv"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="upH-2N-cEt"/>
-                                                            </mask>
-                                                        </variation>
-                                                    </mapView>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.26013964410000001" green="0.60329639909999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="4B7-1U-Nwk"/>
+                                                    <constraint firstItem="nCc-ym-tAA" firstAttribute="leading" secondItem="CK5-ox-kgg" secondAttribute="leading" id="4a4-mQ-Iws"/>
                                                     <constraint firstItem="pnl-24-YQD" firstAttribute="leading" secondItem="CK5-ox-kgg" secondAttribute="leading" constant="25" id="AtC-JR-jwH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="jiM-yb-wWh" secondAttribute="trailing" id="CSE-TC-e9F"/>
                                                     <constraint firstItem="pnl-24-YQD" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="15" id="Dbh-pp-mSL"/>
+                                                    <constraint firstItem="nCc-ym-tAA" firstAttribute="top" secondItem="pnl-24-YQD" secondAttribute="bottom" constant="50" id="FKo-JV-qvb"/>
                                                     <constraint firstAttribute="centerX" secondItem="pnl-24-YQD" secondAttribute="centerX" id="M2R-I3-Etz"/>
                                                     <constraint firstAttribute="trailing" secondItem="pnl-24-YQD" secondAttribute="trailing" constant="25" id="QgR-nE-4Jy"/>
-                                                    <constraint firstItem="jiM-yb-wWh" firstAttribute="leading" secondItem="CK5-ox-kgg" secondAttribute="leading" id="WvY-bE-VZU"/>
-                                                    <constraint firstAttribute="bottom" secondItem="jiM-yb-wWh" secondAttribute="bottom" id="rpd-2G-3c9"/>
-                                                    <constraint firstItem="jiM-yb-wWh" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="50" id="tdI-bd-huY"/>
+                                                    <constraint firstItem="nCc-ym-tAA" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="50" id="TUx-O8-LUb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="nCc-ym-tAA" secondAttribute="trailing" id="WxD-o7-yJQ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="nCc-ym-tAA" secondAttribute="bottom" id="wNL-hO-wOa"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -341,6 +337,7 @@
                                                     <mask key="constraints">
                                                         <exclude reference="4B7-1U-Nwk"/>
                                                         <exclude reference="M2R-I3-Etz"/>
+                                                        <exclude reference="FKo-JV-qvb"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -429,7 +426,7 @@
         <!--Test-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController title="Test" id="vXZ-lx-hvc" customClass="ViewController" customModule="PersonLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Test" id="vXZ-lx-hvc" customClass="ViewController" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
