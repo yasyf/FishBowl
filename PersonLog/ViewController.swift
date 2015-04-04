@@ -14,9 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var discoveringButton: UIButton!
     @IBOutlet weak var peerIDLabel: UILabel!
     @IBOutlet weak var textLogView: UITextView!
+    @IBOutlet weak var numInteractionsLabel: UILabel!
     
     let serviceType = "personlog-disc"
     let peer = Peer()
+    let database = Database()
     let broadcaster: Broadcaster
     let discoverer: Discoverer
     
@@ -35,6 +37,9 @@ class ViewController: UIViewController {
    
    override func viewDidLoad() {
         super.viewDidLoad()
+        if let allInteractions = database.allInteractions(sorted: true) {
+            numInteractionsLabel.text = "Saved Interactions: \(allInteractions.count)"
+        }
         peer.onPeerID({(peerID: MCPeerID) in
             dispatch_async(dispatch_get_main_queue(), {
                 self.peerIDLabel.text = "PeerID: \(peerID.displayName)"
@@ -44,7 +49,7 @@ class ViewController: UIViewController {
             if let interaction = person.interactions.lastObject as? Interaction {
                 let otherPerson = interaction.person
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.textLogView.text = "Previously interacted with \(otherPerson.name) (\(otherPerson.phone))"
+                    self.textLogView.text = "Previously interacted with \(otherPerson.name) (\(otherPerson.phone)) at \(interaction.date)"
                 })
             }
         })

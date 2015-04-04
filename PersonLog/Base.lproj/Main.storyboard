@@ -49,13 +49,21 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved Interactions: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJG-yO-Foa">
+                                <rect key="frame" x="219" y="118" width="163" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="baW-if-EVl" secondAttribute="centerY" constant="200.5" id="11c-Vy-Pnv"/>
+                            <constraint firstAttribute="centerY" secondItem="fJG-yO-Foa" secondAttribute="centerY" constant="171.5" id="E9z-IA-GdF"/>
                             <constraint firstAttribute="centerY" secondItem="ckQ-93-kkl" secondAttribute="centerY" constant="33" id="Lhv-ye-mQV"/>
                             <constraint firstItem="NRG-8Z-KSc" firstAttribute="centerX" secondItem="zcR-1R-hce" secondAttribute="centerX" id="Onz-LX-sQ9"/>
                             <constraint firstAttribute="centerX" secondItem="ckQ-93-kkl" secondAttribute="centerX" id="Wlj-4j-3wl"/>
+                            <constraint firstAttribute="centerX" secondItem="fJG-yO-Foa" secondAttribute="centerX" constant="-0.5" id="dHT-Ea-S5f"/>
                             <constraint firstAttribute="centerX" secondItem="baW-if-EVl" secondAttribute="centerX" constant="-0.5" id="iiP-Tu-WjG"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="NRG-8Z-KSc" secondAttribute="bottom" constant="41" id="kAc-ox-fxf"/>
                             <constraint firstItem="NRG-8Z-KSc" firstAttribute="top" secondItem="zcR-1R-hce" secondAttribute="bottom" constant="93" id="kra-aW-aOA"/>
@@ -66,6 +74,7 @@
                     <connections>
                         <outlet property="advertisingButton" destination="ckQ-93-kkl" id="zbV-te-3el"/>
                         <outlet property="discoveringButton" destination="zcR-1R-hce" id="CK9-Wj-0dq"/>
+                        <outlet property="numInteractionsLabel" destination="fJG-yO-Foa" id="fiv-ri-Fu3"/>
                         <outlet property="peerIDLabel" destination="baW-if-EVl" id="rYe-U5-DCk"/>
                         <outlet property="textLogView" destination="NRG-8Z-KSc" id="LEi-Kt-NNh"/>
                     </connections>
