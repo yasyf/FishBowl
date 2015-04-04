@@ -162,7 +162,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Fish Bowl" id="klK-EE-LKY"/>
+                    <navigationItem key="navigationItem" title="FishBowl" id="klK-EE-LKY"/>
                     <connections>
                         <outlet property="table" destination="sEA-Mg-akb" id="fUX-Wq-WBo"/>
                     </connections>

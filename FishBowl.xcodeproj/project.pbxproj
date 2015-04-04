@@ -252,7 +252,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Yasyf Mohamedali";
+				ORGANIZATIONNAME = com.fishbowl;
 				TargetAttributes = {
 					0C0764531AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -264,7 +264,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0C07644F1AB8F81900DD88A8 /* Build configuration list for PBXProject "Fish Bowl" */;
+			buildConfigurationList = 0C07644F1AB8F81900DD88A8 /* Build configuration list for PBXProject "FishBowl" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -561,7 +561,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0C07644F1AB8F81900DD88A8 /* Build configuration list for PBXProject "Fish Bowl" */ = {
+		0C07644F1AB8F81900DD88A8 /* Build configuration list for PBXProject "FishBowl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0C0764741AB8F81900DD88A8 /* Debug */,
