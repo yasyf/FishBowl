@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		0C04FC3E1ACE9A5B0059336D /* Interaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interaction.swift; sourceTree = "<group>"; };
 		0C04FC401ACE9A730059336D /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		0C0764541AB8F81900DD88A8 /* PersonLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C0764541AB8F81900DD88A8 /* FishBowl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishBowl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764581AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764591AB8F81900DD88A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C07645C1AB8F81900DD88A8 /* PersonLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersonLog.xcdatamodel; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 		0C0764611AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C0764631AB8F81900DD88A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0C0764661AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		0C07646C1AB8F81900DD88A8 /* PersonLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
 		0C88E5B11AC4A6C100671E49 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -93,8 +93,8 @@
 		0C0764551AB8F81900DD88A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0C0764541AB8F81900DD88A8 /* PersonLog.app */,
-				0C07646C1AB8F81900DD88A8 /* PersonLogTests.xctest */,
+				0C0764541AB8F81900DD88A8 /* FishBowl.app */,
+				0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,9 +166,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0C0764531AB8F81900DD88A8 /* PersonLog */ = {
+		0C0764531AB8F81900DD88A8 /* FishBowl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0C0764761AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "PersonLog" */;
+			buildConfigurationList = 0C0764761AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "FishBowl" */;
 			buildPhases = (
 				1AEA33B52CEFD3E6861930CC /* Check Pods Manifest.lock */,
 				0C0764501AB8F81900DD88A8 /* Sources */,
@@ -181,14 +181,14 @@
 			);
 			dependencies = (
 			);
-			name = PersonLog;
+			name = FishBowl;
 			productName = PersonLog;
-			productReference = 0C0764541AB8F81900DD88A8 /* PersonLog.app */;
+			productReference = 0C0764541AB8F81900DD88A8 /* FishBowl.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0C07646B1AB8F81900DD88A8 /* PersonLogTests */ = {
+		0C07646B1AB8F81900DD88A8 /* FishBowlTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0C0764791AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "PersonLogTests" */;
+			buildConfigurationList = 0C0764791AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "FishBowlTests" */;
 			buildPhases = (
 				0C0764681AB8F81900DD88A8 /* Sources */,
 				0C0764691AB8F81900DD88A8 /* Frameworks */,
@@ -199,9 +199,9 @@
 			dependencies = (
 				0C07646E1AB8F81900DD88A8 /* PBXTargetDependency */,
 			);
-			name = PersonLogTests;
+			name = FishBowlTests;
 			productName = PersonLogTests;
-			productReference = 0C07646C1AB8F81900DD88A8 /* PersonLogTests.xctest */;
+			productReference = 0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -223,7 +223,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0C07644F1AB8F81900DD88A8 /* Build configuration list for PBXProject "PersonLog" */;
+			buildConfigurationList = 0C07644F1AB8F81900DD88A8 /* Build configuration list for PBXProject "FishBowl" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -236,8 +236,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0C0764531AB8F81900DD88A8 /* PersonLog */,
-				0C07646B1AB8F81900DD88A8 /* PersonLogTests */,
+				0C0764531AB8F81900DD88A8 /* FishBowl */,
+				0C07646B1AB8F81900DD88A8 /* FishBowlTests */,
 			);
 		};
 /* End PBXProject section */
@@ -342,7 +342,7 @@
 /* Begin PBXTargetDependency section */
 		0C07646E1AB8F81900DD88A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0C0764531AB8F81900DD88A8 /* PersonLog */;
+			target = 0C0764531AB8F81900DD88A8 /* FishBowl */;
 			targetProxy = 0C07646D1AB8F81900DD88A8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -453,7 +453,7 @@
 				INFOPLIST_FILE = PersonLog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FishBowl;
 			};
 			name = Debug;
 		};
@@ -466,7 +466,7 @@
 				INFOPLIST_FILE = PersonLog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FishBowl;
 			};
 			name = Release;
 		};
@@ -484,7 +484,7 @@
 				);
 				INFOPLIST_FILE = PersonLogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FishBowlTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PersonLog.app/PersonLog";
 			};
 			name = Debug;
@@ -499,7 +499,7 @@
 				);
 				INFOPLIST_FILE = PersonLogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FishBowlTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PersonLog.app/PersonLog";
 			};
 			name = Release;
@@ -507,7 +507,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0C07644F1AB8F81900DD88A8 /* Build configuration list for PBXProject "PersonLog" */ = {
+		0C07644F1AB8F81900DD88A8 /* Build configuration list for PBXProject "FishBowl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0C0764741AB8F81900DD88A8 /* Debug */,
@@ -516,7 +516,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0C0764761AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "PersonLog" */ = {
+		0C0764761AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "FishBowl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0C0764771AB8F81900DD88A8 /* Debug */,
@@ -525,7 +525,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0C0764791AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "PersonLogTests" */ = {
+		0C0764791AB8F81900DD88A8 /* Build configuration list for PBXNativeTarget "FishBowlTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0C07647A1AB8F81900DD88A8 /* Debug */,
