@@ -15,8 +15,6 @@ class Database: NSObject {
     
     func allInteractions(sorted: Bool = true) -> [Interaction]? {
         let entityDescription = NSEntityDescription.entityForName("Interaction", inManagedObjectContext: managedObjectContext)
-        let interaction = Interaction(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
-        
         let request = NSFetchRequest()
         var error: NSError?
         request.entity = entityDescription!
