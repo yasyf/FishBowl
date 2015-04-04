@@ -86,7 +86,6 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Navigation
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         broadcaster.kill()
         advertisingButton.setTitle("Start Advertising", forState: UIControlState.Normal)

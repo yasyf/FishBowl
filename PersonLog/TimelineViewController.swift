@@ -13,22 +13,12 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var table: UITableView!
     
-    var people = [
-        (time: "9:47 AM", image: UIImage(named: "jenn.png"), name: "Jenn"),
-        (time: "10:23 AM", image: UIImage(named: "yasyf.png"), name: "Yasyf"),
-        (time: "11:58 AM", image: UIImage(named: "david.png"), name: "David"),
-        (time: "12:06 PM", image: UIImage(named: "rumya.png"), name: "Rumya"),
-        (time: "1:34 PM", image: UIImage(named: "rose.png"), name: "Rose"),
-        (time: "1:40 PM", image: UIImage(named: "tim.png"), name: "Tim"),
-        (time: "2:11 PM", image: UIImage(named: "jaimie.png"), name: "Jaimie"),
-        (time: "3:00 PM", image: UIImage(named: "emma.png"), name: "Emma"),
-        (time: "4:29 PM", image: UIImage(named: "blake.png"), name: "Blake"),
-    ]
-    
     let serviceType = "personlog-disc"
     let peer = Peer()
+    let database = Database()
     let broadcaster: Broadcaster
     let discoverer: Discoverer
+    var interactions = [Interaction]()
     
     override init() {
         broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
@@ -51,28 +41,46 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
         broadcaster.broadcast()
         discoverer.discover()
+        updateInteractions()
+        println(interactions)
         
         discoverer.onPeer({(otherPeer: Peer) in
             self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction) in
-                //Timelineview.refresh
-                //refresh queries DB for all people to show in timeline
-                println(interaction)
+                self.updateInteractions()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.table.reloadData()
+                })
             })
         })
     }
     
+    func updateInteractions() {
+        if let newInteractions = database.allInteractions() {
+            interactions = newInteractions
+        }
+//        dispatch_async(dispatch_get_main_queue(), {
+//            self.table.reloadData()
+//        })
+    }
+    
     // MARK: - Table view data source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return people.count
+        return interactions.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PersonCell", forIndexPath: indexPath) as PersonCell
         
-        let person = people[indexPath.row]
+        let interaction = interactions[indexPath.row]
+        let person = interaction.person
         
-        cell.timeStamp.text = person.time
-        cell.profilePicture.image = person.image
+        println(interaction)
+        println(person.name)
+        println(interaction.date)
+        println(interaction.date.description)
+        
+        cell.timeStamp.text = interaction.date.description
+        cell.profilePicture.image = UIImage(named: "yasyf.png")
         let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
         cell.profilePicture.layer.borderColor = lineColor
         cell.name.text = person.name

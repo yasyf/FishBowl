@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // #TODO Build UI for settings
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue("Yasyf Mohamedali", forKey: "name")
-        defaults.setValue("123-456-7890", forKey: "phone")
+        defaults.setValue("Larry Zhang", forKey: "name")
+        defaults.setValue("000-000-0000", forKey: "phone")
         defaults.setValue("hxxp://foo.bar", forKey: "photo")
         
         return true
