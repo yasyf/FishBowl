@@ -41,7 +41,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
                 self.browser!.delegate = self
             }
             if self.beaconRegion == nil {
-                let beaconRegion = CLBeaconRegion(proximityUUID: self.beaconID, identifier: peerID.displayName)
+                let beaconRegion = CLBeaconRegion(proximityUUID: self.beaconID, identifier: self.beaconID.UUIDString)
                 beaconRegion.notifyEntryStateOnDisplay = true
                 beaconRegion.notifyOnEntry = true
                 self.beaconRegion = beaconRegion
@@ -99,9 +99,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        if beacons.count > 0 {
-            println("didRangeBeacons \(beacons)")
-        }
+        println("didRangeBeacons \(beacons)")
     }
     
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {

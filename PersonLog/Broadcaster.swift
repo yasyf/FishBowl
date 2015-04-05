@@ -17,7 +17,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     let peer: Peer
     var advertiser: MCNearbyServiceAdvertiser?
     var beaconRegion: CLBeaconRegion?
-    let peripheralManager = CBPeripheralManager()
+    let peripheralManager: CBPeripheralManager?
     var isBroadcasting: Bool = false
     
     init(peer: Peer, serviceType: String, beaconID: NSUUID) {
@@ -25,7 +25,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
         self.serviceType = serviceType
         self.beaconID = beaconID
         super.init()
-        self.peripheralManager.delegate = self
+        self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
     }
     
     func broadcast() {
@@ -35,10 +35,10 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
                 self.advertiser!.delegate = self
             }
             if self.beaconRegion == nil {
-                self.beaconRegion = CLBeaconRegion(proximityUUID: self.beaconID, identifier: peerID.displayName)
+                self.beaconRegion = CLBeaconRegion(proximityUUID: self.beaconID, identifier: self.beaconID.UUIDString)
             }
             self.advertiser!.startAdvertisingPeer()
-            self.peripheralManager.startAdvertising(self.beaconRegion!.peripheralDataWithMeasuredPower(nil))
+            self.peripheralManager!.startAdvertising(self.beaconRegion!.peripheralDataWithMeasuredPower(nil))
             self.isBroadcasting = true
         })
     }
@@ -46,15 +46,17 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     func kill() {
         isBroadcasting = false
         advertiser?.startAdvertisingPeer()
-        peripheralManager.stopAdvertising()
+        peripheralManager!.stopAdvertising()
     }
     
     // MARK: - CBPeripheralManagerDelegate
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
-        if peripheral.state == CBPeripheralManagerState.PoweredOn {
-            println("peripheralManagerDidUpdateState PoweredOn")
-        }
+        println("peripheralManagerDidUpdateState \(peripheral.state.rawValue)")
+    }
+    
+    func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager!, error: NSError!) {
+        println("peripheralManagerDidStartAdvertising (Error: \(error))")
     }
     
     // MARK: - MCNearbyServiceAdvertiserDelegate
