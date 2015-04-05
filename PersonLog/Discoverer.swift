@@ -10,20 +10,23 @@ import Foundation
 import MultipeerConnectivity
 import CoreLocation
 
-class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
+class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDelegate {
     let serviceType: String
+    let beaconID: NSUUID
     var browser: MCNearbyServiceBrowser?
+    var beaconRegion: CLBeaconRegion?
     let peer: Peer
     var peers: [Peer] = []
     var peerCallbacks: [(Peer) -> Void] = []
     var isDiscovering: Bool = false
     var locManager = CLLocationManager()
     
-    init(peer: Peer, serviceType: String) {
+    init(peer: Peer, serviceType: String, beaconID: NSUUID) {
         self.peer = peer
-        self.locManager.delegate = peer
         self.serviceType = serviceType
+        self.beaconID = beaconID
         super.init()
+        self.locManager.delegate = self
     }
     
     func onPeer(callback: (Peer) -> Void) {
@@ -37,8 +40,17 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
                 self.browser = MCNearbyServiceBrowser(peer: peerID, serviceType: self.serviceType)
                 self.browser!.delegate = self
             }
+            if self.beaconRegion == nil {
+                let beaconRegion = CLBeaconRegion(proximityUUID: self.beaconID, identifier: peerID.displayName)
+                beaconRegion.notifyEntryStateOnDisplay = true
+                beaconRegion.notifyOnEntry = true
+                self.beaconRegion = beaconRegion
+            }
             self.browser!.startBrowsingForPeers()
+            self.locManager.pausesLocationUpdatesAutomatically = false
             self.locManager.requestAlwaysAuthorization()
+            self.locManager.startMonitoringForRegion(self.beaconRegion!)
+            self.locManager.startRangingBeaconsInRegion(self.beaconRegion!)
             self.locManager.startUpdatingLocation()
             self.isDiscovering = true
         })
@@ -48,11 +60,11 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
         isDiscovering = false
         browser?.stopBrowsingForPeers()
         self.locManager.stopUpdatingLocation()
+        self.locManager.stopRangingBeaconsInRegion(self.beaconRegion?)
+        self.locManager.stopMonitoringForRegion(self.beaconRegion?)
     }
     
-    // MARK: - MCNearbyServiceBrowserDelegate
-    
-    func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
+    func didFindPeer(peerID: MCPeerID) {
         let peer = Peer(peerID: peerID)
         println("Found peer \(peerID.displayName)")
         peer.onData({(data: Dictionary<String, AnyObject>) in
@@ -62,6 +74,44 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate {
         for callback in peerCallbacks {
             callback(peer)
         }
+    }
+    
+    // MARK: - CLLocationManagerDelegate
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
+        self.peer.location = locations.last
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        self.peer.location = newLocation
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println(error)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        println("didEnterRegion \(region)")
+    }
+    
+    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+        println("didExitRegion \(region)")
+    }
+    
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+        if beacons.count > 0 {
+            println("didRangeBeacons \(beacons)")
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
+        println("didStartMonitoringForRegion \(region)")
+    }
+    
+    // MARK: - MCNearbyServiceBrowserDelegate
+    
+    func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
+        didFindPeer(peerID)
     }
     
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {

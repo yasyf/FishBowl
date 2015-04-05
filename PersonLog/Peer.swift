@@ -14,12 +14,13 @@ import CoreLocation
 let settings = Settings()
 let api: API = API()
 
-class Peer: NSObject, CLLocationManagerDelegate {
+class Peer: NSObject {
     var peerID: MCPeerID?
     var isFetchingPeerID = false
     var isFetchingData = false
     var data: Dictionary<String, AnyObject>?
     var peerIDCallbacks: [(MCPeerID) -> Void] = []
+    var beaconInRangeCallbacks: [(MCPeerID) -> Void] = []
     var dataCallbacks: [(Dictionary<String, AnyObject>) -> Void] = []
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var location: CLLocation?
@@ -144,18 +145,6 @@ class Peer: NSObject, CLLocationManagerDelegate {
             println(err)
         }
         return person
-    }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
-        self.location = locations.last
-    }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
-        self.location = newLocation
-    }
-    
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error)
     }
 
     func newInteraction(otherPerson: Person, callback: ((Interaction) -> Void)?) {
