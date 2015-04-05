@@ -124,7 +124,7 @@ class Peer: NSObject {
         let request = NSFetchRequest()
         
         request.entity = entityDescription!
-        request.predicate = NSPredicate(format: "(phone = %@)", data["phone"] as String)
+        request.predicate = NSPredicate(format: "(fb_id = %@)", data["fb_id"] as String)
         
         var objects = managedObjectContext.executeFetchRequest(request, error: nil)
         if let results = objects {
@@ -150,11 +150,30 @@ class Peer: NSObject {
         return person
     }
 
-    func newInteraction(otherPerson: Person, callback: ((Interaction) -> Void)?) {
+    func newInteraction(person: Person, otherPerson: Person, callback: ((Interaction?) -> Void)?) {
         let entityDescription = NSEntityDescription.entityForName("Interaction", inManagedObjectContext: managedObjectContext)
+        
+        let date = NSDate()
+        
+        if let lastInteraction = otherPerson.visited.lastObject as? Interaction {
+            let hourAgo = date.dateByAddingTimeInterval(-3600)
+            if lastInteraction.date.compare(hourAgo) == NSComparisonResult.OrderedDescending  {
+                println("Skipping interaction due to recent interaction")
+                callback?(nil)
+                return
+            }
+        }
+        if person.fb_id == otherPerson.fb_id {
+            println("Skipping interaction due to self interaction")
+            callback?(nil)
+            return
+        }
+        
+        
         let interaction = Interaction(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
         var error: NSError?
         
+        interaction.owner = person
         interaction.person = otherPerson
         interaction.date = NSDate()
 
@@ -165,17 +184,15 @@ class Peer: NSObject {
             }
         }
         
-        onPerson({(person: Person) in
-            interaction.owner = person
-            if person.fb_id == otherPerson.fb_id {
-                self.managedObjectContext.deleteObject(interaction)
-            }
-            self.managedObjectContext.save(&error)
-            if let err = error {
-                println(err)
-            }
+        self.managedObjectContext.save(&error)
+        
+        if let err = error {
+            println(err)
+            callback?(nil)
+        } else {
             callback?(interaction)
-        })
+        }
+        
     }
     
     func onPerson(callback: (Person) -> Void) {
@@ -185,9 +202,11 @@ class Peer: NSObject {
         })
     }
     
-    func recordInteraction(other: Peer, callback: ((Interaction) -> Void)?) {
-        other.onPerson({(otherPerson: Person) in
-            self.newInteraction(otherPerson, callback)
+    func recordInteraction(other: Peer, callback: ((Interaction?) -> Void)?) {
+        self.onPerson({(person: Person) in
+            other.onPerson({(otherPerson: Person) in
+                self.newInteraction(person, otherPerson: otherPerson, callback)
+            })
         })
     }
 }

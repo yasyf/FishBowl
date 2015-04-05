@@ -55,7 +55,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     
     func kill() {
         isBroadcasting = false
-        advertiser?.startAdvertisingPeer()
+        advertiser?.stopAdvertisingPeer()
         peripheralManager!.stopAdvertising()
     }
     
