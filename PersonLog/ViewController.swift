@@ -42,8 +42,11 @@ class ViewController: UIViewController {
             }
         })
         discoverer.onPeer({(otherPeer: Peer) in
-            self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction) in
-                println(interaction)
+            self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
+                if let inter = interaction {
+                    println(inter)
+                }
+                
             })
             otherPeer.onData({(data: Dictionary<String, AnyObject>) in
                 dispatch_async(dispatch_get_main_queue(), {
