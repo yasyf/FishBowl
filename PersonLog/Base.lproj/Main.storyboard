@@ -55,9 +55,11 @@
         <scene sceneID="6BU-f1-bv9">
             <objects>
                 <navigationController title="Navigation Controller" id="5Y2-ag-FZn" customClass="NavViewController" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="4lz-3p-ONC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.26013964410000001" green="0.60329639909999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
@@ -197,7 +199,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="xp9-mf-Hpz"/>
+                    <navigationItem key="navigationItem" title="FishBowl" id="xp9-mf-Hpz"/>
                     <connections>
                         <outlet property="table" destination="sEA-Mg-akb" id="fUX-Wq-WBo"/>
                     </connections>

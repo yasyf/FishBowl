@@ -56,7 +56,6 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         let lat = 42.358040 as CLLocationDegrees
         let lon = -71.093917 as CLLocationDegrees
         let test = CLLocationCoordinate2DMake(lat, lon)
-        
         var startRegion = MKCoordinateRegion(center: test, span: MKCoordinateSpanMake(spanX, spanY))
 //        var startRegion = MKCoordinateRegion(center: location!, span: MKCoordinateSpanMake(spanX, spanY))
         map.setRegion(startRegion, animated: false)
