@@ -9,29 +9,42 @@
 import Foundation
 import MultipeerConnectivity
 import CoreLocation
+import CoreBluetooth
 
-class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDelegate {
+class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     let serviceType: String
     let beaconID: NSUUID
+    let characteristicID: CBUUID
     var browser: MCNearbyServiceBrowser?
-    var beaconRegion: CLBeaconRegion?
+    let centralManager: CBCentralManager?
     let peer: Peer
     var peers: [Peer] = []
+    var peripherals: [CBPeripheral] = []
     var peerCallbacks: [(Peer) -> Void] = []
     var isDiscovering: Bool = false
     var locManager = CLLocationManager()
     
-    init(peer: Peer, serviceType: String, beaconID: NSUUID) {
+    init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {
         self.peer = peer
         self.serviceType = serviceType
         self.beaconID = beaconID
+        self.characteristicID = characteristicID
         super.init()
         self.locManager.delegate = self
+        self.centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     func onPeer(callback: (Peer) -> Void) {
         peerCallbacks.append(callback)
         peers.map(callback)
+    }
+    
+    func startDiscovering() {
+        if let manager = centralManager {
+            let serviceUUID = CBUUID(NSUUID: beaconID)
+            println("scanForPeripheralsWithServices \([serviceUUID])")
+            manager.scanForPeripheralsWithServices([serviceUUID], options: nil)
+        }
     }
     
     func discover() {
@@ -40,18 +53,11 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
                 self.browser = MCNearbyServiceBrowser(peer: peerID, serviceType: self.serviceType)
                 self.browser!.delegate = self
             }
-            if self.beaconRegion == nil {
-                let beaconRegion = CLBeaconRegion(proximityUUID: self.beaconID, identifier: self.beaconID.UUIDString)
-                beaconRegion.notifyEntryStateOnDisplay = true
-                beaconRegion.notifyOnEntry = true
-                self.beaconRegion = beaconRegion
-            }
             self.browser!.startBrowsingForPeers()
             self.locManager.pausesLocationUpdatesAutomatically = false
             self.locManager.requestAlwaysAuthorization()
-            self.locManager.startMonitoringForRegion(self.beaconRegion!)
-            self.locManager.startRangingBeaconsInRegion(self.beaconRegion!)
             self.locManager.startUpdatingLocation()
+            self.startDiscovering()
             self.isDiscovering = true
         })
     }
@@ -59,14 +65,14 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     func kill() {
         isDiscovering = false
         browser?.stopBrowsingForPeers()
+        centralManager?.stopScan()
         self.locManager.stopUpdatingLocation()
-        self.locManager.stopRangingBeaconsInRegion(self.beaconRegion?)
-        self.locManager.stopMonitoringForRegion(self.beaconRegion?)
     }
     
-    func didFindPeer(peerID: MCPeerID) {
-        let peer = Peer(peerID: peerID)
-        println("Found peer \(peerID.displayName)")
+    func didFindPeer(peer: Peer) {
+        peer.onPeerID({(peerID: MCPeerID) in
+            println("Found peer \(peerID.displayName)")
+        })
         peer.onData({(data: Dictionary<String, AnyObject>) in
             println(data)
         })
@@ -75,6 +81,60 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             callback(peer)
         }
     }
+    
+    // MARK: - CBCentralManagerDelegate
+    
+    func centralManagerDidUpdateState(central: CBCentralManager!) {
+        if central.state == CBCentralManagerState.PoweredOn && isDiscovering {
+            println("centralManagerDidUpdateState PoweredOn")
+            startDiscovering()
+        }
+    }
+    
+    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
+        println("didDiscoverPeripheral \(peripheral)")
+        peripherals.append(peripheral)
+        peripheral.delegate = self
+        centralManager!.connectPeripheral(peripheral, options: nil)
+    }
+    
+    func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
+        println("didConnectPeripheral \(peripheral)")
+        let serviceUUID = CBUUID(NSUUID: beaconID)
+        peripheral.discoverServices([serviceUUID])
+    }
+    
+    func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
+        println("didFailToConnectPeripheral \(error)")
+    }
+    
+    // MARK: - CBPeripheralDelegate
+    
+    func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
+        let service = peripheral.services[0] as CBService
+        peripheral.discoverCharacteristics([characteristicID], forService: service)
+        println("didDiscoverServices \(peripheral.services)")
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
+        let characteristic = service.characteristics[0] as CBCharacteristic
+        peripheral.readValueForCharacteristic(characteristic)
+        println("didDiscoverCharacteristicsForService \(service.characteristics)")
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        let UUIDString = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
+        let peerID = MCPeerID(displayName: UUIDString)
+        let peer = Peer(peerID: peerID)
+        didFindPeer(peer)
+        for (i, periph) in enumerate(peripherals) {
+            if periph == peripheral {
+                peripherals.removeAtIndex(i)
+                break
+            }
+        }
+    }
+    
     
     // MARK: - CLLocationManagerDelegate
     
@@ -109,7 +169,8 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     // MARK: - MCNearbyServiceBrowserDelegate
     
     func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-        didFindPeer(peerID)
+        let peer = Peer(peerID: peerID)
+        didFindPeer(peer)
     }
     
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {

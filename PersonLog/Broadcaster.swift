@@ -14,18 +14,31 @@ import CoreBluetooth
 class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralManagerDelegate {
     let serviceType: String
     let beaconID: NSUUID
+    let characteristicID: CBUUID
     let peer: Peer
     var advertiser: MCNearbyServiceAdvertiser?
-    var beaconRegion: CLBeaconRegion?
     let peripheralManager: CBPeripheralManager?
     var isBroadcasting: Bool = false
     
-    init(peer: Peer, serviceType: String, beaconID: NSUUID) {
+    init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {
         self.peer = peer
         self.serviceType = serviceType
         self.beaconID = beaconID
+        self.characteristicID = characteristicID
         super.init()
         self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+    }
+    
+    func startAdvertising(deviceID: String) {
+        if let manager = self.peripheralManager {
+            let serviceUUID = CBUUID(NSUUID: beaconID)
+            let characteristic = CBMutableCharacteristic(type: characteristicID, properties: CBCharacteristicProperties.Read, value: deviceID.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), permissions: CBAttributePermissions.Readable)
+            let service = CBMutableService(type: serviceUUID, primary: true)
+            service.characteristics = [characteristic]
+            manager.addService(service)
+            println("addService \(service)")
+            manager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
+        }
     }
     
     func broadcast() {
@@ -34,11 +47,8 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
                 self.advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: self.serviceType)
                 self.advertiser!.delegate = self
             }
-            if self.beaconRegion == nil {
-                self.beaconRegion = CLBeaconRegion(proximityUUID: self.beaconID, identifier: self.beaconID.UUIDString)
-            }
             self.advertiser!.startAdvertisingPeer()
-            self.peripheralManager!.startAdvertising(self.beaconRegion!.peripheralDataWithMeasuredPower(nil))
+            self.startAdvertising(peerID.displayName)
             self.isBroadcasting = true
         })
     }
@@ -52,7 +62,11 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     // MARK: - CBPeripheralManagerDelegate
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
-        println("peripheralManagerDidUpdateState \(peripheral.state.rawValue)")
+        if peripheral.state == CBPeripheralManagerState.PoweredOn && isBroadcasting {
+            self.peer.onPeerID({(peerID: MCPeerID) in
+                self.startAdvertising(peerID.displayName)
+            })
+        }
     }
     
     func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager!, error: NSError!) {

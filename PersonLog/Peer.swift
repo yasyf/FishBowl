@@ -167,6 +167,9 @@ class Peer: NSObject {
         
         onPerson({(person: Person) in
             interaction.owner = person
+            if person.fb_id == otherPerson.fb_id {
+                self.managedObjectContext.deleteObject(interaction)
+            }
             self.managedObjectContext.save(&error)
             if let err = error {
                 println(err)
