@@ -16,6 +16,10 @@ class ProfileView: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var phone: UILabel!
     @IBOutlet weak var map: MKMapView!
+    @IBAction func fbLink(sender: AnyObject) {
+        let url = NSURL(string: "fb://profile/\(person!.fb_id)")
+        UIApplication.sharedApplication().openURL(url!)
+    }
     
     var person:Person?
     var location:CLLocationCoordinate2D?

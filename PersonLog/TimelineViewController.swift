@@ -63,7 +63,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
         cell.timeStamp.text = interaction.date.description
         
-        let photo = NSData(contentsOfURL: NSURL(string: person.photo_url)!)
+        let photoURL = NSURL(string: person.photo_url)
+        let photo = NSData(contentsOfURL: photoURL!)
         cell.profilePicture.image = UIImage(data: photo!)
         
         let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
