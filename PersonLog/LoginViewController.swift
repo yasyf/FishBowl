@@ -20,14 +20,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        println("User Logged In")
-        
         if (error) != nil {
             println(error)
         } else if result.isCancelled {
             // Handle cancellations
         } else {
             self.returnUserData()
+            println("logged in 2")
             
             let appDelegateTemp:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             appDelegateTemp.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UIViewController
@@ -55,13 +54,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             else
             {
                 let userID = result.valueForKey("id") as NSString
-                println(userID)
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setValue(result.valueForKey("first_name") as NSString, forKey: "f_name")
                 defaults.setValue(result.valueForKey("last_name") as NSString, forKey: "l_name")
                 defaults.setValue("000-000-0000", forKey: "phone")
                 defaults.setValue("http://graph.facebook.com/\(userID)/picture?type=square", forKey: "photo_url")
                 defaults.setValue(userID, forKey: "fb_id")
+                println("logged in")
             }
         })
     }
