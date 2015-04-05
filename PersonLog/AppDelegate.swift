@@ -35,21 +35,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-//        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        if NSUserDefaults.standardUserDefaults().objectForKey("fb_id") != nil {
+            broadcaster.broadcast()
+            discoverer.discover()
+        } else {
+            self.showLoginScreen()
+        }
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue("Larry", forKey: "f_name")
-        defaults.setValue("Zhang", forKey: "l_name")
-        defaults.setValue("000-000-0000", forKey: "phone")
-        defaults.setValue("hxxp://foo.bar", forKey: "photo_url")
-        defaults.setValue("LarryZ", forKey: "fb_id")
-        
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
-//    func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
-//        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-//    }
+    func showLoginScreen() {
+        let LoginViewController:UIViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("LoginView") as UIViewController
+        self.window?.makeKeyAndVisible()
+        self.window?.rootViewController?.presentViewController(LoginViewController, animated: false, completion: nil)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

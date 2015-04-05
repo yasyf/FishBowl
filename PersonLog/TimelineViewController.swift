@@ -16,21 +16,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     let serviceType = "personlog-disc"
     let database = Database()
     let peer = (UIApplication.sharedApplication().delegate as AppDelegate).peer
-    let broadcaster = (UIApplication.sharedApplication().delegate as AppDelegate).broadcaster
     let discoverer = (UIApplication.sharedApplication().delegate as AppDelegate).discoverer
     var interactions = [Interaction]()
-    
-    override init() {
-        broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
-        discoverer = Discoverer(peer: peer, serviceType: serviceType)
-        super.init()
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        broadcaster = Broadcaster(peer: peer, serviceType: serviceType)
-        discoverer = Discoverer(peer: peer, serviceType: serviceType)
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +26,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
         
-        broadcaster.broadcast()
-        discoverer.discover()
         updateInteractions()
         
         discoverer.onPeer({(otherPeer: Peer) in
@@ -79,11 +64,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
  
+    /*
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        broadcaster.kill()
-        discoverer.kill()
-        println("killtimeline")
     }
+    */
 
 }

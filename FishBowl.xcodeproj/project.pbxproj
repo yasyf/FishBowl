@@ -11,7 +11,6 @@
 		0C04FC411ACE9A730059336D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C04FC401ACE9A730059336D /* Person.swift */; };
 		0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764591AB8F81900DD88A8 /* AppDelegate.swift */; };
 		0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */; };
-		0C07645F1AB8F81900DD88A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C07645E1AB8F81900DD88A8 /* ViewController.swift */; };
 		0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764601AB8F81900DD88A8 /* Main.storyboard */; };
 		0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764631AB8F81900DD88A8 /* Images.xcassets */; };
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
@@ -29,6 +28,7 @@
 		4611814D1ACF2C0B004A0B68 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181491ACF2C0B004A0B68 /* TimelineViewController.swift */; };
 		4611815F1ACF2C2B004A0B68 /* yasyf.png in Resources */ = {isa = PBXBuildFile; fileRef = 461181561ACF2C2B004A0B68 /* yasyf.png */; };
 		461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 461181601ACF2C34004A0B68 /* Bariol_Regular.otf */; };
+		461A86521AD1165700A4622D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461A86511AD1165700A4622D /* LoginViewController.swift */; };
 		4645D30F1ACFC3DA00F92285 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4645D30E1ACFC3DA00F92285 /* ProfileView.swift */; };
 		46D9AD811AD0851A0070E595 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */; };
 		46D9AD821AD0851A0070E595 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */; };
@@ -52,7 +52,6 @@
 		0C0764581AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764591AB8F81900DD88A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C07645C1AB8F81900DD88A8 /* PersonLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersonLog.xcdatamodel; sourceTree = "<group>"; };
-		0C07645E1AB8F81900DD88A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C0764611AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C0764631AB8F81900DD88A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +72,7 @@
 		461181491ACF2C0B004A0B68 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		461181561ACF2C2B004A0B68 /* yasyf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yasyf.png; sourceTree = "<group>"; };
 		461181601ACF2C34004A0B68 /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular.otf; sourceTree = "<group>"; };
+		461A86511AD1165700A4622D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4645D30E1ACFC3DA00F92285 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -197,8 +197,8 @@
 		461181621ACF2C5D004A0B68 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				461A86511AD1165700A4622D /* LoginViewController.swift */,
 				461181461ACF2C0B004A0B68 /* NavViewController.swift */,
-				0C07645E1AB8F81900DD88A8 /* ViewController.swift */,
 				461181491ACF2C0B004A0B68 /* TimelineViewController.swift */,
 				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
 				4645D30E1ACFC3DA00F92285 /* ProfileView.swift */,
@@ -377,8 +377,8 @@
 				0C04FC411ACE9A730059336D /* Person.swift in Sources */,
 				0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */,
 				0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */,
+				461A86521AD1165700A4622D /* LoginViewController.swift in Sources */,
 				4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */,
-				0C07645F1AB8F81900DD88A8 /* ViewController.swift in Sources */,
 				0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */,
 				0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */,
 				4645D30F1ACFC3DA00F92285 /* ProfileView.swift in Sources */,
@@ -548,7 +548,6 @@
 		0C07647A1AB8F81900DD88A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -560,14 +559,13 @@
 				INFOPLIST_FILE = PersonLogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = FishBowlTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PersonLog.app/PersonLog";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FishBowl.app/FishBowl";
 			};
 			name = Debug;
 		};
 		0C07647B1AB8F81900DD88A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -575,7 +573,7 @@
 				INFOPLIST_FILE = PersonLogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = FishBowlTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PersonLog.app/PersonLog";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FishBowl.app/FishBowl";
 			};
 			name = Release;
 		};
