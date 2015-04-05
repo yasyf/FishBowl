@@ -201,9 +201,9 @@
 				461A86511AD1165700A4622D /* LoginViewController.swift */,
 				461181461ACF2C0B004A0B68 /* NavViewController.swift */,
 				461181491ACF2C0B004A0B68 /* TimelineViewController.swift */,
-				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
-				46060D811AD153A100091817 /* ProfileView.swift */,
 				461181471ACF2C0B004A0B68 /* PersonCell.swift */,
+				46060D811AD153A100091817 /* ProfileView.swift */,
+				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";

@@ -48,6 +48,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             if error == nil {
                 let userID = result.valueForKey("id") as NSString
+                println(result.valueForKey("link") as NSString)
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setValue(result.valueForKey("first_name") as NSString, forKey: "f_name")
                 defaults.setValue(result.valueForKey("last_name") as NSString, forKey: "l_name")
