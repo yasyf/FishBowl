@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 import CoreData
 import CoreBluetooth
 
@@ -39,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if NSUserDefaults.standardUserDefaults().objectForKey("fb_id") == nil {
             self.showLoginScreen()
         }
-        
-        CLLocationManager().requestAlwaysAuthorization()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

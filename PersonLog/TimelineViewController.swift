@@ -33,11 +33,13 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         println("starting")
         
         discoverer.onPeer({(otherPeer: Peer) in
-            self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction) in
-                self.updateInteractions()
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.table.reloadData()
-                })
+            self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
+                if interaction != nil {
+                    self.updateInteractions()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.table.reloadData()
+                    })
+                }
             })
         })
     }
@@ -60,7 +62,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let person = interaction.person
         
         cell.timeStamp.text = interaction.date.description
-        cell.profilePicture.image = UIImage(named: "yasyf.png")
+        
+        let photo = NSData(contentsOfURL: NSURL(string: person.photo_url)!)
+        cell.profilePicture.image = UIImage(data: photo!)
+        
         let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
         cell.profilePicture.layer.borderColor = lineColor
         cell.name.text = person.f_name
@@ -68,10 +73,16 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
  
-    /*
+
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewProfile" {
+            if let destination = segue.destinationViewController as? ProfileView {
+                if let index = table.indexPathForSelectedRow()?.row {
+                    destination.person = interactions[index].person
+                    // destination.person = interactions[index].location
+                }
+            }
+        }
     }
-    */
-
 }

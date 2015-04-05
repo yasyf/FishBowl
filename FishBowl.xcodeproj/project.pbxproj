@@ -24,13 +24,12 @@
 		0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */; };
 		0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE51AB90D2600ECAF11 /* Peer.swift */; };
 		0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBABF821ACF3CB300D7F0F4 /* Database.swift */; };
+		46060D821AD153A100091817 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46060D811AD153A100091817 /* ProfileView.swift */; };
 		4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181461ACF2C0B004A0B68 /* NavViewController.swift */; };
 		4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181471ACF2C0B004A0B68 /* PersonCell.swift */; };
 		4611814D1ACF2C0B004A0B68 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181491ACF2C0B004A0B68 /* TimelineViewController.swift */; };
-		4611815F1ACF2C2B004A0B68 /* yasyf.png in Resources */ = {isa = PBXBuildFile; fileRef = 461181561ACF2C2B004A0B68 /* yasyf.png */; };
 		461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 461181601ACF2C34004A0B68 /* Bariol_Regular.otf */; };
 		461A86521AD1165700A4622D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461A86511AD1165700A4622D /* LoginViewController.swift */; };
-		4645D30F1ACFC3DA00F92285 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4645D30E1ACFC3DA00F92285 /* ProfileView.swift */; };
 		46D9AD811AD0851A0070E595 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */; };
 		46D9AD821AD0851A0070E595 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */; };
 		6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454E43B44E5900429842DB84 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -69,13 +68,12 @@
 		0C9CFFE51AB90D2600ECAF11 /* Peer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
 		0CBABF821ACF3CB300D7F0F4 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		454E43B44E5900429842DB84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46060D811AD153A100091817 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		461181461ACF2C0B004A0B68 /* NavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
 		461181471ACF2C0B004A0B68 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		461181491ACF2C0B004A0B68 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
-		461181561ACF2C2B004A0B68 /* yasyf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yasyf.png; sourceTree = "<group>"; };
 		461181601ACF2C34004A0B68 /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular.otf; sourceTree = "<group>"; };
 		461A86511AD1165700A4622D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4645D30E1ACFC3DA00F92285 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		46D9AD841AD08A5A0070E595 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -140,9 +138,9 @@
 				46D9AD841AD08A5A0070E595 /* Bridging-Header.h */,
 				46D9AD831AD085240070E595 /* Facebook Framework */,
 				0C0764571AB8F81900DD88A8 /* Supporting Files */,
-				0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */,
 				0C9CFFE51AB90D2600ECAF11 /* Peer.swift */,
 				0C88E5B11AC4A6C100671E49 /* API.swift */,
+				0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */,
 				0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */,
 				0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */,
 				0CBABF821ACF3CB300D7F0F4 /* Database.swift */,
@@ -154,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				461181601ACF2C34004A0B68 /* Bariol_Regular.otf */,
-				461181561ACF2C2B004A0B68 /* yasyf.png */,
 				0C0764581AB8F81900DD88A8 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -205,7 +202,7 @@
 				461181461ACF2C0B004A0B68 /* NavViewController.swift */,
 				461181491ACF2C0B004A0B68 /* TimelineViewController.swift */,
 				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
-				4645D30E1ACFC3DA00F92285 /* ProfileView.swift */,
+				46060D811AD153A100091817 /* ProfileView.swift */,
 				461181471ACF2C0B004A0B68 /* PersonCell.swift */,
 			);
 			name = Views;
@@ -310,7 +307,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */,
-				4611815F1ACF2C2B004A0B68 /* yasyf.png in Resources */,
 				0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */,
 				0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */,
 			);
@@ -385,7 +381,7 @@
 				4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */,
 				0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */,
 				0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */,
-				4645D30F1ACFC3DA00F92285 /* ProfileView.swift in Sources */,
+				46060D821AD153A100091817 /* ProfileView.swift in Sources */,
 				4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */,
 				0C9CFFDE1AB8FA6600ECAF11 /* Broadcaster.swift in Sources */,
 				0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */,

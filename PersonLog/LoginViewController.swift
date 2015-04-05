@@ -14,11 +14,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loginView.readPermissions = ["public_profile", "user_friends", "user_photos"]
         loginView.delegate = self
     }
-    
+
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if (error) != nil {
             println(error)
@@ -32,7 +32,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             appDelegateTemp.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UIViewController
         }
     }
-    
+
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         println("User Logged Out")
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -42,25 +42,21 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         defaults.setValue(nil, forKey: "photo_url")
         defaults.setValue(nil, forKey: "fb_id")
     }
-    
+
     func returnUserData() {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
-            
-            if ((error) != nil)
-            {
-                println("Error: \(error)")
-            }
-            else
-            {
+       let graphRequest:FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+       graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            if error == nil {
                 let userID = result.valueForKey("id") as NSString
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setValue(result.valueForKey("first_name") as NSString, forKey: "f_name")
                 defaults.setValue(result.valueForKey("last_name") as NSString, forKey: "l_name")
                 defaults.setValue("000-000-0000", forKey: "phone")
-                defaults.setValue("http://graph.facebook.com/\(userID)/picture?type=square", forKey: "photo_url")
+                defaults.setValue("https://graph.facebook.com/\(userID)/picture?type=square", forKey: "photo_url")
                 defaults.setValue(userID, forKey: "fb_id")
                 println("logged in")
+            } else {
+                println("Error: \(error)")
             }
         })
     }
