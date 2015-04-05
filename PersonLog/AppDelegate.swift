@@ -8,24 +8,28 @@
 
 import UIKit
 import CoreData
+import CoreBluetooth
 
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
     let serviceType = "personlog-disc"
+    let beaconID = NSUUID(UUIDString: "F8F1A882-14FF-4F5D-A4A2-0308AB0644D8")!
+    let characteristicID = CBUUID(string: "C7F7729A-F744-49E7-AE94-649D14FE2327")
     
     lazy var peer: Peer = {
         return Peer()
     }()
     
     lazy var broadcaster: Broadcaster = {
-        return Broadcaster(peer: self.peer, serviceType: self.serviceType)
+        return Broadcaster(peer: self.peer, serviceType: self.serviceType, beaconID: self.beaconID, characteristicID: self.characteristicID)
     }()
     
     lazy var discoverer: Discoverer = {
-        return Discoverer(peer: self.peer, serviceType: self.serviceType)
+        return Discoverer(peer: self.peer, serviceType: self.serviceType, beaconID: self.beaconID, characteristicID: self.characteristicID)
     }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

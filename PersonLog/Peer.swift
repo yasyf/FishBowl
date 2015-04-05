@@ -14,12 +14,13 @@ import CoreLocation
 let settings = Settings()
 let api: API = API()
 
-class Peer: NSObject, CLLocationManagerDelegate {
+class Peer: NSObject {
     var peerID: MCPeerID?
     var isFetchingPeerID = false
     var isFetchingData = false
     var data: Dictionary<String, AnyObject>?
     var peerIDCallbacks: [(MCPeerID) -> Void] = []
+    var beaconInRangeCallbacks: [(MCPeerID) -> Void] = []
     var dataCallbacks: [(Dictionary<String, AnyObject>) -> Void] = []
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     var location: CLLocation?
@@ -54,6 +55,9 @@ class Peer: NSObject, CLLocationManagerDelegate {
     func defaultPeerID() -> MCPeerID? {
         var uuid = settings.uuid()
         if uuid == nil {
+            peerIDCallbacks.append({(peerID: MCPeerID) in
+                NSUserDefaults.standardUserDefaults().setValue(peerID.displayName, forKey: "uuid")
+            })
             fetchNewID()
             return nil
         } else {
@@ -145,18 +149,6 @@ class Peer: NSObject, CLLocationManagerDelegate {
         }
         return person
     }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
-        self.location = locations.last
-    }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
-        self.location = newLocation
-    }
-    
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error)
-    }
 
     func newInteraction(otherPerson: Person, callback: ((Interaction) -> Void)?) {
         let entityDescription = NSEntityDescription.entityForName("Interaction", inManagedObjectContext: managedObjectContext)
@@ -175,6 +167,9 @@ class Peer: NSObject, CLLocationManagerDelegate {
         
         onPerson({(person: Person) in
             interaction.owner = person
+            if person.fb_id == otherPerson.fb_id {
+                self.managedObjectContext.deleteObject(interaction)
+            }
             self.managedObjectContext.save(&error)
             if let err = error {
                 println(err)
