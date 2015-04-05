@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import CoreData
 import CoreBluetooth
 
@@ -35,20 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        if NSUserDefaults.standardUserDefaults().objectForKey("fb_id") != nil {
-            broadcaster.broadcast()
-            discoverer.discover()
-        } else {
+        if NSUserDefaults.standardUserDefaults().objectForKey("fb_id") == nil {
             self.showLoginScreen()
         }
+        
+        CLLocationManager().requestAlwaysAuthorization()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     func showLoginScreen() {
         let LoginViewController:UIViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("LoginView") as UIViewController
-        self.window?.makeKeyAndVisible()
-        self.window?.rootViewController?.presentViewController(LoginViewController, animated: false, completion: nil)
+        
+        self.window?.rootViewController = UINavigationController.init(rootViewController: LoginViewController)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {

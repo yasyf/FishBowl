@@ -29,13 +29,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         } else {
             self.returnUserData()
             
-            let broadcaster = (UIApplication.sharedApplication().delegate as AppDelegate).broadcaster
-            let discoverer = (UIApplication.sharedApplication().delegate as AppDelegate).discoverer
-            
-            broadcaster.broadcast()
-            discoverer.discover()
-            
-            self.dismissViewControllerAnimated(false, completion: nil)
+            let appDelegateTemp:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            appDelegateTemp.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UIViewController
         }
     }
     
@@ -59,7 +54,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
             else
             {
-                let userID = result.valueForKey("name") as NSString
+                let userID = result.valueForKey("id") as NSString
                 println(userID)
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setValue(result.valueForKey("first_name") as NSString, forKey: "f_name")

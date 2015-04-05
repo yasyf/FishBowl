@@ -16,6 +16,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     let serviceType = "personlog-disc"
     let database = Database()
     let peer = (UIApplication.sharedApplication().delegate as AppDelegate).peer
+    let broadcaster = (UIApplication.sharedApplication().delegate as AppDelegate).broadcaster
     let discoverer = (UIApplication.sharedApplication().delegate as AppDelegate).discoverer
     var interactions = [Interaction]()
     
@@ -26,7 +27,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
         
+        broadcaster.broadcast()
+        discoverer.discover()
         updateInteractions()
+        println("starting")
         
         discoverer.onPeer({(otherPeer: Peer) in
             self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction) in
