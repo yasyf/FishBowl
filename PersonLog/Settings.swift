@@ -13,16 +13,42 @@ class Settings {
     func _string(key: String) -> String? {
         return defaults.stringForKey(key)
     }
-    func name() -> String? {
-        return _string("name")
+    func firstName() -> String? {
+        return _string("f_name")
     }
-    func uuid() -> String? {
+    func setFirstName(firstName: String) {
+        defaults.setValue(firstName, forKey: "f_name")
+    }
+    func lastName() -> String? {
+        return _string("l_name")
+    }
+    func setLastName(lastName: String) {
+        defaults.setValue(lastName, forKey: "l_name")
+    }
+    func UUID() -> String? {
         return _string("uuid")
+    }
+    func setUUID(uuid: String) {
+        defaults.setValue(uuid, forKey: "uuid")
     }
     func facebookID() -> String? {
         return _string("fb_id")
     }
-    
+    func setFacebookID(facebookID: String) {
+        defaults.setValue(facebookID, forKey: "fb_id")
+    }
+    func photoURL() -> String? {
+        return _string("photo_url")
+    }
+    func setphotoURL(photoURL: String) {
+        defaults.setValue(photoURL, forKey: "photo_url")
+    }
+    func phone() -> String? {
+        return _string("phone")
+    }
+    func setphone(phone: String) {
+        defaults.setValue(phone, forKey: "phone")
+    }
     func isLoggedIn() -> Bool {
         return facebookID() != nil
     }
