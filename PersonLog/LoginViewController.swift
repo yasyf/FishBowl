@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         if (error) != nil {
             println(error)
         } else if result.isCancelled {
-            // Handle cancellations
+            println("cancelled")
         } else {
             self.returnUserData()
             println("logged in")
@@ -44,8 +44,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     func returnUserData() {
-       let graphRequest:FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
-       graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+        
+        let graphRequest:FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             if error == nil {
                 let userID = result.valueForKey("id") as NSString
                 let defaults = NSUserDefaults.standardUserDefaults()

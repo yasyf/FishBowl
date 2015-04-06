@@ -16,22 +16,31 @@ class ProfileView: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     @IBAction func fbLink(sender: AnyObject) {
-        let url = NSURL(string: "fb://profile/app_scoped_user_id/\(person!.fb_id)")
-        UIApplication.sharedApplication().openURL(url!)
+        var url = NSURL(string: "fb://profile/app_scoped_user_id/\(person.fb_id)")!
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            println(url)
+            UIApplication.sharedApplication().openURL(url)
+        } else {
+            url = NSURL(string: "http://facebook.com/\(person.fb_id)")!
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
     
-    var person:Person?
-    var location:CLLocationCoordinate2D?
+    var person:Person!
+    var lat:NSNumber!
+    var lon:NSNumber!
     
     required init(coder aDecoder: NSCoder) {
         self.person = nil
-        self.location = nil
+        self.lat = nil
+        self.lon = nil
         super.init(coder: aDecoder)
     }
 
     override init() {
         self.person = nil
-        self.location = nil
+        self.lat = nil
+        self.lon = nil
         super.init()
     }
 
@@ -40,8 +49,11 @@ class ProfileView: UIViewController, MKMapViewDelegate {
 
         let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
         profilePicture.layer.borderColor = lineColor
+        let photoURL = NSURL(string: person.photo_url)!
+        let photo = NSData(contentsOfURL: photoURL)!
+        profilePicture.image = UIImage(data: photo)
         
-        name.text = "\(person!.f_name) \(person!.l_name)"
+        name.text = "\(person.f_name) \(person.l_name)"
         
         map.delegate = self
         map.mapType = MKMapType.Standard
@@ -49,16 +61,13 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         let spanX = 0.002
         let spanY = 0.002
         
-        let lat = 42.358040 as CLLocationDegrees
-        let lon = -71.093917 as CLLocationDegrees
-        let test = CLLocationCoordinate2DMake(lat, lon)
-        var startRegion = MKCoordinateRegion(center: test, span: MKCoordinateSpanMake(spanX, spanY))
-//        var startRegion = MKCoordinateRegion(center: location!, span: MKCoordinateSpanMake(spanX, spanY))
+        let location = CLLocationCoordinate2DMake(lat as CLLocationDegrees, lon as CLLocationDegrees)
+        var startRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(spanX, spanY))
         map.setRegion(startRegion, animated: false)
         
         let pin = MKPointAnnotation()
-        pin.setCoordinate(test)
-//        pin.setCoordinate(location!)
+        pin.setCoordinate(location)
+        pin.title = "\(lat as CLLocationDegrees), \(lon as CLLocationDegrees)"
         map.addAnnotation(pin)
     }
 

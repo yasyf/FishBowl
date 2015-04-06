@@ -63,9 +63,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
         cell.timeStamp.text = interaction.date.description
         
-        let photoURL = NSURL(string: person.photo_url)
-        let photo = NSData(contentsOfURL: photoURL!)
-        cell.profilePicture.image = UIImage(data: photo!)
+        let photoURL = NSURL(string: person.photo_url)!
+        let photo = NSData(contentsOfURL: photoURL)!
+        cell.profilePicture.image = UIImage(data: photo)
         
         let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
         cell.profilePicture.layer.borderColor = lineColor
@@ -81,7 +81,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             if let destination = segue.destinationViewController as? ProfileView {
                 if let index = table.indexPathForSelectedRow()?.row {
                     destination.person = interactions[index].person
-                    // destination.person = interactions[index].location
+                    destination.lat = interactions[index].lat
+                    destination.lon = interactions[index].lon
                 }
             }
         }
