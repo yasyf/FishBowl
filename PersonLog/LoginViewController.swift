@@ -21,15 +21,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        if (error) != nil {
-            println(error)
-        } else if result.isCancelled {
-            println("cancelled")
-        } else {
+        if let err = error {
+            println(err)
+        } else if !result.isCancelled {
             self.setUserData({
                 self.dismissViewControllerAnimated(false, completion: nil)
             })
-            println("logged in")
         }
     }
 
@@ -42,13 +39,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         graphRequest.startWithCompletionHandler({(connection, result, error) in
             if error == nil {
+                println(result)
                 let fieldMap = ["first_name": "f_name", "last_name": "l_name", "id": "fb_id"]
                 for (facebookField, settingField) in fieldMap {
                     let value = result.valueForKey(facebookField) as NSString
                     self.settings.defaults.setValue(value, forKey: settingField)
                 }
                 let userID = result.valueForKey("id") as NSString
-                self.settings.setphotoURL("https://graph.facebook.com/\(userID)/picture?type=large")
+                self.settings.setphotoURL("https://graph.facebook.com/\(userID)/picture?height=200")
             } else {
                 println("Error: \(error)")
             }
