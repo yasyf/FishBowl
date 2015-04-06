@@ -87,8 +87,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.profilePicture.layer.borderColor = settings.lineColor
         cell.name.text = person.f_name
         
-        let graphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(person.fb_id)", parameters: nil)
-        graphRequest.startWithCompletionHandler({(_, result, error) in
+        let friendGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(person.fb_id)", parameters: nil)
+        friendGraphRequest.startWithCompletionHandler({(_, result, error) in
             if let err = error {
                 println("Error: \(err)")
             } else {

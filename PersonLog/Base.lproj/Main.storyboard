@@ -257,8 +257,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpo-m9-Nsk">
                                                         <rect key="frame" x="0.0" y="50" width="550" height="125"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-Bj-LTO">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutual Friends: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-Bj-LTO">
                                                                 <rect key="frame" x="25" y="20" width="500" height="20"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                                                </accessibility>
                                                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
                                                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -461,6 +464,7 @@
                     <connections>
                         <outlet property="fbButton" destination="gew-vd-I8e" id="OFh-ah-eiK"/>
                         <outlet property="map" destination="OhY-yq-hib" id="n0A-xB-UvP"/>
+                        <outlet property="mutualFriendsLabel" destination="zaH-Bj-LTO" id="ovw-lj-cr3"/>
                         <outlet property="name" destination="Q9M-IA-S2J" id="tQA-oH-AdB"/>
                         <outlet property="profilePicture" destination="KJH-aa-FOu" id="nBZ-MZ-UwH"/>
                     </connections>

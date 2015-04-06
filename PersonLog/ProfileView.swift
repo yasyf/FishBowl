@@ -16,6 +16,7 @@ class ProfileView: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var mutualFriendsLabel: UILabel!
     @IBAction func fbLink(sender: AnyObject) {
         let url = NSURL(string: "http://facebook.com/\(person.fb_id)")
         UIApplication.sharedApplication().openURL(url!)
@@ -52,6 +53,15 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         name.text = "\(person.f_name) \(person.l_name)"
         
         fbButton.setTitle("See \(person.f_name)'s Profile", forState: UIControlState.Normal)
+
+        let mutualFriendGraphRequest = FBSDKGraphRequest(graphPath: "/\(person.fb_id)", parameters: ["fields": "context.fields(mutual_friends)"])
+        mutualFriendGraphRequest.startWithCompletionHandler({(_, result, error) in
+            let summary = result.objectForKey("summary") as NSMutableDictionary
+            let mutualFriendCount = summary.objectForKey("total_count") as Int
+            dispatch_async(dispatch_get_main_queue(), {
+                self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
+            })
+        })
         
         map.delegate = self
         map.mapType = MKMapType.Standard
