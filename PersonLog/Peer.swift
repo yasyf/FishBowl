@@ -53,10 +53,10 @@ class Peer: NSObject {
     }
     
     func defaultPeerID() -> MCPeerID? {
-        var uuid = settings.uuid()
+        var uuid = settings.UUID()
         if uuid == nil {
             peerIDCallbacks.append({(peerID: MCPeerID) in
-                NSUserDefaults.standardUserDefaults().setValue(peerID.displayName, forKey: "uuid")
+                settings.setUUID(peerID.displayName)
             })
             fetchNewID()
             return nil
