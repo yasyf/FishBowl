@@ -51,6 +51,8 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         
         name.text = "\(person.f_name) \(person.l_name)"
         
+        fbButton.setTitle("See \(person.f_name)'s Profile", forState: UIControlState.Normal)
+        
         map.delegate = self
         map.mapType = MKMapType.Standard
 
@@ -63,15 +65,8 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         
         let pin = MKPointAnnotation()
         pin.setCoordinate(location)
-        pin.title = "\(lat as CLLocationDegrees), \(lon as CLLocationDegrees)"
         map.addAnnotation(pin)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation
