@@ -20,14 +20,18 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     var discoverer: Discoverer?
     var interactions = [Interaction]()
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         let footer = UIView()
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
         self.updateInteractions()
+        
+        dateFormatter.dateFormat = "hh:mm A"
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -71,7 +75,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let interaction = interactions[indexPath.row]
         let person = interaction.person
         
-        cell.timeStamp.text = interaction.date.description
+        cell.timeStamp.text = dateFormatter.stringFromDate(interaction.date)
         
         let photoURL = NSURL(string: person.photo_url)!
         let photo = NSData(contentsOfURL: photoURL)!
