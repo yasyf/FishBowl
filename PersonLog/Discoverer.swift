@@ -39,12 +39,22 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         peers.map(callback)
     }
     
-    func startDiscovering() {
+    func startDiscoveringWithManager() {
         if let manager = centralManager {
             let serviceUUID = CBUUID(NSUUID: beaconID)
             println("scanForPeripheralsWithServices \([serviceUUID])")
             manager.scanForPeripheralsWithServices([serviceUUID], options: nil)
         }
+    }
+    
+    func startDiscoveringWithBrowser() {
+        self.browser!.startBrowsingForPeers()
+    }
+    
+    func startDiscovering() {
+        self.locManager.startUpdatingLocation()
+        startDiscoveringWithBrowser()
+        self.startDiscoveringWithManager()
     }
     
     func discover() {
@@ -53,11 +63,12 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
                 self.browser = MCNearbyServiceBrowser(peer: peerID, serviceType: self.serviceType)
                 self.browser!.delegate = self
             }
-            self.browser!.startBrowsingForPeers()
             self.locManager.pausesLocationUpdatesAutomatically = false
-            self.locManager.requestAlwaysAuthorization()
-            self.locManager.startUpdatingLocation()
-            self.startDiscovering()
+            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways {
+                self.startDiscovering()
+            } else {
+                self.locManager.requestAlwaysAuthorization()
+            }
             self.isDiscovering = true
         })
     }
@@ -87,7 +98,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         if central.state == CBCentralManagerState.PoweredOn && isDiscovering {
             println("centralManagerDidUpdateState PoweredOn")
-            startDiscovering()
+            startDiscoveringWithManager()
         }
     }
     
@@ -164,6 +175,17 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
         println("didStartMonitoringForRegion \(region)")
+    }
+    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.AuthorizedAlways {
+            if isDiscovering {
+                startDiscovering()
+            }
+        } else {
+            println("CLLocationManager authorization failed")
+            kill()
+        }
     }
     
     // MARK: - MCNearbyServiceBrowserDelegate
