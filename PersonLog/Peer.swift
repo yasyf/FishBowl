@@ -97,7 +97,7 @@ class Peer: NSObject {
             isFetchingPeerID = true
         }
         var data = [String:String]()
-        for key in ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter"] {
+        for key in settings.fields {
             data[key] = settings._string(key)
         }
         api.post("/register", parameters: data, success: {(response: Dictionary) in
