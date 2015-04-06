@@ -11,10 +11,8 @@
 		0C04FC411ACE9A730059336D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C04FC401ACE9A730059336D /* Person.swift */; };
 		0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764591AB8F81900DD88A8 /* AppDelegate.swift */; };
 		0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */; };
-		0C07645F1AB8F81900DD88A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C07645E1AB8F81900DD88A8 /* ViewController.swift */; };
 		0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764601AB8F81900DD88A8 /* Main.storyboard */; };
 		0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764631AB8F81900DD88A8 /* Images.xcassets */; };
-		0C0764671AB8F81900DD88A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764651AB8F81900DD88A8 /* LaunchScreen.xib */; };
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
 		0C88E5B21AC4A6C100671E49 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88E5B11AC4A6C100671E49 /* API.swift */; };
 		0C8EB0141AD0A783002B0727 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8EB0131AD0A783002B0727 /* CoreLocation.framework */; };
@@ -26,6 +24,14 @@
 		0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */; };
 		0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE51AB90D2600ECAF11 /* Peer.swift */; };
 		0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBABF821ACF3CB300D7F0F4 /* Database.swift */; };
+		46060D821AD153A100091817 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46060D811AD153A100091817 /* ProfileView.swift */; };
+		4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181461ACF2C0B004A0B68 /* NavViewController.swift */; };
+		4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181471ACF2C0B004A0B68 /* PersonCell.swift */; };
+		4611814D1ACF2C0B004A0B68 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181491ACF2C0B004A0B68 /* TimelineViewController.swift */; };
+		461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 461181601ACF2C34004A0B68 /* Bariol_Regular.otf */; };
+		461A86521AD1165700A4622D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461A86511AD1165700A4622D /* LoginViewController.swift */; };
+		46D9AD811AD0851A0070E595 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */; };
+		46D9AD821AD0851A0070E595 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */; };
 		6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454E43B44E5900429842DB84 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -46,10 +52,8 @@
 		0C0764581AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764591AB8F81900DD88A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C07645C1AB8F81900DD88A8 /* PersonLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersonLog.xcdatamodel; sourceTree = "<group>"; };
-		0C07645E1AB8F81900DD88A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C0764611AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C0764631AB8F81900DD88A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0C0764661AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
@@ -64,6 +68,15 @@
 		0C9CFFE51AB90D2600ECAF11 /* Peer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
 		0CBABF821ACF3CB300D7F0F4 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		454E43B44E5900429842DB84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46060D811AD153A100091817 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		461181461ACF2C0B004A0B68 /* NavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
+		461181471ACF2C0B004A0B68 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		461181491ACF2C0B004A0B68 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		461181601ACF2C34004A0B68 /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular.otf; sourceTree = "<group>"; };
+		461A86511AD1165700A4622D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		46D9AD841AD08A5A0070E595 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		4A89BBE52A09BED8C7F9A749 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9D2C04CE43982C10D9E72732 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +91,8 @@
 				0C8EB0161AD0A78B002B0727 /* CoreData.framework in Frameworks */,
 				0C8EB0141AD0A783002B0727 /* CoreLocation.framework in Frameworks */,
 				6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */,
+				46D9AD811AD0851A0070E595 /* FBSDKCoreKit.framework in Frameworks */,
+				46D9AD821AD0851A0070E595 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,17 +130,17 @@
 			isa = PBXGroup;
 			children = (
 				0C0764591AB8F81900DD88A8 /* AppDelegate.swift */,
-				0C07645E1AB8F81900DD88A8 /* ViewController.swift */,
-				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
+				461181621ACF2C5D004A0B68 /* Views */,
 				0C0764631AB8F81900DD88A8 /* Images.xcassets */,
-				0C0764651AB8F81900DD88A8 /* LaunchScreen.xib */,
 				0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */,
 				0C04FC401ACE9A730059336D /* Person.swift */,
 				0C04FC3E1ACE9A5B0059336D /* Interaction.swift */,
+				46D9AD841AD08A5A0070E595 /* Bridging-Header.h */,
+				46D9AD831AD085240070E595 /* Facebook Framework */,
 				0C0764571AB8F81900DD88A8 /* Supporting Files */,
-				0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */,
 				0C9CFFE51AB90D2600ECAF11 /* Peer.swift */,
 				0C88E5B11AC4A6C100671E49 /* API.swift */,
+				0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */,
 				0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */,
 				0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */,
 				0CBABF821ACF3CB300D7F0F4 /* Database.swift */,
@@ -136,6 +151,7 @@
 		0C0764571AB8F81900DD88A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				461181601ACF2C34004A0B68 /* Bariol_Regular.otf */,
 				0C0764581AB8F81900DD88A8 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -177,6 +193,28 @@
 				454E43B44E5900429842DB84 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		461181621ACF2C5D004A0B68 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				461A86511AD1165700A4622D /* LoginViewController.swift */,
+				461181461ACF2C0B004A0B68 /* NavViewController.swift */,
+				461181491ACF2C0B004A0B68 /* TimelineViewController.swift */,
+				461181471ACF2C0B004A0B68 /* PersonCell.swift */,
+				46060D811AD153A100091817 /* ProfileView.swift */,
+				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		46D9AD831AD085240070E595 /* Facebook Framework */ = {
+			isa = PBXGroup;
+			children = (
+				46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */,
+				46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */,
+			);
+			name = "Facebook Framework";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,11 +265,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Yasyf Mohamedali";
+				ORGANIZATIONNAME = com.fishbowl;
 				TargetAttributes = {
 					0C0764531AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = SXKCTF23Q2;
+						DevelopmentTeam = 7Z29FWQKX6;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -240,6 +278,7 @@
 					};
 					0C07646B1AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 7Z29FWQKX6;
 						TestTargetID = 0C0764531AB8F81900DD88A8;
 					};
 				};
@@ -268,8 +307,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */,
 				0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */,
-				0C0764671AB8F81900DD88A8 /* LaunchScreen.xib in Resources */,
 				0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,12 +378,16 @@
 				0C04FC411ACE9A730059336D /* Person.swift in Sources */,
 				0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */,
 				0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */,
-				0C07645F1AB8F81900DD88A8 /* ViewController.swift in Sources */,
+				461A86521AD1165700A4622D /* LoginViewController.swift in Sources */,
+				4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */,
 				0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */,
 				0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */,
+				46060D821AD153A100091817 /* ProfileView.swift in Sources */,
+				4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */,
 				0C9CFFDE1AB8FA6600ECAF11 /* Broadcaster.swift in Sources */,
 				0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */,
 				0C04FC3F1ACE9A5B0059336D /* Interaction.swift in Sources */,
+				4611814D1ACF2C0B004A0B68 /* TimelineViewController.swift in Sources */,
 				0C88E5B21AC4A6C100671E49 /* API.swift in Sources */,
 				0C9CFFE01AB8FDFF00ECAF11 /* Settings.swift in Sources */,
 			);
@@ -375,14 +418,6 @@
 				0C0764611AB8F81900DD88A8 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0C0764651AB8F81900DD88A8 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0C0764661AB8F81900DD88A8 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -470,13 +505,21 @@
 			baseConfigurationReference = 4A89BBE52A09BED8C7F9A749 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PersonLog",
+				);
 				INFOPLIST_FILE = PersonLog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = FishBowl;
 				PROVISIONING_PROFILE = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PersonLog/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -485,20 +528,27 @@
 			baseConfigurationReference = 9D2C04CE43982C10D9E72732 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PersonLog",
+				);
 				INFOPLIST_FILE = PersonLog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = FishBowl;
 				PROVISIONING_PROFILE = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PersonLog/Bridging-Header.h";
 			};
 			name = Release;
 		};
 		0C07647A1AB8F81900DD88A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -510,14 +560,13 @@
 				INFOPLIST_FILE = PersonLogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = FishBowlTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PersonLog.app/PersonLog";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FishBowl.app/FishBowl";
 			};
 			name = Debug;
 		};
 		0C07647B1AB8F81900DD88A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -525,7 +574,7 @@
 				INFOPLIST_FILE = PersonLogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = FishBowlTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PersonLog.app/PersonLog";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FishBowl.app/FishBowl";
 			};
 			name = Release;
 		};
