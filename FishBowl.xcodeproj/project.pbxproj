@@ -14,6 +14,10 @@
 		0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764601AB8F81900DD88A8 /* Main.storyboard */; };
 		0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764631AB8F81900DD88A8 /* Images.xcassets */; };
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
+		0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E71AD284580055E36E /* Bariol_Regular.otf */; };
+		0C5488EA1AD284580055E36E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E81AD284580055E36E /* Info.plist */; };
+		0C5488ED1AD284660055E36E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */; };
+		0C5488EE1AD284660055E36E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5488EC1AD284660055E36E /* FBSDKLoginKit.framework */; };
 		0C88E5B21AC4A6C100671E49 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C88E5B11AC4A6C100671E49 /* API.swift */; };
 		0C8EB0141AD0A783002B0727 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8EB0131AD0A783002B0727 /* CoreLocation.framework */; };
 		0C8EB0161AD0A78B002B0727 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8EB0151AD0A78B002B0727 /* CoreData.framework */; };
@@ -28,10 +32,7 @@
 		4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181461ACF2C0B004A0B68 /* NavViewController.swift */; };
 		4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181471ACF2C0B004A0B68 /* PersonCell.swift */; };
 		4611814D1ACF2C0B004A0B68 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181491ACF2C0B004A0B68 /* TimelineViewController.swift */; };
-		461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 461181601ACF2C34004A0B68 /* Bariol_Regular.otf */; };
 		461A86521AD1165700A4622D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461A86511AD1165700A4622D /* LoginViewController.swift */; };
-		46D9AD811AD0851A0070E595 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */; };
-		46D9AD821AD0851A0070E595 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */; };
 		6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454E43B44E5900429842DB84 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -49,7 +50,6 @@
 		0C04FC3E1ACE9A5B0059336D /* Interaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interaction.swift; sourceTree = "<group>"; };
 		0C04FC401ACE9A730059336D /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		0C0764541AB8F81900DD88A8 /* FishBowl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishBowl.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C0764581AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764591AB8F81900DD88A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C07645C1AB8F81900DD88A8 /* PersonLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersonLog.xcdatamodel; sourceTree = "<group>"; };
 		0C0764611AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,6 +57,10 @@
 		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
+		0C5488E71AD284580055E36E /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular.otf; path = "Supporting FIles/Bariol_Regular.otf"; sourceTree = SOURCE_ROOT; };
+		0C5488E81AD284580055E36E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting FIles/Info.plist"; sourceTree = SOURCE_ROOT; };
+		0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		0C5488EC1AD284660055E36E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Frameworks/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		0C88E5B11AC4A6C100671E49 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0C8EB0131AD0A783002B0727 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0C8EB0151AD0A78B002B0727 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -72,10 +76,7 @@
 		461181461ACF2C0B004A0B68 /* NavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavViewController.swift; sourceTree = "<group>"; };
 		461181471ACF2C0B004A0B68 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		461181491ACF2C0B004A0B68 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
-		461181601ACF2C34004A0B68 /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular.otf; sourceTree = "<group>"; };
 		461A86511AD1165700A4622D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		46D9AD841AD08A5A0070E595 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		4A89BBE52A09BED8C7F9A749 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9D2C04CE43982C10D9E72732 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -87,12 +88,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C8EB01A1AD0E743002B0727 /* CoreBluetooth.framework in Frameworks */,
+				0C5488ED1AD284660055E36E /* FBSDKCoreKit.framework in Frameworks */,
 				0C8EB0181AD0A78F002B0727 /* MultipeerConnectivity.framework in Frameworks */,
 				0C8EB0161AD0A78B002B0727 /* CoreData.framework in Frameworks */,
+				0C5488EE1AD284660055E36E /* FBSDKLoginKit.framework in Frameworks */,
 				0C8EB0141AD0A783002B0727 /* CoreLocation.framework in Frameworks */,
 				6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */,
-				46D9AD811AD0851A0070E595 /* FBSDKCoreKit.framework in Frameworks */,
-				46D9AD821AD0851A0070E595 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +137,6 @@
 				0C04FC401ACE9A730059336D /* Person.swift */,
 				0C04FC3E1ACE9A5B0059336D /* Interaction.swift */,
 				46D9AD841AD08A5A0070E595 /* Bridging-Header.h */,
-				46D9AD831AD085240070E595 /* Facebook Framework */,
 				0C0764571AB8F81900DD88A8 /* Supporting Files */,
 				0C9CFFE51AB90D2600ECAF11 /* Peer.swift */,
 				0C88E5B11AC4A6C100671E49 /* API.swift */,
@@ -151,8 +151,8 @@
 		0C0764571AB8F81900DD88A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				461181601ACF2C34004A0B68 /* Bariol_Regular.otf */,
-				0C0764581AB8F81900DD88A8 /* Info.plist */,
+				0C5488E71AD284580055E36E /* Bariol_Regular.otf */,
+				0C5488E81AD284580055E36E /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -186,6 +186,8 @@
 		2118CCE2E64703F770EABE27 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */,
+				0C5488EC1AD284660055E36E /* FBSDKLoginKit.framework */,
 				0C8EB0191AD0E743002B0727 /* CoreBluetooth.framework */,
 				0C8EB0171AD0A78F002B0727 /* MultipeerConnectivity.framework */,
 				0C8EB0151AD0A78B002B0727 /* CoreData.framework */,
@@ -206,15 +208,6 @@
 				0C0764601AB8F81900DD88A8 /* Main.storyboard */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		46D9AD831AD085240070E595 /* Facebook Framework */ = {
-			isa = PBXGroup;
-			children = (
-				46D9AD7F1AD0851A0070E595 /* FBSDKCoreKit.framework */,
-				46D9AD801AD0851A0070E595 /* FBSDKLoginKit.framework */,
-			);
-			name = "Facebook Framework";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,9 +300,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				461181611ACF2C34004A0B68 /* Bariol_Regular.otf in Resources */,
 				0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */,
 				0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */,
+				0C5488EA1AD284580055E36E /* Info.plist in Resources */,
+				0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,8 +506,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PersonLog",
+					"$(PROJECT_DIR)/Frameworks",
 				);
-				INFOPLIST_FILE = PersonLog/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = FishBowl;
@@ -535,8 +530,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PersonLog",
+					"$(PROJECT_DIR)/Frameworks",
 				);
-				INFOPLIST_FILE = PersonLog/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = FishBowl;

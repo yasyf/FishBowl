@@ -27,7 +27,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let footer = UIView()
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
-    
+        self.updateInteractions()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -42,9 +42,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.peer!.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
                     if interaction != nil {
                         self.updateInteractions()
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.table.reloadData()
-                        })
                     }
                 })
             })
@@ -57,6 +54,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func updateInteractions() {
         if let newInteractions = database.allInteractions(sorted: true) {
             interactions = newInteractions
+            dispatch_async(dispatch_get_main_queue(), {
+                self.table.reloadData()
+            })
         }
     }
     
