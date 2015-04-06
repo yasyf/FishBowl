@@ -35,11 +35,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     func setUserData(completion: () -> Void) {
-        let graphRequest:FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        let graphRequest = FBSDKGraphRequest(graphPath: "/me", parameters: nil)
         
-        graphRequest.startWithCompletionHandler({(connection, result, error) in
-            if error == nil {
-                println(result)
+        graphRequest.startWithCompletionHandler({(_, result, error) in
+            if let err = error {
+                println("Error: \(err)")
+            } else {
                 let fieldMap = ["first_name": "f_name", "last_name": "l_name", "id": "fb_id"]
                 for (facebookField, settingField) in fieldMap {
                     let value = result.valueForKey(facebookField) as NSString
@@ -47,8 +48,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 }
                 let userID = result.valueForKey("id") as NSString
                 self.settings.setphotoURL("https://graph.facebook.com/\(userID)/picture?height=200")
-            } else {
-                println("Error: \(error)")
             }
             completion()
         })

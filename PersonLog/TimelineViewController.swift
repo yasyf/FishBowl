@@ -23,6 +23,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var dateFormatter = NSDateFormatter()
     
+    let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +34,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         table.tableFooterView = footer
         self.updateInteractions()
         
-        dateFormatter.dateFormat = "hh:mm A"
+        dateFormatter.dateFormat = "hh:mm a"
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -78,12 +80,25 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
         cell.timeStamp.text = dateFormatter.stringFromDate(interaction.date)
         
-        let photoURL = NSURL(string: person.photo_url)!
-        cell.profilePicture.sd_setImageWithURL(photoURL)
+        let photoURL = NSURL(string: person.photo_url)
+        let placeholderImage = UIImage(named: "unknown.png")
+        cell.profilePicture.sd_setImageWithURL(photoURL, placeholderImage: placeholderImage)
         
-        let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+        
         cell.profilePicture.layer.borderColor = lineColor
         cell.name.text = person.f_name
+        
+        let graphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(person.fb_id)", parameters: nil)
+        graphRequest.startWithCompletionHandler({(_, result, error) in
+            if let err = error {
+                println("Error: \(err)")
+            } else {
+                let friends = result.objectForKey("data") as [NSMutableDictionary]
+                if friends.count > 0 {
+                    cell.facebookImage.hidden = false
+                }
+            }
+        })
         
         return cell
     }

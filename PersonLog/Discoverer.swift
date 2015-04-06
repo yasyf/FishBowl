@@ -64,17 +64,14 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
                 self.browser!.delegate = self
             }
             self.locManager.pausesLocationUpdatesAutomatically = false
-            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways {
-                self.startDiscovering()
-            } else {
-                self.locManager.requestAlwaysAuthorization()
-            }
             self.isDiscovering = true
+            self.locManager.requestAlwaysAuthorization()
         })
     }
     
     func kill() {
         isDiscovering = false
+        self.locManager.pausesLocationUpdatesAutomatically = true
         browser?.stopBrowsingForPeers()
         centralManager?.stopScan()
         self.locManager.stopUpdatingLocation()

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5Y2-ag-FZn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5Y2-ag-FZn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Bariol_Regular.otf">
@@ -145,6 +146,12 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hc6-Bo-4Xh">
+                                                    <rect key="frame" x="303" y="75" width="34" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="34" id="eDR-nJ-pYR"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -153,10 +160,13 @@
                                                 <constraint firstAttribute="trailing" secondItem="hrh-nG-cp3" secondAttribute="trailing" constant="20" id="Lvd-Oc-fsR"/>
                                                 <constraint firstItem="hrh-nG-cp3" firstAttribute="leading" secondItem="bB8-gy-kbj" secondAttribute="trailing" constant="20" id="VJN-Wd-DOS"/>
                                                 <constraint firstAttribute="centerY" secondItem="bB8-gy-kbj" secondAttribute="centerY" id="cT2-aU-DFi"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Hc6-Bo-4Xh" secondAttribute="bottom" constant="24" id="cfD-ZE-CCJ"/>
                                                 <constraint firstItem="68k-uX-ouM" firstAttribute="centerY" secondItem="bB8-gy-kbj" secondAttribute="centerY" id="ftK-6z-cz6"/>
                                                 <constraint firstItem="bB8-gy-kbj" firstAttribute="leading" secondItem="68k-uX-ouM" secondAttribute="trailing" constant="20" id="mLh-kt-aJS"/>
                                                 <constraint firstAttribute="centerX" secondItem="bB8-gy-kbj" secondAttribute="centerX" id="nkT-Wj-Y1u"/>
                                                 <constraint firstItem="hrh-nG-cp3" firstAttribute="centerY" secondItem="bB8-gy-kbj" secondAttribute="centerY" id="tj5-q5-2s3"/>
+                                                <constraint firstItem="hrh-nG-cp3" firstAttribute="leading" secondItem="Hc6-Bo-4Xh" secondAttribute="trailing" constant="33" id="x4p-Xy-Sst"/>
+                                                <constraint firstItem="Hc6-Bo-4Xh" firstAttribute="top" secondItem="inj-Wl-IUI" secondAttribute="topMargin" constant="67" id="yOt-yR-dNT"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -167,6 +177,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="facebookImage" destination="Hc6-Bo-4Xh" id="hiF-o5-Slz"/>
                                             <outlet property="name" destination="hrh-nG-cp3" id="zdb-3L-Mx4"/>
                                             <outlet property="profilePicture" destination="bB8-gy-kbj" id="xdP-d7-udw"/>
                                             <outlet property="timeStamp" destination="68k-uX-ouM" id="az6-aC-JFa"/>
@@ -449,4 +460,8 @@
             <point key="canvasLocation" x="1268" y="-146"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="facebook.png" width="512" height="512"/>
+    </resources>
+    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
