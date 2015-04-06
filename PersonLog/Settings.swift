@@ -10,6 +10,8 @@ import Foundation
 
 class Settings {
     let defaults = NSUserDefaults.standardUserDefaults()
+    let fields = ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter"]
+    
     func _string(key: String) -> String? {
         return defaults.stringForKey(key)
     }
@@ -51,5 +53,10 @@ class Settings {
     }
     func isLoggedIn() -> Bool {
         return facebookID() != nil
+    }
+    func clear() {
+        for field in fields {
+            defaults.setNilValueForKey(field)
+        }
     }
 }
