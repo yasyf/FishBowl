@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SDWebImage
 
 class ProfileView: UIViewController, MKMapViewDelegate {
 
@@ -16,19 +17,14 @@ class ProfileView: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     @IBAction func fbLink(sender: AnyObject) {
-        var url = NSURL(string: "fb://profile?app_scoped_user_id=\(person.fb_id)")!
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            println(url)
-            UIApplication.sharedApplication().openURL(url)
-        } else {
-            url = NSURL(string: "http://facebook.com/\(person.fb_id)")!
-            UIApplication.sharedApplication().openURL(url)
-        }
+        let url = NSURL(string: "http://facebook.com/\(person.fb_id)")
+        UIApplication.sharedApplication().openURL(url!)
     }
     
     var person:Person!
     var lat:NSNumber!
     var lon:NSNumber!
+    let settings = Settings()
     
     required init(coder aDecoder: NSCoder) {
         self.person = nil
@@ -47,11 +43,11 @@ class ProfileView: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        profilePicture.layer.borderColor = lineColor
-        let photoURL = NSURL(string: person.photo_url)!
-        let photo = NSData(contentsOfURL: photoURL)!
-        profilePicture.image = UIImage(data: photo)
+        profilePicture.layer.borderColor = settings.lineColor
+        
+        let photoURL = NSURL(string: person.photo_url)
+        let placeholderImage = UIImage(named: "unknown.png")
+        profilePicture.sd_setImageWithURL(photoURL, placeholderImage: placeholderImage)
         
         name.text = "\(person.f_name) \(person.l_name)"
         

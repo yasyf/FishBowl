@@ -178,9 +178,9 @@ class Peer: NSObject {
         interaction.date = NSDate()
 
         if let lat = location?.coordinate.latitude {
-            if let lon = location?.coordinate.latitude {
+            if let lon = location?.coordinate.longitude {
                 interaction.lat = lat
-                interaction.lon = lat
+                interaction.lon = lon
             }
         }
         

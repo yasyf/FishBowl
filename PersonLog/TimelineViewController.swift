@@ -22,8 +22,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     var interactions = [Interaction]()
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var dateFormatter = NSDateFormatter()
-    
-    let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+    let settings = Settings()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +39,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
         
-        if Settings().isLoggedIn() && broadcaster == nil {
+        if settings.isLoggedIn() && broadcaster == nil {
             broadcaster = appDelegate.broadcaster
             discoverer = appDelegate.discoverer
             peer = appDelegate.peer
@@ -85,7 +84,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.profilePicture.sd_setImageWithURL(photoURL, placeholderImage: placeholderImage)
         
         
-        cell.profilePicture.layer.borderColor = lineColor
+        cell.profilePicture.layer.borderColor = settings.lineColor
         cell.name.text = person.f_name
         
         let graphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(person.fb_id)", parameters: nil)
