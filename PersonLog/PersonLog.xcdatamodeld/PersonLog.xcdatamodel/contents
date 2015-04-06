@@ -12,7 +12,7 @@
         <attribute name="fb_id" attributeType="String" syncable="YES"/>
         <attribute name="l_name" attributeType="String" syncable="YES"/>
         <attribute name="meta" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="phone" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo_url" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="interactions" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Interaction" inverseName="owner" inverseEntity="Interaction" syncable="YES"/>
