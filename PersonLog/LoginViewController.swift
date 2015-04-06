@@ -11,6 +11,7 @@ import UIKit
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet var loginView: FBSDKLoginButton!
+    let settings = Settings()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,38 +26,33 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         } else if result.isCancelled {
             println("cancelled")
         } else {
-            self.setUserData()
+            self.setUserData({
+                self.dismissViewControllerAnimated(false, completion: nil)
+            })
             println("logged in")
         }
     }
 
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        println("User Logged Out")
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue(nil, forKey: "f_name")
-        defaults.setValue(nil, forKey: "l_name")
-        defaults.setValue(nil, forKey: "phone")
-        defaults.setValue(nil, forKey: "photo_url")
-        defaults.setValue(nil, forKey: "fb_id")
+        settings.clear()
     }
 
-    func setUserData() {
+    func setUserData(completion: () -> Void) {
         let graphRequest:FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         
         graphRequest.startWithCompletionHandler({(connection, result, error) in
             if error == nil {
+                let fieldMap = ["first_name": "f_name", "last_name": "l_name", "id": "fb_id"]
+                for (facebookField, settingField) in fieldMap {
+                    let value = result.valueForKey(facebookField) as NSString
+                    self.settings.defaults.setValue(value, forKey: settingField)
+                }
                 let userID = result.valueForKey("id") as NSString
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setValue(result.valueForKey("first_name") as NSString, forKey: "f_name")
-                defaults.setValue(result.valueForKey("last_name") as NSString, forKey: "l_name")
-                defaults.setValue("https://graph.facebook.com/\(userID)/picture?type=large", forKey: "photo_url")
-                defaults.setValue(userID, forKey: "fb_id")
-                println("set defaults")
+                self.settings.setphotoURL("https://graph.facebook.com/\(userID)/picture?type=large")
             } else {
                 println("Error: \(error)")
             }
-            
-            self.dismissViewControllerAnimated(false, completion: nil)
+            completion()
         })
     }
 }
