@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginView.readPermissions = ["public_profile", "user_friends", "user_photos"]
+        loginView.readPermissions = ["public_profile", "user_friends"]
         loginView.delegate = self
     }
 
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     self.settings.defaults.setValue(value, forKey: settingField)
                 }
                 let userID = result.valueForKey("id") as NSString
-                self.settings.setphotoURL("https://graph.facebook.com/\(userID)/picture?height=200")
+                self.settings.setphotoURL("https://graph.facebook.com/\(userID)/picture?width=400&height=400")
             }
             completion()
         })

@@ -16,13 +16,14 @@ class ProfileView: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     @IBAction func fbLink(sender: AnyObject) {
-        var url = NSURL(string: "fb://profile?app_scoped_user_id=\(person.fb_id)")!
+        // var url = NSURL(string: "fb://profile?app_scoped_user_id=\(person.fb_id)")!
+        // PLACEHOLDER:
+        var url = NSURL(string: "http://facebook.com/\(person.fb_id)")!
         if UIApplication.sharedApplication().canOpenURL(url) {
-            println(url)
             UIApplication.sharedApplication().openURL(url)
-        } else {
-            url = NSURL(string: "http://facebook.com/\(person.fb_id)")!
-            UIApplication.sharedApplication().openURL(url)
+//        } else {
+//            url = NSURL(string: "http://facebook.com/\(person.fb_id)")!
+//            UIApplication.sharedApplication().openURL(url)
         }
     }
     
