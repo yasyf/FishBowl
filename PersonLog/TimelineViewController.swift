@@ -27,11 +27,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
         
-        broadcaster.broadcast()
-        discoverer.discover()
-        updateInteractions()
-        println("starting")
-        
         discoverer.onPeer({(otherPeer: Peer) in
             self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
                 if interaction != nil {
@@ -42,6 +37,17 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             })
         })
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(false)
+        
+        if NSUserDefaults.standardUserDefaults().objectForKey("fb_id") != nil {
+            broadcaster.broadcast()
+            discoverer.discover()
+            updateInteractions()
+            println("starting")
+        }
     }
     
     func updateInteractions() {

@@ -28,8 +28,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             self.returnUserData()
             println("logged in")
             
-            let appDelegateTemp:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            appDelegateTemp.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UIViewController
+            self.dismissViewControllerAnimated(false, completion: nil)
         }
     }
 

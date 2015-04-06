@@ -44,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func showLoginScreen() {
         let LoginViewController:UIViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("LoginView") as UIViewController
-        
-        self.window?.rootViewController = LoginViewController
+        self.window?.makeKeyAndVisible()
+        self.window?.rootViewController?.presentViewController(LoginViewController, animated: false, completion: nil)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
