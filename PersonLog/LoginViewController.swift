@@ -51,7 +51,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setValue(result.valueForKey("first_name") as NSString, forKey: "f_name")
                 defaults.setValue(result.valueForKey("last_name") as NSString, forKey: "l_name")
-                defaults.setValue("000-000-0000", forKey: "phone")
                 defaults.setValue("https://graph.facebook.com/\(userID)/picture?type=large", forKey: "photo_url")
                 defaults.setValue(userID, forKey: "fb_id")
                 println("set defaults")

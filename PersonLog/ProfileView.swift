@@ -14,7 +14,6 @@ class ProfileView: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var fbButton: UIButton!
-    @IBOutlet weak var phone: UILabel!
     @IBOutlet weak var map: MKMapView!
     @IBAction func fbLink(sender: AnyObject) {
         let url = NSURL(string: "fb://profile/app_scoped_user_id/\(person!.fb_id)")
@@ -43,9 +42,6 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         profilePicture.layer.borderColor = lineColor
         
         name.text = "\(person!.f_name) \(person!.l_name)"
-        if person!.phone != "000-000-0000" {
-            phone.text = person!.phone
-        }
         
         map.delegate = self
         map.mapType = MKMapType.Standard
