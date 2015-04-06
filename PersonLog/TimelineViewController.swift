@@ -15,10 +15,11 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let serviceType = "personlog-disc"
     let database = Database()
-    let peer = (UIApplication.sharedApplication().delegate as AppDelegate).peer
-    let broadcaster = (UIApplication.sharedApplication().delegate as AppDelegate).broadcaster
-    let discoverer = (UIApplication.sharedApplication().delegate as AppDelegate).discoverer
+    var peer: Peer?
+    var broadcaster: Broadcaster?
+    var discoverer: Discoverer?
     var interactions = [Interaction]()
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,28 +27,31 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let footer = UIView()
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
-        
-        discoverer.onPeer({(otherPeer: Peer) in
-            self.peer.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
-                if interaction != nil {
-                    self.updateInteractions()
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.table.reloadData()
-                    })
-                }
-            })
-        })
+    
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
         
-        if NSUserDefaults.standardUserDefaults().objectForKey("fb_id") != nil {
-            broadcaster.broadcast()
-            discoverer.discover()
-            updateInteractions()
-            println("starting")
+        if Settings().isLoggedIn() && broadcaster == nil {
+            broadcaster = appDelegate.broadcaster
+            discoverer = appDelegate.discoverer
+            peer = appDelegate.peer
+        
+            discoverer!.onPeer({(otherPeer: Peer) in
+                self.peer!.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
+                    if interaction != nil {
+                        self.updateInteractions()
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.table.reloadData()
+                        })
+                    }
+                })
+            })
+            broadcaster!.broadcast()
+            discoverer!.discover()
         }
+        updateInteractions()
     }
     
     func updateInteractions() {

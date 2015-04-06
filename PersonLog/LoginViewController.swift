@@ -25,10 +25,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         } else if result.isCancelled {
             println("cancelled")
         } else {
-            self.returnUserData()
+            self.setUserData()
             println("logged in")
-            
-            self.dismissViewControllerAnimated(false, completion: nil)
         }
     }
 
@@ -42,22 +40,23 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         defaults.setValue(nil, forKey: "fb_id")
     }
 
-    func returnUserData() {
-        
+    func setUserData() {
         let graphRequest:FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+        
+        graphRequest.startWithCompletionHandler({(connection, result, error) in
             if error == nil {
                 let userID = result.valueForKey("id") as NSString
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setValue(result.valueForKey("first_name") as NSString, forKey: "f_name")
                 defaults.setValue(result.valueForKey("last_name") as NSString, forKey: "l_name")
-                defaults.setValue("000-000-0000", forKey: "phone")
                 defaults.setValue("https://graph.facebook.com/\(userID)/picture?type=large", forKey: "photo_url")
                 defaults.setValue(userID, forKey: "fb_id")
                 println("set defaults")
             } else {
                 println("Error: \(error)")
             }
+            
+            self.dismissViewControllerAnimated(false, completion: nil)
         })
     }
 }
