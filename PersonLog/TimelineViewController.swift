@@ -8,6 +8,7 @@
 
 import UIKit
 import MultipeerConnectivity
+import SDWebImage
 
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -78,8 +79,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.timeStamp.text = dateFormatter.stringFromDate(interaction.date)
         
         let photoURL = NSURL(string: person.photo_url)!
-        let photo = NSData(contentsOfURL: photoURL)!
-        cell.profilePicture.image = UIImage(data: photo)
+        cell.profilePicture.sd_setImageWithURL(photoURL)
         
         let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
         cell.profilePicture.layer.borderColor = lineColor

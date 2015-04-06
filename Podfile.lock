@@ -1,10 +1,15 @@
 PODS:
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
   - SwiftHTTP (0.9.2)
 
 DEPENDENCIES:
+  - SDWebImage (~> 3.7)
   - SwiftHTTP (~> 0.9.2)
 
 SPEC CHECKSUMS:
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SwiftHTTP: 025860414b3f0f583348734bb287f59aa84a3fc4
 
 COCOAPODS: 0.36.3
