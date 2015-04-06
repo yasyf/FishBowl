@@ -19,4 +19,11 @@ class Settings {
     func uuid() -> String? {
         return _string("uuid")
     }
+    func facebookID() -> String? {
+        return _string("fb_id")
+    }
+    
+    func isLoggedIn() -> Bool {
+        return facebookID() != nil
+    }
 }
