@@ -45,9 +45,6 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
         name.text = "\(interaction.person.f_name) \(interaction.person.l_name)"
 
         facebookButton.setTitle("\(interaction.person.f_name)'s Facebook", forState: .Normal)
-        messageButton.setTitle("iMessage \(interaction.person.f_name)", forState: .Normal)
-        twitterButton.setTitle("@\(interaction.person.twitter) on Twitter", forState: .Normal)
-        snapchatButton.setTitle("\(interaction.person.snapchat) on Snapchat", forState: .Normal)
 
         let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
         api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in
@@ -76,17 +73,20 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
 
         // Buttons
         var bottomButton = facebookButton
-        if interaction.person.phone != "" {
+        if let phone = interaction.person.phone {
+            messageButton.setTitle("iMessage \(interaction.person.f_name)", forState: .Normal)
             messageButton.hidden = false
             container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: messageButton, attribute: .Top, multiplier: 1.0, constant: -15))
             bottomButton = messageButton
         }
-        if interaction.person.twitter != "" {
+        if let twitter = interaction.person.twitter {
+            twitterButton.setTitle("@\(twitter) on Twitter", forState: .Normal)
             twitterButton.hidden = false
             container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: twitterButton, attribute: .Top, multiplier: 1.0, constant: -15))
             bottomButton = twitterButton
         }
-        if interaction.person.snapchat != "" {
+        if let snapchat = interaction.person.snapchat {
+            snapchatButton.setTitle("\(snapchat) on Snapchat", forState: .Normal)
             snapchatButton.hidden = false
             container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: snapchatButton, attribute: .Top, multiplier: 1.0, constant: -15))
             bottomButton = snapchatButton
@@ -127,7 +127,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
     
     @IBAction func openMessageView(sender: AnyObject) {
         let messageViewController = MFMessageComposeViewController()
-        messageViewController.recipients = [interaction.person.phone]
+        messageViewController.recipients = [interaction.person.phone!]
         messageViewController.messageComposeDelegate = self
         presentViewController(messageViewController, animated: true, completion: nil)
     }
