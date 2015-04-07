@@ -58,17 +58,14 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             discoverer!.discover()
         }
         updateInteractions()
-        
-        if interactions.count == 0 {
-            line.hidden = true
-        }
     }
     
     func updateInteractions() {
         if let newInteractions = database.allInteractions(sorted: true) {
-            interactions = newInteractions
+            self.interactions = newInteractions
             dispatch_async(dispatch_get_main_queue(), {
                 self.table.reloadData()
+                self.line.hidden = (newInteractions.count == 0)
             })
         }
     }
