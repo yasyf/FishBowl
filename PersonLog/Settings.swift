@@ -80,6 +80,7 @@ class Settings {
         for field in fields {
             defaults.setValue(nil, forKey: field)
         }
+        defaults.setBool(false, forKey: "done_setup")
     }
     func logout() {
         defaults.setValue(nil, forKey: "fb_id")
