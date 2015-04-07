@@ -13,9 +13,9 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var number: UILabel!
-    @IBOutlet weak var twitter: UILabel!
-    @IBOutlet weak var snapchat: UILabel!
+    @IBOutlet weak var number: UITextField!
+    @IBOutlet weak var twitter: UITextField!
+    @IBOutlet weak var snapchat: UITextField!
     @IBOutlet weak var logoutView: FBSDKLoginButton!
 
     let settings = Settings()
