@@ -17,6 +17,10 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
     @IBOutlet weak var facebookImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var fbButton: UIButton!
+    @IBOutlet weak var messageButton: UIButton!
+    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var snapchatButton: UIButton!
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var mutualFriendsLabel: UILabel!
     @IBAction func fbLink(sender: AnyObject) {
@@ -75,6 +79,20 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         let pin = MKPointAnnotation()
         pin.setCoordinate(location)
         map.addAnnotation(pin)
+        
+        // Buttons
+        var bottomButton = fbButton
+        if let phone = settings.phone() {
+            bottomButton = messageButton
+        }
+        if let handle = settings.twitter() {
+            bottomButton = twitterButton
+        }
+        if let snap = settings.snapchat() {
+            bottomButton = snapchatButton
+        }
+        
+        container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -20))
     }
 
     /*
