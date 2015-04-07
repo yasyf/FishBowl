@@ -21,7 +21,9 @@ class SettingsViewController: UIViewController {
         profilePicture.layer.borderColor = settings.lineColor
         
         let photoURL = NSURL(string: settings.photoURL()!)
-        profilePicture.sd_setImageWithURL(photoURL)
+        profilePicture.sd_setImageWithURL(photoURL, placeholderImage: UIImage(named: "Unknown.png"))
+        
+        
     }
     
     /*
