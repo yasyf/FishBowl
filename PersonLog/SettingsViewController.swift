@@ -12,18 +12,26 @@ import SDWebImage
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var profilePicture: UIImageView!
-    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var number: UILabel!
+    @IBOutlet weak var twitter: UILabel!
+    @IBOutlet weak var snapchat: UILabel!
+    @IBOutlet weak var logoutView: FBSDKLoginButton!
+
     let settings = Settings()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        profilePicture.layer.borderColor = settings.lineColor
+        profilePicture.layer.borderColor = settings.lineColor!
         
         let photoURL = NSURL(string: settings.photoURL()!)
         profilePicture.sd_setImageWithURL(photoURL, placeholderImage: UIImage(named: "Unknown.png"))
         
-        
+        name.text = "\(settings.firstName()!) \(settings.lastName()!)"
+        number.text = "\(settings.phone()!)"
+//        twitter.text = "\(settings.twitter()!)"
+//        snapchat.text = "\(settings.snapchat()!)"
     }
     
     /*

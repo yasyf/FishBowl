@@ -290,7 +290,7 @@
                                                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipO-Y2-En8">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipO-Y2-En8">
                                                                 <rect key="frame" x="75" y="45" width="400" height="20"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -308,7 +308,7 @@
                                                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuL-Wd-8Ls">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuL-Wd-8Ls">
                                                                 <rect key="frame" x="75" y="105" width="400" height="20"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -326,7 +326,7 @@
                                                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3t-bh-uyN">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snapchat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3t-bh-uyN">
                                                                 <rect key="frame" x="75" y="165" width="400" height="20"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -371,11 +371,24 @@
                                                         <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fiT-Fs-Z5g">
+                                                        <rect key="frame" x="492" y="12" width="46" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="46" id="ZR3-cg-l7A"/>
+                                                            <constraint firstAttribute="height" constant="30" id="qwX-XO-UPA"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
+                                                        <state key="normal" title="Edit">
+                                                            <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.90588235859999999" green="0.56862747670000002" blue="0.1647058874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="ZZw-ZQ-881" firstAttribute="top" secondItem="awR-L8-VKy" secondAttribute="top" constant="50" id="0eR-mr-idz"/>
                                                     <constraint firstAttribute="height" constant="250" id="2kM-fJ-waH"/>
+                                                    <constraint firstItem="fiT-Fs-Z5g" firstAttribute="top" secondItem="awR-L8-VKy" secondAttribute="top" constant="12" id="69j-sH-xha"/>
                                                     <constraint firstAttribute="centerX" secondItem="6Z0-ik-R89" secondAttribute="centerX" id="IQD-ab-Ckh"/>
                                                     <constraint firstItem="ZZw-ZQ-881" firstAttribute="leading" secondItem="awR-L8-VKy" secondAttribute="leading" constant="50" id="JJR-RB-KCu"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZZw-ZQ-881" secondAttribute="trailing" id="Mss-ID-mr6"/>
@@ -384,6 +397,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="6Z0-ik-R89" secondAttribute="trailing" constant="25" id="gso-pX-Gxj"/>
                                                     <constraint firstItem="ZZw-ZQ-881" firstAttribute="leading" secondItem="awR-L8-VKy" secondAttribute="leading" id="lhY-ah-Sbg"/>
                                                     <constraint firstItem="6Z0-ik-R89" firstAttribute="leading" secondItem="awR-L8-VKy" secondAttribute="leading" constant="25" id="qfw-wn-bJ3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fiT-Fs-Z5g" secondAttribute="trailing" constant="12" id="wpH-f7-Ijr"/>
                                                     <constraint firstItem="ZZw-ZQ-881" firstAttribute="width" secondItem="awR-L8-VKy" secondAttribute="width" id="x8T-Ai-UaD"/>
                                                     <constraint firstAttribute="centerX" secondItem="ZZw-ZQ-881" secondAttribute="centerX" id="zDD-HK-XUg"/>
                                                 </constraints>
@@ -417,42 +431,31 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2p-cg-8ct">
-                                                <rect key="frame" x="175" y="545" width="250" height="50"/>
-                                                <color key="backgroundColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jG8-a3-gc9" customClass="FBSDKLoginButton">
+                                                <rect key="frame" x="175" y="545" width="250" height="55"/>
+                                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="250" id="WrF-G0-uHh"/>
-                                                    <constraint firstAttribute="height" constant="50" id="jyj-XK-J7k"/>
+                                                    <constraint firstAttribute="height" constant="55" id="0Ts-qI-1Op"/>
+                                                    <constraint firstAttribute="width" constant="250" id="iai-Az-kln"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
-                                                <state key="normal" title="Facebook">
-                                                    <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="fbLink:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="UOg-rg-oTW"/>
-                                                </connections>
-                                            </button>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="awR-L8-VKy" secondAttribute="bottom" constant="461" id="2NK-bL-yOh"/>
+                                            <constraint firstAttribute="bottom" secondItem="jG8-a3-gc9" secondAttribute="bottom" constant="35" id="88Z-e7-Ygf"/>
                                             <constraint firstAttribute="bottom" secondItem="awR-L8-VKy" secondAttribute="bottom" constant="431" id="EEL-EI-jWE"/>
-                                            <constraint firstItem="h2p-cg-8ct" firstAttribute="top" secondItem="awR-L8-VKy" secondAttribute="bottom" constant="30" id="M3A-ZC-nBW"/>
+                                            <constraint firstAttribute="centerX" secondItem="jG8-a3-gc9" secondAttribute="centerX" id="FBc-AA-bQj"/>
                                             <constraint firstAttribute="trailing" secondItem="awR-L8-VKy" secondAttribute="trailing" constant="25" id="WAG-pd-R8p"/>
                                             <constraint firstAttribute="bottom" secondItem="awR-L8-VKy" secondAttribute="bottom" constant="431" id="Wq6-qZ-UbQ"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="awR-L8-VKy" secondAttribute="bottom" constant="431" id="f4w-1y-Oua"/>
                                             <constraint firstItem="Dtj-4X-fNf" firstAttribute="top" secondItem="HMy-ig-TKT" secondAttribute="top" constant="35" id="j9U-Ww-ihu"/>
-                                            <constraint firstAttribute="bottom" secondItem="h2p-cg-8ct" secondAttribute="bottom" constant="35" id="jdc-on-La3"/>
+                                            <constraint firstItem="jG8-a3-gc9" firstAttribute="top" secondItem="awR-L8-VKy" secondAttribute="bottom" constant="30" id="jLN-Yu-10q"/>
                                             <constraint firstAttribute="centerX" secondItem="Dtj-4X-fNf" secondAttribute="centerX" id="kzu-oa-RyS"/>
+                                            <constraint firstAttribute="bottom" secondItem="jG8-a3-gc9" secondAttribute="bottom" constant="30" id="l0E-vE-K5F"/>
                                             <constraint firstItem="awR-L8-VKy" firstAttribute="leading" secondItem="HMy-ig-TKT" secondAttribute="leading" constant="25" id="lpX-HZ-43X"/>
                                             <constraint firstItem="awR-L8-VKy" firstAttribute="top" secondItem="Dtj-4X-fNf" secondAttribute="bottom" constant="20" id="ncD-b6-3kS"/>
-                                            <constraint firstAttribute="centerX" secondItem="h2p-cg-8ct" secondAttribute="centerX" id="sdJ-aB-cWg"/>
+                                            <constraint firstItem="awR-L8-VKy" firstAttribute="leading" secondItem="jG8-a3-gc9" secondAttribute="trailing" constant="35" id="nmG-NT-Ksi"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -460,6 +463,8 @@
                                                 <exclude reference="EEL-EI-jWE"/>
                                                 <exclude reference="Wq6-qZ-UbQ"/>
                                                 <exclude reference="f4w-1y-Oua"/>
+                                                <exclude reference="nmG-NT-Ksi"/>
+                                                <exclude reference="88Z-e7-Ygf"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -512,6 +517,14 @@
                     <navigationItem key="navigationItem" title="Settings" id="Yud-lY-jfR"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="694"/>
+                    <connections>
+                        <outlet property="logoutView" destination="jG8-a3-gc9" id="kf1-JE-8iz"/>
+                        <outlet property="name" destination="6Z0-ik-R89" id="8xd-RX-qVb"/>
+                        <outlet property="number" destination="ipO-Y2-En8" id="BIa-06-erV"/>
+                        <outlet property="profilePicture" destination="Dtj-4X-fNf" id="x4Q-tZ-ssx"/>
+                        <outlet property="snapchat" destination="z3t-bh-uyN" id="ydd-i1-8JM"/>
+                        <outlet property="twitter" destination="yuL-Wd-8Ls" id="TTM-4r-fyA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkP-H9-Xha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -649,6 +662,9 @@
                                                     </mapView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhM-Cw-Y9s">
                                                         <rect key="frame" x="510" y="10" width="30" height="30"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                                        </accessibility>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="DeL-KO-CsW"/>
                                                             <constraint firstAttribute="width" constant="30" id="wJW-JK-TBg"/>

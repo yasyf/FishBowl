@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        settings.clear()
+//        settings.clear()
     }
 
     func setUserData(completion: () -> Void) {
