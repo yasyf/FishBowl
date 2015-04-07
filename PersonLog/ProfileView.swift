@@ -45,6 +45,9 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
         name.text = "\(interaction.person.f_name) \(interaction.person.l_name)"
 
         facebookButton.setTitle("\(interaction.person.f_name)'s Facebook", forState: .Normal)
+        messageButton.setTitle("iMessage \(interaction.person.f_name)", forState: .Normal)
+        twitterButton.setTitle("@\(interaction.person.twitter) on Twitter", forState: .Normal)
+        snapchatButton.setTitle("\(interaction.person.snapchat) on Snapchat", forState: .Normal)
 
         let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
         api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in
@@ -73,17 +76,17 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
 
         // Buttons
         var bottomButton = facebookButton
-        if let phone = settings.phone() {
+        if interaction.person.phone != "" {
             messageButton.hidden = false
             container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: messageButton, attribute: .Top, multiplier: 1.0, constant: -15))
             bottomButton = messageButton
         }
-        if let handle = settings.twitter() {
+        if interaction.person.twitter != "" {
             twitterButton.hidden = false
             container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: twitterButton, attribute: .Top, multiplier: 1.0, constant: -15))
             bottomButton = twitterButton
         }
-        if let snap = settings.snapchat() {
+        if interaction.person.snapchat != "" {
             snapchatButton.hidden = false
             container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: snapchatButton, attribute: .Top, multiplier: 1.0, constant: -15))
             bottomButton = snapchatButton

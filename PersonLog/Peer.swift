@@ -136,7 +136,7 @@ class Peer: NSObject {
         let person = Person(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
         var error: NSError?
         
-        let fields = ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter", "meta"]
+        let fields = ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter", "meta", "snapchat"]
         for field in fields {
             if let value: AnyObject = data[field] {
                 person.setValue(value, forKey: field)
