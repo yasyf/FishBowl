@@ -117,16 +117,18 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
         let snapchat = interaction.person.snapchat
         let url = NSURL(string: "snapchat://?u=\(snapchat)")
         UIPasteboard.generalPasteboard().string = snapchat
-        var alert = UIAlertController(title: "Snapchat \(interaction.person.f_name)", message: "\(interaction.person.f_name)'s Snapchat username has been copied to your clipboard!", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {action in
+        var alertController = UIAlertController(title: "Snapchat \(interaction.person.f_name)", message: "\(interaction.person.f_name)'s Snapchat username has been copied to your clipboard!", preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {action in
             UIApplication.sharedApplication().openURL(url!)
             return
         }))
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func openMessageView(sender: AnyObject) {
         let messageViewController = MFMessageComposeViewController()
         messageViewController.recipients = [interaction.person.phone]
+        messageViewController.messageComposeDelegate = self
         presentViewController(messageViewController, animated: true, completion: nil)
     }
     
