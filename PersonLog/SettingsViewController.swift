@@ -19,6 +19,9 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var logoutView: FBSDKLoginButton!
 
     let settings = Settings()
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    var broadcaster: Broadcaster?
+    var discoverer: Discoverer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +52,12 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         println("logout")
         
-        // broadcast kill and discoverer kill
+        if settings.isLoggedIn() && broadcaster == nil {
+            broadcaster = appDelegate.broadcaster
+            discoverer = appDelegate.discoverer
+        }
+        broadcaster!.kill()
+        discoverer!.kill()
         
         settings.logout()
         self.performSegueWithIdentifier("logout", sender: nil)
