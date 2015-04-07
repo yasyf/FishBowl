@@ -25,13 +25,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             println(err)
         } else if !result.isCancelled {
             self.setUserData({
-                self.dismissViewControllerAnimated(false, completion: nil)
+                if self.settings.isDoneSetup() {
+                    self.performSegueWithIdentifier("login", sender: nil)
+                } else {
+                    self.performSegueWithIdentifier("setup", sender: nil)
+                }
             })
         }
     }
 
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        settings.clear()
     }
 
     func setUserData(completion: () -> Void) {

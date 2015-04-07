@@ -84,7 +84,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.timeStamp.text = dateFormatter.stringFromDate(interaction.date)
         
         let photoURL = NSURL(string: person.photo_url)
-        cell.profilePicture.sd_setImageWithURL(photoURL)
+        cell.profilePicture.sd_setImageWithURL(photoURL, placeholderImage: UIImage(named: "Unknown.png"))
         
         cell.profilePicture.layer.borderColor = settings.lineColor
         cell.name.text = person.f_name
@@ -107,8 +107,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let cell = sender as PersonCell
         if segue.identifier == "viewProfile" {
+            let cell = sender as PersonCell
             if let destination = segue.destinationViewController as? ProfileView {
                 if let index = table.indexPathForSelectedRow()?.row {
                     destination.interaction = interactions[index]

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let serviceType = "personlog-disc"
     let beaconID = NSUUID(UUIDString: "F8F1A882-14FF-4F5D-A4A2-0308AB0644D8")!
     let characteristicID = CBUUID(string: "C7F7729A-F744-49E7-AE94-649D14FE2327")
+    let settings = Settings()
     
     lazy var peer: Peer = {
         return Peer()
@@ -35,11 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        if !Settings().isLoggedIn() {
+        if !settings.isLoggedIn() {
             self.showLoginScreen()
+        } else if !settings.isDoneSetup() {
+            self.showSetupScreen()
         }
         
-        application.setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.None)
+        application.setStatusBarHidden(false, withAnimation: .None)
         
         #if DEMOMODE
             DemoMode().startLooping()
@@ -49,9 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func showLoginScreen() {
-        let LoginViewController:UIViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("LoginView") as UIViewController
-        self.window?.makeKeyAndVisible()
-        self.window?.rootViewController?.presentViewController(LoginViewController, animated: false, completion: nil)
+        let LoginViewController:UIViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("Login") as UIViewController
+        self.window?.rootViewController = LoginViewController
+    }
+    
+    func showSetupScreen() {
+        let LoginViewController:UIViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("Setup") as UIViewController
+        self.window?.rootViewController = LoginViewController
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
