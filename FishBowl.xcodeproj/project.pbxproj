@@ -35,6 +35,7 @@
 		461A86521AD1165700A4622D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461A86511AD1165700A4622D /* LoginViewController.swift */; };
 		463C35B21AD36A0200D31D18 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463C35B11AD36A0200D31D18 /* images.xcassets */; };
 		4645CC391AD3998A0052C6E3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4645CC381AD3998A0052C6E3 /* SettingsViewController.swift */; };
+		4645CC3B1AD3CF540052C6E3 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4645CC3A1AD3CF540052C6E3 /* SetupViewController.swift */; };
 		6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454E43B44E5900429842DB84 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		461A86511AD1165700A4622D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		463C35B11AD36A0200D31D18 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		4645CC381AD3998A0052C6E3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4645CC3A1AD3CF540052C6E3 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		46D9AD841AD08A5A0070E595 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		4A89BBE52A09BED8C7F9A749 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9D2C04CE43982C10D9E72732 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				461A86511AD1165700A4622D /* LoginViewController.swift */,
+				4645CC3A1AD3CF540052C6E3 /* SetupViewController.swift */,
 				461181461ACF2C0B004A0B68 /* NavViewController.swift */,
 				461181491ACF2C0B004A0B68 /* TimelineViewController.swift */,
 				461181471ACF2C0B004A0B68 /* PersonCell.swift */,
@@ -391,6 +394,7 @@
 				0C04FC3F1ACE9A5B0059336D /* Interaction.swift in Sources */,
 				4611814D1ACF2C0B004A0B68 /* TimelineViewController.swift in Sources */,
 				0C88E5B21AC4A6C100671E49 /* API.swift in Sources */,
+				4645CC3B1AD3CF540052C6E3 /* SetupViewController.swift in Sources */,
 				0C9CFFE01AB8FDFF00ECAF11 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

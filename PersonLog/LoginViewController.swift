@@ -25,7 +25,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             println(err)
         } else if !result.isCancelled {
             self.setUserData({
-                self.performSegueWithIdentifier("setup", sender: nil)
+                if self.settings.isDoneSetup() {
+                    self.performSegueWithIdentifier("login", sender: nil)
+                } else {
+                    self.performSegueWithIdentifier("setup", sender: nil)
+                }
             })
         }
     }

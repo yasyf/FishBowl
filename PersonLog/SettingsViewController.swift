@@ -50,8 +50,6 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        println("logout")
-        
         if settings.isLoggedIn() && broadcaster == nil {
             broadcaster = appDelegate.broadcaster
             discoverer = appDelegate.discoverer

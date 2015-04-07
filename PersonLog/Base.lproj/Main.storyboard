@@ -35,14 +35,14 @@
                         <viewControllerLayoutGuide type="bottom" id="3NQ-7U-i4w"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rKn-Ad-p3w">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login" translatesAutoresizingMaskIntoConstraints="NO" id="ncD-7O-l9D">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cgm-I4-EOf" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="180" y="495" width="240" height="55"/>
+                                <rect key="frame" x="180" y="895" width="240" height="55"/>
                                 <color key="backgroundColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="2J6-Ww-MRh"/>
@@ -66,14 +66,17 @@
                         </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="1000"/>
                     <connections>
                         <outlet property="loginView" destination="Cgm-I4-EOf" id="vB5-FH-cvV"/>
-                        <segue destination="det-ng-Xsn" kind="showDetail" identifier="setup" id="Oqw-75-4bZ"/>
+                        <segue destination="det-ng-Xsn" kind="presentation" identifier="setup" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Oqw-75-4bZ"/>
+                        <segue destination="17h-6J-R23" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="BSm-SD-2wT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DH4-gq-2i9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-173" y="-899"/>
+            <point key="canvasLocation" x="-195" y="-1134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fsi-wh-riP">
@@ -96,7 +99,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Tq-lN-qK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-173" y="-146"/>
+            <point key="canvasLocation" x="-195" y="-146"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="OqO-5P-EgL">
@@ -264,7 +267,7 @@
         <!--Setup-->
         <scene sceneID="OA7-dT-npf">
             <objects>
-                <viewController title="Setup" id="det-ng-Xsn" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Setup" title="Setup" id="det-ng-Xsn" customClass="SetupViewController" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Thi-EV-1WS"/>
                         <viewControllerLayoutGuide type="bottom" id="sim-Uh-H7C"/>
@@ -284,7 +287,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="17h-6J-R23" kind="showDetail" id="idJ-2I-otr"/>
+                                    <action selector="skip:" destination="det-ng-Xsn" eventType="touchUpInside" id="h5Z-Tv-7sm"/>
+                                    <segue destination="17h-6J-R23" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="idJ-2I-otr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETUP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwe-Sv-NvZ">
@@ -293,32 +297,32 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="isv-eq-Es4">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="isv-eq-Es4">
                                 <rect key="frame" x="200" y="180" width="200" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="rWv-j2-Oef"/>
                                 </constraints>
                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="@twitter" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lun-rq-ajo">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="@twitter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lun-rq-ajo">
                                 <rect key="frame" x="200" y="252" width="200" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="f4y-pz-7Hy"/>
                                 </constraints>
                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="twitter" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="twitter" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="snapchat" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ayy-Nk-7Pu">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="snapchat" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ayy-Nk-7Pu">
                                 <rect key="frame" x="200" y="327" width="200" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="wgz-PO-fwq"/>
                                 </constraints>
                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="twitter" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.90588235289999997" green="0.56862745100000001" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -335,10 +339,16 @@
                             <constraint firstAttribute="centerX" secondItem="Bwe-Sv-NvZ" secondAttribute="centerX" id="wNX-IJ-sEd"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="phone" destination="isv-eq-Es4" id="2WD-ZR-sr8"/>
+                        <outlet property="snapchat" destination="Ayy-Nk-7Pu" id="ovV-Zr-XVn"/>
+                        <outlet property="twitter" destination="lun-rq-ajo" id="3oK-bu-0Wm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hec-KT-418" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="526" y="-899"/>
+            <point key="canvasLocation" x="516" y="-1334"/>
         </scene>
         <!--Settings-->
         <scene sceneID="hLB-TU-a3X">
@@ -593,12 +603,12 @@
                         <outlet property="profilePicture" destination="Dtj-4X-fNf" id="x4Q-tZ-ssx"/>
                         <outlet property="snapchat" destination="z3t-bh-uyN" id="ydd-i1-8JM"/>
                         <outlet property="twitter" destination="yuL-Wd-8Ls" id="TTM-4r-fyA"/>
-                        <segue destination="BDv-qp-roc" kind="showDetail" identifier="logout" id="4Al-3H-Yzw"/>
+                        <segue destination="BDv-qp-roc" kind="presentation" identifier="logout" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="4Al-3H-Yzw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkP-H9-Xha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="-899"/>
+            <point key="canvasLocation" x="1266" y="-527"/>
         </scene>
         <!--Profile-->
         <scene sceneID="cgA-gJ-qPX">
@@ -870,7 +880,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbk-sH-Dcy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="125.5"/>
+            <point key="canvasLocation" x="1266" y="489.5"/>
         </scene>
     </scenes>
     <resources>
@@ -880,5 +890,8 @@
         <image name="Settings" width="25" height="25"/>
         <image name="Unknown" width="200" height="200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="idJ-2I-otr"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
