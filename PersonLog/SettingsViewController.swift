@@ -17,6 +17,8 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
     @IBOutlet weak var twitter: UITextField!
     @IBOutlet weak var snapchat: UITextField!
     @IBOutlet weak var logoutView: FBSDKLoginButton!
+    @IBOutlet weak var container: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
 
     let settings = Settings()
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -65,6 +67,10 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
         self.performSegueWithIdentifier("logout", sender: nil)
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        container.addConstraint(NSLayoutConstraint(item: logoutView, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -150))
+    }
+    
     func textFieldDidEndEditing(textField: UITextField) {
         switch textField {
         case number:
@@ -84,6 +90,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
     
     func dismissKeyboard() {
         self.view.endEditing(true)
+        container.addConstraint(NSLayoutConstraint(item: logoutView, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -30))
     }
     
     /*
