@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -626,6 +626,7 @@
                         <outlet property="name" destination="6Z0-ik-R89" id="8xd-RX-qVb"/>
                         <outlet property="number" destination="UmV-b4-Mrf" id="Mz8-8n-Sdf"/>
                         <outlet property="profilePicture" destination="Dtj-4X-fNf" id="x4Q-tZ-ssx"/>
+                        <outlet property="scrollView" destination="bAc-4H-vGB" id="goF-i2-l2Y"/>
                         <outlet property="snapchat" destination="K8L-ZG-gjd" id="h4u-Ng-ZxN"/>
                         <outlet property="twitter" destination="POR-f7-eU2" id="Lmn-rl-zDF"/>
                         <segue destination="BDv-qp-roc" kind="showDetail" identifier="logout" id="4Al-3H-Yzw"/>
