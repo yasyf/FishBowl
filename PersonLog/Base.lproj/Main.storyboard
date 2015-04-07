@@ -81,7 +81,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fsi-wh-riP">
             <objects>
-                <navigationController title="Navigation Controller" hidesBarsWhenKeyboardAppears="YES" id="17h-6J-R23" customClass="NavViewController" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Navigation Controller" id="17h-6J-R23" customClass="NavViewController" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="13q-Kl-mj8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -291,14 +291,8 @@
                                     <segue destination="17h-6J-R23" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="idJ-2I-otr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETUP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwe-Sv-NvZ">
-                                <rect key="frame" x="273" y="100" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="isv-eq-Es4">
-                                <rect key="frame" x="200" y="180" width="200" height="20"/>
+                                <rect key="frame" x="200" y="159" width="200" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="rWv-j2-Oef"/>
                                 </constraints>
@@ -307,7 +301,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="@twitter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lun-rq-ajo">
-                                <rect key="frame" x="200" y="252" width="200" height="20"/>
+                                <rect key="frame" x="200" y="231" width="200" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="f4y-pz-7Hy"/>
                                 </constraints>
@@ -316,7 +310,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="twitter" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="snapchat" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ayy-Nk-7Pu">
-                                <rect key="frame" x="200" y="327" width="200" height="20"/>
+                                <rect key="frame" x="200" y="306" width="200" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="wgz-PO-fwq"/>
                                 </constraints>
@@ -330,13 +324,11 @@
                             <constraint firstItem="sim-Uh-H7C" firstAttribute="top" secondItem="ZdE-HR-bDF" secondAttribute="bottom" constant="15" id="3Aw-a3-8WD"/>
                             <constraint firstAttribute="centerX" secondItem="Ayy-Nk-7Pu" secondAttribute="centerX" id="6qT-gA-Am5"/>
                             <constraint firstAttribute="trailing" secondItem="ZdE-HR-bDF" secondAttribute="trailing" constant="10" id="7OJ-as-uK2"/>
+                            <constraint firstItem="isv-eq-Es4" firstAttribute="top" secondItem="Thi-EV-1WS" secondAttribute="bottom" constant="139" id="Ses-Oz-aFy"/>
                             <constraint firstItem="Ayy-Nk-7Pu" firstAttribute="top" secondItem="lun-rq-ajo" secondAttribute="bottom" constant="55" id="We9-tp-V15"/>
                             <constraint firstAttribute="centerX" secondItem="isv-eq-Es4" secondAttribute="centerX" id="cyd-6R-e6m"/>
                             <constraint firstItem="lun-rq-ajo" firstAttribute="top" secondItem="isv-eq-Es4" secondAttribute="bottom" constant="52" id="d3R-Ab-1n0"/>
                             <constraint firstAttribute="centerX" secondItem="lun-rq-ajo" secondAttribute="centerX" id="ok4-QG-zsI"/>
-                            <constraint firstItem="isv-eq-Es4" firstAttribute="top" secondItem="Bwe-Sv-NvZ" secondAttribute="bottom" constant="59" id="tAs-n3-QiQ"/>
-                            <constraint firstItem="Bwe-Sv-NvZ" firstAttribute="top" secondItem="Zyq-sJ-KMJ" secondAttribute="top" constant="100" id="tTZ-xw-iT6"/>
-                            <constraint firstAttribute="centerX" secondItem="Bwe-Sv-NvZ" secondAttribute="centerX" id="wNX-IJ-sEd"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>

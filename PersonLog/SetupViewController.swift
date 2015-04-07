@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetupViewController: UIViewController {
+class SetupViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var twitter: UITextField!
@@ -31,6 +31,10 @@ class SetupViewController: UIViewController {
     }
     
     func setup() {
+        
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
         
     }
     
