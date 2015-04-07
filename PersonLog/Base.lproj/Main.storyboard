@@ -222,6 +222,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="Ebm-xU-Yt2"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="line" destination="DF3-RO-gN9" id="RsU-Gx-YhT"/>
                         <outlet property="table" destination="sEA-Mg-akb" id="fUX-Wq-WBo"/>
                     </connections>
                 </viewController>

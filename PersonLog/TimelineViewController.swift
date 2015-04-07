@@ -13,6 +13,7 @@ import SDWebImage
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var line: UIView!
     
     let serviceType = "personlog-disc"
     let database = Database()
@@ -55,6 +56,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             discoverer!.discover()
         }
         updateInteractions()
+        
+        if interactions.count == 0 {
+            line.hidden = true
+        }
     }
     
     func updateInteractions() {
