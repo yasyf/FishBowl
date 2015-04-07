@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func showLoginScreen() {
-        let LoginViewController:UIViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("LoginView") as UIViewController
+        let LoginViewController:UIViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewControllerWithIdentifier("Login") as UIViewController
         self.window?.rootViewController = LoginViewController
     }
     

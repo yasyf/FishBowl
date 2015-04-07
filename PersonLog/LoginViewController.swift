@@ -25,8 +25,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             println(err)
         } else if !result.isCancelled {
             self.setUserData({
-                let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-                appDelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UIViewController
+                self.performSegueWithIdentifier("setup", sender: nil)
             })
         }
     }
