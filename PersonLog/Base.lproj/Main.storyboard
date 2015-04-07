@@ -75,7 +75,7 @@
                     <connections>
                         <outlet property="loginView" destination="Cgm-I4-EOf" id="vB5-FH-cvV"/>
                         <segue destination="det-ng-Xsn" kind="showDetail" identifier="setup" id="Oqw-75-4bZ"/>
-                        <segue destination="17h-6J-R23" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="BSm-SD-2wT"/>
+                        <segue destination="17h-6J-R23" kind="showDetail" identifier="login" id="BSm-SD-2wT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DH4-gq-2i9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -555,7 +555,7 @@
                                             <constraint firstItem="Dtj-4X-fNf" firstAttribute="top" secondItem="HMy-ig-TKT" secondAttribute="top" constant="35" id="j9U-Ww-ihu"/>
                                             <constraint firstItem="jG8-a3-gc9" firstAttribute="top" secondItem="awR-L8-VKy" secondAttribute="bottom" constant="30" id="jLN-Yu-10q"/>
                                             <constraint firstAttribute="centerX" secondItem="Dtj-4X-fNf" secondAttribute="centerX" id="kzu-oa-RyS"/>
-                                            <constraint firstAttribute="bottom" secondItem="jG8-a3-gc9" secondAttribute="bottom" constant="30" id="l0E-vE-K5F"/>
+                                            <constraint firstAttribute="bottom" secondItem="jG8-a3-gc9" secondAttribute="bottom" priority="250" constant="30" id="l0E-vE-K5F"/>
                                             <constraint firstItem="awR-L8-VKy" firstAttribute="leading" secondItem="HMy-ig-TKT" secondAttribute="leading" constant="25" id="lpX-HZ-43X"/>
                                             <constraint firstItem="awR-L8-VKy" firstAttribute="top" secondItem="Dtj-4X-fNf" secondAttribute="bottom" constant="20" id="ncD-b6-3kS"/>
                                             <constraint firstItem="awR-L8-VKy" firstAttribute="leading" secondItem="jG8-a3-gc9" secondAttribute="trailing" constant="35" id="nmG-NT-Ksi"/>
@@ -621,6 +621,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="694"/>
                     <connections>
+                        <outlet property="container" destination="HMy-ig-TKT" id="vg7-m6-b9C"/>
                         <outlet property="logoutView" destination="jG8-a3-gc9" id="kf1-JE-8iz"/>
                         <outlet property="name" destination="6Z0-ik-R89" id="8xd-RX-qVb"/>
                         <outlet property="number" destination="UmV-b4-Mrf" id="Mz8-8n-Sdf"/>
