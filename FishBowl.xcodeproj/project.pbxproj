@@ -14,7 +14,6 @@
 		0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764601AB8F81900DD88A8 /* Main.storyboard */; };
 		0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764631AB8F81900DD88A8 /* Images.xcassets */; };
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
-		0C1788B51AD29D43006BE64B /* unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C1788B41AD29D43006BE64B /* unknown.png */; };
 		0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E71AD284580055E36E /* Bariol_Regular.otf */; };
 		0C5488EA1AD284580055E36E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E81AD284580055E36E /* Info.plist */; };
 		0C5488ED1AD284660055E36E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */; };
@@ -58,7 +57,6 @@
 		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
-		0C1788B41AD29D43006BE64B /* unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unknown.png; path = Images/unknown.png; sourceTree = SOURCE_ROOT; };
 		0C5488E71AD284580055E36E /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular.otf; path = "Supporting FIles/Bariol_Regular.otf"; sourceTree = SOURCE_ROOT; };
 		0C5488E81AD284580055E36E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting FIles/Info.plist"; sourceTree = SOURCE_ROOT; };
 		0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 		0C0764561AB8F81900DD88A8 /* PersonLog */ = {
 			isa = PBXGroup;
 			children = (
-				0C1788AF1AD29892006BE64B /* Images */,
 				0C0764591AB8F81900DD88A8 /* AppDelegate.swift */,
 				461181621ACF2C5D004A0B68 /* Views */,
 				0C0764631AB8F81900DD88A8 /* Images.xcassets */,
@@ -175,14 +172,6 @@
 				0C0764711AB8F81900DD88A8 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		0C1788AF1AD29892006BE64B /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				0C1788B41AD29D43006BE64B /* unknown.png */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 		1D98CC6DD1202FC576D45C70 /* Pods */ = {
@@ -311,7 +300,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C1788B51AD29D43006BE64B /* unknown.png in Resources */,
 				0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */,
 				0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */,
 				0C5488EA1AD284580055E36E /* Info.plist in Resources */,

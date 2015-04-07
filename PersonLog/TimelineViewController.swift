@@ -80,8 +80,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.timeStamp.text = dateFormatter.stringFromDate(interaction.date)
         
         let photoURL = NSURL(string: person.photo_url)
-        let placeholderImage = UIImage(named: "unknown.png")
-        cell.profilePicture.sd_setImageWithURL(photoURL, placeholderImage: placeholderImage)
+        cell.profilePicture.sd_setImageWithURL(photoURL)
         
         cell.profilePicture.layer.borderColor = settings.lineColor
         cell.name.text = person.f_name
