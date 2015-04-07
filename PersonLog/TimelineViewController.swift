@@ -13,6 +13,7 @@ import SDWebImage
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var line: UIView!
     
     let serviceType = "personlog-disc"
     let database = Database()
@@ -55,6 +56,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             discoverer!.discover()
         }
         updateInteractions()
+        
+        if interactions.count == 0 {
+            line.hidden = true
+        }
     }
     
     func updateInteractions() {
@@ -80,9 +85,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.timeStamp.text = dateFormatter.stringFromDate(interaction.date)
         
         let photoURL = NSURL(string: person.photo_url)
-        let placeholderImage = UIImage(named: "unknown.png")
-        cell.profilePicture.sd_setImageWithURL(photoURL, placeholderImage: placeholderImage)
-        
+        cell.profilePicture.sd_setImageWithURL(photoURL)
         
         cell.profilePicture.layer.borderColor = settings.lineColor
         cell.name.text = person.f_name
@@ -95,6 +98,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 let friends = result.objectForKey("data") as [NSMutableDictionary]
                 if friends.count > 0 {
                     cell.facebookImage.hidden = false
+                    cell.friend = true
                 }
             }
         })
@@ -105,12 +109,14 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let cell = sender as PersonCell
         if segue.identifier == "viewProfile" {
             if let destination = segue.destinationViewController as? ProfileView {
                 if let index = table.indexPathForSelectedRow()?.row {
                     destination.person = interactions[index].person
                     destination.lat = interactions[index].lat
                     destination.lon = interactions[index].lon
+                    destination.friend = cell.friend
                 }
             }
         }

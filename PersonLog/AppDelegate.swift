@@ -39,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.showLoginScreen()
         }
         
+        application.setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.None)
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

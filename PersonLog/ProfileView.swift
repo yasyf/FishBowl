@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 import MapKit
 import SDWebImage
 
-class ProfileView: UIViewController, MKMapViewDelegate {
+class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var facebookImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var map: MKMapView!
@@ -21,40 +23,42 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         let url = NSURL(string: "http://facebook.com/\(person.fb_id)")
         UIApplication.sharedApplication().openURL(url!)
     }
+    @IBAction func currentLocation(sender: AnyObject) {
+        var locManager = CLLocationManager()
+        locManager.delegate = self
+        self.map.showsUserLocation = true
+        self.map.setUserTrackingMode(.Follow, animated: true)
+    }
     
     var person:Person!
     var lat:NSNumber!
     var lon:NSNumber!
+    var friend:Bool!
     let settings = Settings()
     
-    required init(coder aDecoder: NSCoder) {
-        self.person = nil
-        self.lat = nil
-        self.lon = nil
-        super.init(coder: aDecoder)
-    }
-
-    override init() {
-        self.person = nil
-        self.lat = nil
-        self.lon = nil
-        super.init()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.title = "\(person.f_name)'s Profile"
+        
         profilePicture.layer.borderColor = settings.lineColor
         
         let photoURL = NSURL(string: person.photo_url)
-        let placeholderImage = UIImage(named: "unknown.png")
-        profilePicture.sd_setImageWithURL(photoURL, placeholderImage: placeholderImage)
+        profilePicture.sd_setImageWithURL(photoURL)
+
+        if friend! {
+            facebookImage.hidden = false
+        }
         
         name.text = "\(person.f_name) \(person.l_name)"
         
+        fbButton.setTitle("Visit \(person.f_name)'s Facebook", forState: .Normal)
+
         let mutualFriendGraphRequest = FBSDKGraphRequest(graphPath: "/\(person.fb_id)", parameters: ["fields": "context.fields(mutual_friends)"])
         mutualFriendGraphRequest.startWithCompletionHandler({(_, result, error) in
-            let summary = result.objectForKey("summary") as NSMutableDictionary
+            let context = result.objectForKey("context") as NSMutableDictionary
+            let mutualFriends = context.objectForKey("mutual_friends") as NSMutableDictionary
+            let summary = mutualFriends.objectForKey("summary") as NSMutableDictionary
             let mutualFriendCount = summary.objectForKey("total_count") as Int
             dispatch_async(dispatch_get_main_queue(), {
                 self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
@@ -73,15 +77,8 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         
         let pin = MKPointAnnotation()
         pin.setCoordinate(location)
-        pin.title = "\(lat as CLLocationDegrees), \(lon as CLLocationDegrees)"
         map.addAnnotation(pin)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation
