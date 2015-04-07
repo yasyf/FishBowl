@@ -52,7 +52,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         
         name.text = "\(person.f_name) \(person.l_name)"
         
-        fbButton.setTitle("Visit \(person.f_name)'s Facebook", forState: .Normal)
+        fbButton.setTitle("\(person.f_name)'s Facebook", forState: .Normal)
 
         let mutualFriendGraphRequest = FBSDKGraphRequest(graphPath: "/\(person.fb_id)", parameters: ["fields": "context.fields(mutual_friends)"])
         mutualFriendGraphRequest.startWithCompletionHandler({(_, result, error) in
