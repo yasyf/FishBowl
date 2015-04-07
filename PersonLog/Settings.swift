@@ -12,6 +12,7 @@ class Settings {
     let defaults = NSUserDefaults.standardUserDefaults()
     let fields = ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter", "snapchat"]
     let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+    let unknownImage = UIImage(named: "Unknown.png")
     
     func _string(key: String) -> String? {
         return defaults.stringForKey(key)
