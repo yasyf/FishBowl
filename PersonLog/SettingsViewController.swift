@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
+class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var name: UILabel!
@@ -23,6 +23,13 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var dismissKeyboard = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        self.view.addGestureRecognizer(dismissKeyboard)
+        
+        number.delegate = self
+        twitter.delegate = self
+        snapchat.delegate = self
 
         profilePicture.layer.borderColor = settings.lineColor
         
@@ -56,6 +63,27 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         settings.logout()
         self.performSegueWithIdentifier("logout", sender: nil)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        switch textField {
+        case number:
+            settings.setPhone(number.text)
+        case twitter:
+            settings.setTwitter(twitter.text)
+        case snapchat:
+            settings.setSnapchat(snapchat.text)
+        default: ()
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
     
     /*
