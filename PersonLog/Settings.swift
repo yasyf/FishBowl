@@ -69,10 +69,10 @@ class Settings {
     }
     func clear() {
         for field in fields {
-            defaults.setNilValueForKey(field)
+            defaults.setValue(nil, forKey: field)
         }
     }
     func logout() {
-        defaults.setNilValueForKey("fb_id")
+        defaults.setValue(nil, forKey: "fb_id")
     }
 }
