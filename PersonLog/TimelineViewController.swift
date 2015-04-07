@@ -98,7 +98,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 let friends = result.objectForKey("data") as [NSMutableDictionary]
                 if friends.count > 0 {
                     cell.facebookImage.hidden = false
-                    cell.friend = true
                 }
             }
         })
@@ -113,10 +112,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         if segue.identifier == "viewProfile" {
             if let destination = segue.destinationViewController as? ProfileView {
                 if let index = table.indexPathForSelectedRow()?.row {
-                    destination.person = interactions[index].person
-                    destination.lat = interactions[index].lat
-                    destination.lon = interactions[index].lon
-                    destination.friend = cell.friend
+                    destination.interaction = interactions[index]
+                    destination.isFriend = !cell.facebookImage.hidden
                 }
             }
         }

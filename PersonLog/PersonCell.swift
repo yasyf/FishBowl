@@ -14,9 +14,7 @@ class PersonCell: UITableViewCell {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var facebookImage: UIImageView!
-    
-    var friend = false
-    
+        
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
