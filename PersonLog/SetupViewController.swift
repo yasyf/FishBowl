@@ -21,6 +21,9 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        phone.delegate = self
+        twitter.delegate = self
+        snapchat.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -28,10 +31,6 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func setup() {
-        
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -46,11 +45,13 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-//    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-//        view.endEditing(true)
-//        super.touchesBegan(touches, withEvent: event)
-//    }
-    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == snapchat {
+            textField.resignFirstResponder()
+            return true
+        }
+        return false
+    }
     /*
     // MARK: - Navigation
 
