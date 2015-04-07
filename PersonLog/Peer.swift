@@ -126,14 +126,20 @@ class Peer: NSObject {
         request.entity = entityDescription!
         request.predicate = NSPredicate(format: "(fb_id = %@)", data["fb_id"] as String)
         
+        var personOptional: Person?
+        
         var objects = managedObjectContext.executeFetchRequest(request, error: nil)
         if let results = objects {
             if results.count > 0 {
-                return results[0] as Person
+                personOptional = results[0] as? Person
             }
         }
         
-        let person = Person(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        if personOptional == nil {
+            personOptional = Person(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        }
+        
+        let person = personOptional!
         var error: NSError?
         
         let fields = ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter", "meta", "snapchat"]
