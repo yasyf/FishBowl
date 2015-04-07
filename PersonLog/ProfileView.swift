@@ -49,7 +49,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         
         name.text = "\(interaction.person.f_name) \(interaction.person.l_name)"
         
-        fbButton.setTitle("\(person.f_name)'s Facebook", forState: .Normal)
+        fbButton.setTitle("\(interaction.person.f_name)'s Facebook", forState: .Normal)
 
         let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
         api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in

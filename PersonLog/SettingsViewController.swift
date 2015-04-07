@@ -7,21 +7,23 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SettingsViewController: UIViewController {
+
+    @IBOutlet weak var profilePicture: UIImageView!
+    
+    let settings = Settings()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        profilePicture.layer.borderColor = settings.lineColor
+        
+        let photoURL = NSURL(string: settings.photoURL()!)
+        profilePicture.sd_setImageWithURL(photoURL)
     }
     
-
     /*
     // MARK: - Navigation
 
