@@ -27,8 +27,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login" translatesAutoresizingMaskIntoConstraints="NO" id="ncD-7O-l9D">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cgm-I4-EOf" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="180" y="272" width="240" height="55"/>
+                                <rect key="frame" x="180" y="495" width="240" height="55"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="2J6-Ww-MRh"/>
@@ -36,12 +39,22 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ncD-7O-l9D" firstAttribute="top" secondItem="rKn-Ad-p3w" secondAttribute="top" id="5S0-54-1NR"/>
                             <constraint firstAttribute="centerX" secondItem="Cgm-I4-EOf" secondAttribute="centerX" id="BvJ-rP-tHd"/>
                             <constraint firstAttribute="centerY" secondItem="Cgm-I4-EOf" secondAttribute="centerY" id="VWJ-iT-M3s"/>
+                            <constraint firstAttribute="trailing" secondItem="ncD-7O-l9D" secondAttribute="trailing" id="efA-Xe-LEd"/>
+                            <constraint firstItem="ncD-7O-l9D" firstAttribute="leading" secondItem="rKn-Ad-p3w" secondAttribute="leading" id="hK7-z7-fNk"/>
+                            <constraint firstItem="Cgm-I4-EOf" firstAttribute="bottom" secondItem="ncD-7O-l9D" secondAttribute="bottom" constant="-50" id="jX7-uW-Yh4"/>
+                            <constraint firstItem="3NQ-7U-i4w" firstAttribute="top" secondItem="ncD-7O-l9D" secondAttribute="bottom" id="jbu-Va-11a"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VWJ-iT-M3s"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="loginView" destination="Cgm-I4-EOf" id="vB5-FH-cvV"/>
                     </connections>
@@ -528,6 +541,7 @@
     <resources>
         <image name="Friend" width="60" height="60"/>
         <image name="LocButton" width="22" height="22"/>
+        <image name="Login" width="640" height="1136"/>
         <image name="Settings" width="25" height="25"/>
         <image name="Unknown" width="200" height="200"/>
     </resources>
