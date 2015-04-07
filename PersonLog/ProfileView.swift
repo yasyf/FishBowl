@@ -20,7 +20,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var mutualFriendsLabel: UILabel!
     @IBAction func fbLink(sender: AnyObject) {
-        let url = NSURL(string: "http://facebook.com/\(person.fb_id)")
+        let url = NSURL(string: "http://facebook.com/\(interaction.person.fb_id)")
         UIApplication.sharedApplication().openURL(url!)
     }
     @IBAction func currentLocation(sender: AnyObject) {
@@ -30,40 +30,37 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         self.map.setUserTrackingMode(.Follow, animated: true)
     }
     
-    var person:Person!
-    var lat:NSNumber!
-    var lon:NSNumber!
-    var friend:Bool!
+    var interaction: Interaction!
+    var isFriend: Bool!
     let settings = Settings()
+    let api = API()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "\(person.f_name)'s Profile"
+        self.title = "\(interaction.person.f_name)'s Profile"
         
         profilePicture.layer.borderColor = settings.lineColor
         
-        let photoURL = NSURL(string: person.photo_url)
+        let photoURL = NSURL(string: interaction.person.photo_url)
         profilePicture.sd_setImageWithURL(photoURL)
 
-        if friend! {
-            facebookImage.hidden = false
-        }
+        facebookImage.hidden = !isFriend!
         
-        name.text = "\(person.f_name) \(person.l_name)"
+        name.text = "\(interaction.person.f_name) \(interaction.person.l_name)"
         
-        fbButton.setTitle("Visit \(person.f_name)'s Facebook", forState: .Normal)
-
-        let mutualFriendGraphRequest = FBSDKGraphRequest(graphPath: "/\(person.fb_id)", parameters: ["fields": "context.fields(mutual_friends)"])
-        mutualFriendGraphRequest.startWithCompletionHandler({(_, result, error) in
-            let context = result.objectForKey("context") as NSMutableDictionary
-            let mutualFriends = context.objectForKey("mutual_friends") as NSMutableDictionary
-            let summary = mutualFriends.objectForKey("summary") as NSMutableDictionary
-            let mutualFriendCount = summary.objectForKey("total_count") as Int
+        fbButton.setTitle("\(interaction.person.f_name) on Facebook", forState: .Normal)
+        
+        let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+        api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in
+            let mutualFriendCount = data["total_count"] as Int
             dispatch_async(dispatch_get_main_queue(), {
                 self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
             })
-        })
+            }, failure: {(error, data) in
+                println(error)
+            }
+        )
         
         map.delegate = self
         map.mapType = MKMapType.Standard
@@ -71,7 +68,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         let spanX = 0.002
         let spanY = 0.002
         
-        let location = CLLocationCoordinate2DMake(lat as CLLocationDegrees, lon as CLLocationDegrees)
+        let location = CLLocationCoordinate2DMake(interaction.lat as CLLocationDegrees, interaction.lon as CLLocationDegrees)
         var startRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(spanX, spanY))
         map.setRegion(startRegion, animated: false)
         
