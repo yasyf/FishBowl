@@ -43,7 +43,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         profilePicture.layer.borderColor = settings.lineColor
         
         let photoURL = NSURL(string: interaction.person.photo_url)
-        profilePicture.sd_setImageWithURL(photoURL, placeholderImage: UIImage(named: "Unknown.png"))
+        profilePicture.sd_setImageWithURL(photoURL, placeholderImage: settings.unknownImage)
 
         facebookImage.hidden = !isFriend!
         

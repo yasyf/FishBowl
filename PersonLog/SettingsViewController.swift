@@ -20,43 +20,40 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     let settings = Settings()
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    var broadcaster: Broadcaster?
-    var discoverer: Discoverer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        profilePicture.layer.borderColor = settings.lineColor!
+        profilePicture.layer.borderColor = settings.lineColor
         
-        let photoURL = NSURL(string: settings.photoURL()!)
-        profilePicture.sd_setImageWithURL(photoURL, placeholderImage: UIImage(named: "Unknown.png"))
+        if let photoUrl = settings.photoURL() {
+            profilePicture.sd_setImageWithURL(NSURL(string: photoUrl), placeholderImage: settings.unknownImage)
+        }
         
-        name.text = "\(settings.firstName()!) \(settings.lastName()!)"
+        name.text = "\(settings.firstName()) \(settings.lastName())"
+        
         if let phone = settings.phone() {
             number.text = phone
         }
-        if let handle = settings.twitter() {
-            twitter.text = handle
+        if let twitterHandle = settings.twitter() {
+            twitter.text = twitterHandle
         }
-        if let snap = settings.snapchat() {
-            snapchat.text = snap
+        if let snapchatUsername = settings.snapchat() {
+            snapchat.text = snapchatUsername
         }
         
-        logoutView.readPermissions = ["public_profile", "user_friends"]
         logoutView.delegate = self
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        NSException(name: "FBSDKLoginButtonDelegate", reason: "Invalid call to loginButton:didCompleteWithResult", userInfo: nil).raise()
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        if settings.isLoggedIn() && broadcaster == nil {
-            broadcaster = appDelegate.broadcaster
-            discoverer = appDelegate.discoverer
+        if settings.isLoggedIn() {
+            appDelegate.broadcaster.kill()
+            appDelegate.discoverer.kill()
         }
-        broadcaster!.kill()
-        discoverer!.kill()
-        
         settings.logout()
         self.performSegueWithIdentifier("logout", sender: nil)
     }

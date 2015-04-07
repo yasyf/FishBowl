@@ -35,6 +35,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        NSException(name: "FBSDKLoginButtonDelegate", reason: "Invalid call to loginButtonDidLogOut", userInfo: nil).raise()
     }
 
     func setUserData(completion: () -> Void) {
