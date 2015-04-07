@@ -16,6 +16,9 @@ class Settings {
     func _string(key: String) -> String? {
         return defaults.stringForKey(key)
     }
+    func _bool(key: String) -> Bool {
+        return defaults.boolForKey(key)
+    }
     func firstName() -> String? {
         return _string("f_name")
     }
@@ -67,10 +70,17 @@ class Settings {
     func isLoggedIn() -> Bool {
         return facebookID() != nil
     }
+    func isDoneSetup() -> Bool {
+        return _bool("done_setup")
+    }
+    func doneSetup() {
+        defaults.setBool(true, forKey: "done_setup")
+    }
     func clear() {
         for field in fields {
             defaults.setValue(nil, forKey: field)
         }
+        defaults.setBool(false, forKey: "done_setup")
     }
     func logout() {
         defaults.setValue(nil, forKey: "fb_id")
