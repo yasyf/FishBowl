@@ -13,6 +13,7 @@
 		0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */; };
 		0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764601AB8F81900DD88A8 /* Main.storyboard */; };
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
+		0C0EADC51AD492F000829F22 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0EADC41AD492F000829F22 /* MessageUI.framework */; };
 		0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E71AD284580055E36E /* Bariol_Regular.otf */; };
 		0C5488EA1AD284580055E36E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E81AD284580055E36E /* Info.plist */; };
 		0C5488ED1AD284660055E36E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */; };
@@ -59,6 +60,7 @@
 		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
+		0C0EADC41AD492F000829F22 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0C5488E71AD284580055E36E /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular.otf; path = "Supporting FIles/Bariol_Regular.otf"; sourceTree = SOURCE_ROOT; };
 		0C5488E81AD284580055E36E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting FIles/Info.plist"; sourceTree = SOURCE_ROOT; };
 		0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0EADC51AD492F000829F22 /* MessageUI.framework in Frameworks */,
 				0C8EB01A1AD0E743002B0727 /* CoreBluetooth.framework in Frameworks */,
 				0C5488ED1AD284660055E36E /* FBSDKCoreKit.framework in Frameworks */,
 				0C8EB0181AD0A78F002B0727 /* MultipeerConnectivity.framework in Frameworks */,
@@ -193,6 +196,7 @@
 		2118CCE2E64703F770EABE27 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C0EADC41AD492F000829F22 /* MessageUI.framework */,
 				0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */,
 				0C5488EC1AD284660055E36E /* FBSDKLoginKit.framework */,
 				0C8EB0191AD0E743002B0727 /* CoreBluetooth.framework */,

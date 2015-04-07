@@ -10,8 +10,9 @@ import UIKit
 import CoreLocation
 import MapKit
 import SDWebImage
+import MessageUI
 
-class ProfileView: UIViewController, MKMapViewDelegate {
+class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewControllerDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var facebookImage: UIImageView!
@@ -84,6 +85,10 @@ class ProfileView: UIViewController, MKMapViewDelegate {
 
         container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -20))
     }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
 
     @IBAction func openFacebook(sender: AnyObject) {
         let url = NSURL(string: "http://facebook.com/\(interaction.person.fb_id)")
@@ -109,6 +114,13 @@ class ProfileView: UIViewController, MKMapViewDelegate {
             return
         }))
     }
+    
+    @IBAction func openMessageView(sender: AnyObject) {
+        let messageViewController = MFMessageComposeViewController()
+        messageViewController.recipients = [interaction.person.phone]
+        presentViewController(messageViewController, animated: true, completion: nil)
+    }
+    
 
     /*
     // MARK: - Navigation

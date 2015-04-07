@@ -708,7 +708,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="fbLink:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="2fU-rq-ufZ"/>
+                                                                    <action selector="openMessageView:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="gsa-mq-uR5"/>
                                                                 </connections>
                                                             </button>
                                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghF-3V-mKU">
@@ -729,7 +729,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="fbLink:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="fs9-bA-oHJ"/>
+                                                                    <action selector="openTwitter:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="JvT-6h-yqt"/>
                                                                 </connections>
                                                             </button>
                                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daT-W8-my1">
@@ -750,7 +750,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="fbLink:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="LmM-jw-hY3"/>
+                                                                    <action selector="openSnapchat:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="my1-I4-ubo"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -969,8 +969,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1336"/>
                     <connections>
-                        <outlet property="facebookButton" destination="gew-vd-I8e" id="8lZ-nX-MJb"/>
                         <outlet property="container" destination="dpo-m9-Nsk" id="tzF-1p-3Vh"/>
+                        <outlet property="facebookButton" destination="gew-vd-I8e" id="8lZ-nX-MJb"/>
                         <outlet property="facebookImage" destination="3s2-Zt-c1p" id="dDm-FY-Win"/>
                         <outlet property="map" destination="OhY-yq-hib" id="n0A-xB-UvP"/>
                         <outlet property="messageButton" destination="bZV-m1-F5v" id="61a-bd-Wg3"/>
