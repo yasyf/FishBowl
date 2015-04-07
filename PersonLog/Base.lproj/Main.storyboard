@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -653,7 +653,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="fbLink:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="VY2-ZC-pcq"/>
+                                                                    <action selector="openFacebook:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="4VL-nk-7FG"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -743,7 +743,7 @@
                                                         </constraints>
                                                         <state key="normal" image="LocButton"/>
                                                         <connections>
-                                                            <action selector="currentLocation:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="6cw-HX-XGO"/>
+                                                            <action selector="showCurrentLocation:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="jRU-F1-dXB"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -862,8 +862,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1143"/>
                     <connections>
+                        <outlet property="facebookButton" destination="gew-vd-I8e" id="8lZ-nX-MJb"/>
                         <outlet property="facebookImage" destination="3s2-Zt-c1p" id="dDm-FY-Win"/>
-                        <outlet property="fbButton" destination="gew-vd-I8e" id="OFh-ah-eiK"/>
                         <outlet property="map" destination="OhY-yq-hib" id="n0A-xB-UvP"/>
                         <outlet property="mutualFriendsLabel" destination="zaH-Bj-LTO" id="ovw-lj-cr3"/>
                         <outlet property="name" destination="Q9M-IA-S2J" id="tQA-oH-AdB"/>

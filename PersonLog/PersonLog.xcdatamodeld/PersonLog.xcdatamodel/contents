@@ -14,12 +14,13 @@
         <attribute name="meta" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo_url" attributeType="String" syncable="YES"/>
+        <attribute name="snapchat" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="interactions" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Interaction" inverseName="owner" inverseEntity="Interaction" syncable="YES"/>
         <relationship name="visited" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Interaction" inverseName="person" inverseEntity="Interaction" syncable="YES"/>
     </entity>
     <elements>
         <element name="Interaction" positionX="-54" positionY="36" width="128" height="120"/>
-        <element name="Person" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Person" positionX="-63" positionY="-18" width="128" height="193"/>
     </elements>
 </model>

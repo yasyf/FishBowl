@@ -35,7 +35,15 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        
+        switch textField {
+        case phone:
+            settings.setPhone(phone.text)
+        case twitter:
+            settings.setTwitter(twitter.text)
+        case snapchat:
+            settings.setSnapchat(snapchat.text)
+        default: ()
+        }
     }
     
 //    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

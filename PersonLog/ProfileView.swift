@@ -11,24 +11,14 @@ import CoreLocation
 import MapKit
 import SDWebImage
 
-class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ProfileView: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var facebookImage: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var fbButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var mutualFriendsLabel: UILabel!
-    @IBAction func fbLink(sender: AnyObject) {
-        let url = NSURL(string: "http://facebook.com/\(interaction.person.fb_id)")
-        UIApplication.sharedApplication().openURL(url!)
-    }
-    @IBAction func currentLocation(sender: AnyObject) {
-        var locManager = CLLocationManager()
-        locManager.delegate = self
-        self.map.showsUserLocation = true
-        self.map.setUserTrackingMode(.Follow, animated: true)
-    }
     
     var interaction: Interaction!
     var isFriend: Bool!
@@ -49,7 +39,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         
         name.text = "\(interaction.person.f_name) \(interaction.person.l_name)"
         
-        fbButton.setTitle("\(interaction.person.f_name)'s Facebook", forState: .Normal)
+        facebookButton.setTitle("\(interaction.person.f_name)'s Facebook", forState: .Normal)
 
         let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
         api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in
@@ -76,7 +66,32 @@ class ProfileView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegat
         pin.setCoordinate(location)
         map.addAnnotation(pin)
     }
-
+    
+    @IBAction func openFacebook(sender: AnyObject) {
+        let url = NSURL(string: "http://facebook.com/\(interaction.person.fb_id)")
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    @IBAction func showCurrentLocation(sender: AnyObject) {
+        self.map.showsUserLocation = true
+        self.map.setUserTrackingMode(.Follow, animated: true)
+    }
+    
+    @IBAction func openTwitter(sender: AnyObject) {
+        let url = NSURL(string: "twitter://user?screen_name=\(interaction.person.twitter)")
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    
+    @IBAction func openSnapchat(sender: AnyObject) {
+        let snapchat = interaction.person.snapchat
+        let url = NSURL(string: "snapchat://?u=\(snapchat)")
+        UIPasteboard.generalPasteboard().string = snapchat
+        var alert = UIAlertController(title: "Snapchat \(interaction.person.f_name)", message: "\(interaction.person.f_name)'s Snapchat username has been copied to your clipboard!", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: {action in
+            UIApplication.sharedApplication().openURL(url!)
+            return
+        }))
+    }
+    
     /*
     // MARK: - Navigation
 
