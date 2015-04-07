@@ -73,12 +73,15 @@ class ProfileView: UIViewController, MKMapViewDelegate {
         // Buttons
         var bottomButton = facebookButton
         if let phone = settings.phone() {
+            messageButton.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: messageButton, attribute: .Top, multiplier: 1.0, constant: 15))
             bottomButton = messageButton
         }
         if let handle = settings.twitter() {
+            twitterButton.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: twitterButton, attribute: .Top, multiplier: 1.0, constant: 15))
             bottomButton = twitterButton
         }
         if let snap = settings.snapchat() {
+            snapchatButton.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: snapchatButton, attribute: .Top, multiplier: 1.0, constant: 15))
             bottomButton = snapchatButton
         }
 

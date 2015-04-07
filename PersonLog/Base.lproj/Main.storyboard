@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -761,10 +761,10 @@
                                                             <constraint firstAttribute="bottom" secondItem="gew-vd-I8e" secondAttribute="bottom" constant="25" id="4se-Nx-h5f"/>
                                                             <constraint firstAttribute="height" constant="200" id="ATb-PA-mfi"/>
                                                             <constraint firstAttribute="bottom" secondItem="gew-vd-I8e" secondAttribute="bottom" constant="25" id="CGQ-Nl-Sbg"/>
-                                                            <constraint firstItem="daT-W8-my1" firstAttribute="top" secondItem="ghF-3V-mKU" secondAttribute="bottom" constant="15" id="Kyh-Wc-hrD"/>
+                                                            <constraint firstItem="daT-W8-my1" firstAttribute="top" secondItem="ghF-3V-mKU" secondAttribute="bottom" priority="250" constant="15" id="Kyh-Wc-hrD"/>
                                                             <constraint firstAttribute="trailing" secondItem="gew-vd-I8e" secondAttribute="trailing" constant="25" id="NjU-4O-J2E"/>
                                                             <constraint firstAttribute="centerX" secondItem="daT-W8-my1" secondAttribute="centerX" id="ThC-fJ-3sf"/>
-                                                            <constraint firstItem="ghF-3V-mKU" firstAttribute="top" secondItem="bZV-m1-F5v" secondAttribute="bottom" constant="15" id="ZDk-Vm-ouf"/>
+                                                            <constraint firstItem="ghF-3V-mKU" firstAttribute="top" secondItem="bZV-m1-F5v" secondAttribute="bottom" priority="250" constant="15" id="ZDk-Vm-ouf"/>
                                                             <constraint firstItem="gew-vd-I8e" firstAttribute="leading" secondItem="dpo-m9-Nsk" secondAttribute="leading" constant="25" id="b4y-yc-zty"/>
                                                             <constraint firstAttribute="bottom" secondItem="daT-W8-my1" secondAttribute="bottom" constant="20" id="c7r-x4-ukG"/>
                                                             <constraint firstAttribute="trailing" secondItem="zaH-Bj-LTO" secondAttribute="trailing" constant="25" id="dlz-yF-VLM"/>
@@ -773,7 +773,7 @@
                                                             <constraint firstItem="zaH-Bj-LTO" firstAttribute="top" secondItem="dpo-m9-Nsk" secondAttribute="top" constant="20" id="i0x-dg-kdX"/>
                                                             <constraint firstAttribute="centerX" secondItem="ghF-3V-mKU" secondAttribute="centerX" id="lw4-o7-fEl"/>
                                                             <constraint firstItem="gew-vd-I8e" firstAttribute="top" secondItem="zaH-Bj-LTO" secondAttribute="bottom" constant="20" id="mia-ib-9MW"/>
-                                                            <constraint firstItem="bZV-m1-F5v" firstAttribute="top" secondItem="gew-vd-I8e" secondAttribute="bottom" constant="15" id="uHQ-Cg-daH"/>
+                                                            <constraint firstItem="bZV-m1-F5v" firstAttribute="top" secondItem="gew-vd-I8e" secondAttribute="bottom" priority="250" constant="15" id="uHQ-Cg-daH"/>
                                                             <constraint firstAttribute="centerX" secondItem="gew-vd-I8e" secondAttribute="centerX" id="ufA-6V-MY2"/>
                                                         </constraints>
                                                         <variation key="default">
@@ -969,8 +969,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1336"/>
                     <connections>
-                        <outlet property="facebookButton" destination="gew-vd-I8e" id="8lZ-nX-MJb"/>
                         <outlet property="container" destination="dpo-m9-Nsk" id="tzF-1p-3Vh"/>
+                        <outlet property="facebookButton" destination="gew-vd-I8e" id="8lZ-nX-MJb"/>
                         <outlet property="facebookImage" destination="3s2-Zt-c1p" id="dDm-FY-Win"/>
                         <outlet property="map" destination="OhY-yq-hib" id="n0A-xB-UvP"/>
                         <outlet property="messageButton" destination="bZV-m1-F5v" id="61a-bd-Wg3"/>
