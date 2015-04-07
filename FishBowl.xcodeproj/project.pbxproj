@@ -12,7 +12,6 @@
 		0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764591AB8F81900DD88A8 /* AppDelegate.swift */; };
 		0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */; };
 		0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764601AB8F81900DD88A8 /* Main.storyboard */; };
-		0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764631AB8F81900DD88A8 /* Images.xcassets */; };
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
 		0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E71AD284580055E36E /* Bariol_Regular.otf */; };
 		0C5488EA1AD284580055E36E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E81AD284580055E36E /* Info.plist */; };
@@ -33,6 +32,7 @@
 		4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181471ACF2C0B004A0B68 /* PersonCell.swift */; };
 		4611814D1ACF2C0B004A0B68 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181491ACF2C0B004A0B68 /* TimelineViewController.swift */; };
 		461A86521AD1165700A4622D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461A86511AD1165700A4622D /* LoginViewController.swift */; };
+		463C35B21AD36A0200D31D18 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 463C35B11AD36A0200D31D18 /* images.xcassets */; };
 		6E2BD16720EDB88C394D53BF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454E43B44E5900429842DB84 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -53,7 +53,6 @@
 		0C0764591AB8F81900DD88A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C07645C1AB8F81900DD88A8 /* PersonLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersonLog.xcdatamodel; sourceTree = "<group>"; };
 		0C0764611AB8F81900DD88A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0C0764631AB8F81900DD88A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
@@ -77,6 +76,7 @@
 		461181471ACF2C0B004A0B68 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		461181491ACF2C0B004A0B68 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		461A86511AD1165700A4622D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		463C35B11AD36A0200D31D18 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		46D9AD841AD08A5A0070E595 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		4A89BBE52A09BED8C7F9A749 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9D2C04CE43982C10D9E72732 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,11 +132,11 @@
 			children = (
 				0C0764591AB8F81900DD88A8 /* AppDelegate.swift */,
 				461181621ACF2C5D004A0B68 /* Views */,
-				0C0764631AB8F81900DD88A8 /* Images.xcassets */,
 				0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */,
 				0C04FC401ACE9A730059336D /* Person.swift */,
 				0C04FC3E1ACE9A5B0059336D /* Interaction.swift */,
 				46D9AD841AD08A5A0070E595 /* Bridging-Header.h */,
+				463C35B11AD36A0200D31D18 /* images.xcassets */,
 				0C0764571AB8F81900DD88A8 /* Supporting Files */,
 				0C9CFFE51AB90D2600ECAF11 /* Peer.swift */,
 				0C88E5B11AC4A6C100671E49 /* API.swift */,
@@ -301,7 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */,
-				0C0764641AB8F81900DD88A8 /* Images.xcassets in Resources */,
+				463C35B21AD36A0200D31D18 /* images.xcassets in Resources */,
 				0C5488EA1AD284580055E36E /* Info.plist in Resources */,
 				0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */,
 			);

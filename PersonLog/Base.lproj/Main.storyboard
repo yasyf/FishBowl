@@ -147,10 +147,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friend" translatesAutoresizingMaskIntoConstraints="NO" id="Hc6-Bo-4Xh">
-                                                    <rect key="frame" x="317" y="87" width="33" height="33"/>
+                                                    <rect key="frame" x="320" y="90" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="33" id="Jxi-cb-exC"/>
-                                                        <constraint firstAttribute="width" constant="33" id="eDR-nJ-pYR"/>
+                                                        <constraint firstAttribute="height" constant="30" id="Jxi-cb-exC"/>
+                                                        <constraint firstAttribute="width" constant="30" id="eDR-nJ-pYR"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -218,7 +218,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Timeline" id="xp9-mf-Hpz"/>
+                    <navigationItem key="navigationItem" title="Timeline" id="xp9-mf-Hpz">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Ebm-xU-Yt2"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="table" destination="sEA-Mg-akb" id="fUX-Wq-WBo"/>
                     </connections>
@@ -236,7 +238,7 @@
                         <viewControllerLayoutGuide type="bottom" id="oqs-VP-rJm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="e95-6n-tql">
-                        <rect key="frame" x="0.0" y="64" width="600" height="1079"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1079"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ri-It-UUF">
@@ -357,6 +359,20 @@
                                                             <constraint firstAttribute="width" secondItem="OhY-yq-hib" secondAttribute="height" multiplier="1:1" id="pF0-ZG-Hzo"/>
                                                         </constraints>
                                                     </mapView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhM-Cw-Y9s">
+                                                        <rect key="frame" x="510" y="10" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="DeL-KO-CsW"/>
+                                                            <constraint firstAttribute="width" constant="30" id="wJW-JK-TBg"/>
+                                                        </constraints>
+                                                        <state key="normal" image="LocButton">
+                                                            <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="currentLocation:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="6cw-HX-XGO"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -365,8 +381,10 @@
                                                     <constraint firstItem="pnl-24-YQD" firstAttribute="leading" secondItem="CK5-ox-kgg" secondAttribute="leading" constant="25" id="AtC-JR-jwH"/>
                                                     <constraint firstItem="pnl-24-YQD" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="15" id="Dbh-pp-mSL"/>
                                                     <constraint firstAttribute="bottom" secondItem="OhY-yq-hib" secondAttribute="bottom" id="E3W-aG-kbH"/>
+                                                    <constraint firstItem="FhM-Cw-Y9s" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="10" id="H3i-G6-bgb"/>
                                                     <constraint firstAttribute="centerX" secondItem="pnl-24-YQD" secondAttribute="centerX" id="M2R-I3-Etz"/>
                                                     <constraint firstAttribute="trailing" secondItem="pnl-24-YQD" secondAttribute="trailing" constant="25" id="QgR-nE-4Jy"/>
+                                                    <constraint firstAttribute="trailing" secondItem="FhM-Cw-Y9s" secondAttribute="trailing" constant="10" id="Vdm-P4-fcK"/>
                                                     <constraint firstItem="OhY-yq-hib" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="50" id="YBe-g9-yzK"/>
                                                     <constraint firstItem="OhY-yq-hib" firstAttribute="leading" secondItem="CK5-ox-kgg" secondAttribute="leading" id="Yf2-td-qkS"/>
                                                     <constraint firstAttribute="trailing" secondItem="OhY-yq-hib" secondAttribute="trailing" id="xXh-nG-a5q"/>
@@ -401,10 +419,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friend" translatesAutoresizingMaskIntoConstraints="NO" id="3s2-Zt-c1p">
-                                                <rect key="frame" x="355" y="190" width="33" height="33"/>
+                                                <rect key="frame" x="358" y="193" width="30" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="33" id="akY-l7-2pB"/>
-                                                    <constraint firstAttribute="height" constant="33" id="r6z-L9-0pg"/>
+                                                    <constraint firstAttribute="width" constant="30" id="akY-l7-2pB"/>
+                                                    <constraint firstAttribute="height" constant="30" id="r6z-L9-0pg"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -467,7 +485,7 @@
                             <constraint firstItem="oqs-VP-rJm" firstAttribute="top" secondItem="1Ri-It-UUF" secondAttribute="bottom" id="jrR-wB-2UQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="ViK-Mf-R6T"/>
+                    <navigationItem key="navigationItem" title="Profile" id="Laf-gV-82u"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1143"/>
                     <connections>
@@ -481,11 +499,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbk-sH-Dcy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1268" y="-146"/>
+            <point key="canvasLocation" x="1268" y="-146.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="Friend" width="136" height="136"/>
+        <image name="LocButton" width="22" height="22"/>
         <image name="Unknown" width="200" height="200"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
