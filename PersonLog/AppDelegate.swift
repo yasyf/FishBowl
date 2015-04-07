@@ -41,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.None)
         
+        #if DEMOMODE
+            DemoMode().startLooping()
+        #endif
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

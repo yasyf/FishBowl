@@ -26,6 +26,7 @@
 		0C9CFFE01AB8FDFF00ECAF11 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */; };
 		0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */; };
 		0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE51AB90D2600ECAF11 /* Peer.swift */; };
+		0CABC8631AD3920D00037399 /* DemoMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABC8621AD3920D00037399 /* DemoMode.swift */; };
 		0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBABF821ACF3CB300D7F0F4 /* Database.swift */; };
 		46060D821AD153A100091817 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46060D811AD153A100091817 /* ProfileView.swift */; };
 		4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181461ACF2C0B004A0B68 /* NavViewController.swift */; };
@@ -69,6 +70,7 @@
 		0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discoverer.swift; sourceTree = "<group>"; };
 		0C9CFFE51AB90D2600ECAF11 /* Peer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
+		0CABC8621AD3920D00037399 /* DemoMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMode.swift; sourceTree = "<group>"; };
 		0CBABF821ACF3CB300D7F0F4 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		454E43B44E5900429842DB84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46060D811AD153A100091817 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */,
 				0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */,
 				0CBABF821ACF3CB300D7F0F4 /* Database.swift */,
+				0CABC8621AD3920D00037399 /* DemoMode.swift */,
 			);
 			path = PersonLog;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				0C04FC411ACE9A730059336D /* Person.swift in Sources */,
 				0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */,
 				0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */,
+				0CABC8631AD3920D00037399 /* DemoMode.swift in Sources */,
 				461A86521AD1165700A4622D /* LoginViewController.swift in Sources */,
 				4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */,
 				0C07645A1AB8F81900DD88A8 /* AppDelegate.swift in Sources */,
@@ -511,6 +515,7 @@
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEMOMODE\"";
 				PRODUCT_NAME = FishBowl;
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -535,6 +540,7 @@
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEMOMODE\"";
 				PRODUCT_NAME = FishBowl;
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
