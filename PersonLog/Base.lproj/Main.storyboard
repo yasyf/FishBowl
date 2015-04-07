@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -74,7 +74,7 @@
                     <size key="freeformSize" width="600" height="1000"/>
                     <connections>
                         <outlet property="loginView" destination="Cgm-I4-EOf" id="vB5-FH-cvV"/>
-                        <segue destination="det-ng-Xsn" kind="presentation" identifier="setup" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Oqw-75-4bZ"/>
+                        <segue destination="det-ng-Xsn" kind="showDetail" identifier="setup" id="Oqw-75-4bZ"/>
                         <segue destination="17h-6J-R23" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="BSm-SD-2wT"/>
                     </connections>
                 </viewController>
@@ -627,7 +627,7 @@
                         <outlet property="profilePicture" destination="Dtj-4X-fNf" id="x4Q-tZ-ssx"/>
                         <outlet property="snapchat" destination="K8L-ZG-gjd" id="h4u-Ng-ZxN"/>
                         <outlet property="twitter" destination="POR-f7-eU2" id="Lmn-rl-zDF"/>
-                        <segue destination="BDv-qp-roc" kind="presentation" identifier="logout" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="4Al-3H-Yzw"/>
+                        <segue destination="BDv-qp-roc" kind="showDetail" identifier="logout" id="4Al-3H-Yzw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkP-H9-Xha" userLabel="First Responder" sceneMemberID="firstResponder"/>
