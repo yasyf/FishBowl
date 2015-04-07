@@ -23,6 +23,10 @@
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -277,8 +281,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdE-HR-bDF">
-                                <rect key="frame" x="542" y="558" width="48" height="27"/>
+                                <rect key="frame" x="530" y="30" width="60" height="27"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="AwK-te-HN9"/>
                                     <constraint firstAttribute="width" constant="48" id="vRG-O0-mjn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="15"/>
@@ -286,50 +291,79 @@
                                     <color key="titleColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vRG-O0-mjn"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="skip:" destination="det-ng-Xsn" eventType="touchUpInside" id="h5Z-Tv-7sm"/>
                                     <segue destination="17h-6J-R23" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="idJ-2I-otr"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="isv-eq-Es4">
-                                <rect key="frame" x="200" y="159" width="200" height="20"/>
+                                <rect key="frame" x="125" y="169" width="350" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="rWv-j2-Oef"/>
+                                    <constraint firstAttribute="width" constant="350" id="rWv-j2-Oef"/>
                                 </constraints>
                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="@twitter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lun-rq-ajo">
-                                <rect key="frame" x="200" y="231" width="200" height="20"/>
+                                <rect key="frame" x="125" y="239" width="350" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="f4y-pz-7Hy"/>
+                                    <constraint firstAttribute="width" constant="350" id="f4y-pz-7Hy"/>
                                 </constraints>
                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="twitter" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="snapchat" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ayy-Nk-7Pu">
-                                <rect key="frame" x="200" y="306" width="200" height="20"/>
+                                <rect key="frame" x="125" y="309" width="350" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="wgz-PO-fwq"/>
+                                    <constraint firstAttribute="width" constant="350" id="wgz-PO-fwq"/>
                                 </constraints>
                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact information:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evv-JE-DUq">
+                                <rect key="frame" x="204" y="95" width="193" height="24"/>
+                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="24"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90588235289999997" green="0.56862745100000001" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sim-Uh-H7C" firstAttribute="top" secondItem="ZdE-HR-bDF" secondAttribute="bottom" constant="15" id="3Aw-a3-8WD"/>
+                            <constraint firstAttribute="trailing" secondItem="ZdE-HR-bDF" secondAttribute="trailing" constant="10" id="5ya-4v-jky"/>
                             <constraint firstAttribute="centerX" secondItem="Ayy-Nk-7Pu" secondAttribute="centerX" id="6qT-gA-Am5"/>
                             <constraint firstAttribute="trailing" secondItem="ZdE-HR-bDF" secondAttribute="trailing" constant="10" id="7OJ-as-uK2"/>
+                            <constraint firstAttribute="centerX" secondItem="evv-JE-DUq" secondAttribute="centerX" id="7zH-AB-dVA"/>
+                            <constraint firstItem="lun-rq-ajo" firstAttribute="top" secondItem="isv-eq-Es4" secondAttribute="bottom" constant="50" id="HMi-8C-HIg"/>
+                            <constraint firstItem="Ayy-Nk-7Pu" firstAttribute="top" secondItem="lun-rq-ajo" secondAttribute="bottom" constant="50" id="Hev-Me-9Fh"/>
                             <constraint firstItem="isv-eq-Es4" firstAttribute="top" secondItem="Thi-EV-1WS" secondAttribute="bottom" constant="139" id="Ses-Oz-aFy"/>
+                            <constraint firstItem="ZdE-HR-bDF" firstAttribute="leading" secondItem="Zyq-sJ-KMJ" secondAttribute="leading" constant="10" id="WBy-y4-5ML"/>
                             <constraint firstItem="Ayy-Nk-7Pu" firstAttribute="top" secondItem="lun-rq-ajo" secondAttribute="bottom" constant="55" id="We9-tp-V15"/>
                             <constraint firstAttribute="centerX" secondItem="isv-eq-Es4" secondAttribute="centerX" id="cyd-6R-e6m"/>
                             <constraint firstItem="lun-rq-ajo" firstAttribute="top" secondItem="isv-eq-Es4" secondAttribute="bottom" constant="52" id="d3R-Ab-1n0"/>
                             <constraint firstAttribute="centerX" secondItem="lun-rq-ajo" secondAttribute="centerX" id="ok4-QG-zsI"/>
+                            <constraint firstItem="ZdE-HR-bDF" firstAttribute="top" secondItem="Thi-EV-1WS" secondAttribute="bottom" constant="10" id="yAu-do-sMP"/>
+                            <constraint firstItem="evv-JE-DUq" firstAttribute="top" secondItem="Thi-EV-1WS" secondAttribute="bottom" constant="75" id="yb8-WB-4N9"/>
+                            <constraint firstItem="isv-eq-Es4" firstAttribute="top" secondItem="evv-JE-DUq" secondAttribute="bottom" constant="50" id="zOf-bz-dWo"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ses-Oz-aFy"/>
+                                <exclude reference="d3R-Ab-1n0"/>
+                                <exclude reference="We9-tp-V15"/>
+                                <exclude reference="7OJ-as-uK2"/>
+                                <exclude reference="WBy-y4-5ML"/>
+                                <exclude reference="3Aw-a3-8WD"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -611,20 +645,20 @@
                         <viewControllerLayoutGuide type="bottom" id="oqs-VP-rJm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="e95-6n-tql">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1079"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="1272"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ri-It-UUF">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="1079"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="1272"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWU-0a-fet" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1080"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1270"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbe-Q3-8oJ">
-                                                <rect key="frame" x="25" y="255" width="550" height="185"/>
+                                                <rect key="frame" x="25" y="255" width="550" height="375"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpo-m9-Nsk">
-                                                        <rect key="frame" x="0.0" y="50" width="550" height="135"/>
+                                                        <rect key="frame" x="0.0" y="50" width="550" height="325"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutual Friends: —" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-Bj-LTO">
                                                                 <rect key="frame" x="25" y="20" width="500" height="20"/>
@@ -656,28 +690,101 @@
                                                                     <action selector="openFacebook:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="4VL-nk-7FG"/>
                                                                 </connections>
                                                             </button>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZV-m1-F5v">
+                                                                <rect key="frame" x="150" y="125" width="250" height="50"/>
+                                                                <color key="backgroundColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="250" id="492-tR-qP4"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="HZf-Bp-TsI"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
+                                                                <state key="normal" title="iMessage">
+                                                                    <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="fbLink:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="2fU-rq-ufZ"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghF-3V-mKU">
+                                                                <rect key="frame" x="150" y="190" width="250" height="50"/>
+                                                                <color key="backgroundColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="250" id="gwN-uq-vX9"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="lJ7-PS-Hao"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
+                                                                <state key="normal" title="@twitter">
+                                                                    <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="fbLink:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="fs9-bA-oHJ"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daT-W8-my1">
+                                                                <rect key="frame" x="150" y="255" width="250" height="50"/>
+                                                                <color key="backgroundColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="250" id="I6g-Aa-hfL"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="OoR-sO-8Ne"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
+                                                                <state key="normal" title="snapchat">
+                                                                    <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="fbLink:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="LmM-jw-hY3"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="gew-vd-I8e" firstAttribute="top" secondItem="zaH-Bj-LTO" secondAttribute="bottom" constant="5" id="1kD-fN-hdt"/>
+                                                            <constraint firstAttribute="centerX" secondItem="bZV-m1-F5v" secondAttribute="centerX" id="2yY-T4-gMM"/>
                                                             <constraint firstAttribute="bottom" secondItem="gew-vd-I8e" secondAttribute="bottom" constant="25" id="4se-Nx-h5f"/>
                                                             <constraint firstAttribute="height" constant="200" id="ATb-PA-mfi"/>
                                                             <constraint firstAttribute="bottom" secondItem="gew-vd-I8e" secondAttribute="bottom" constant="25" id="CGQ-Nl-Sbg"/>
+                                                            <constraint firstItem="daT-W8-my1" firstAttribute="top" secondItem="ghF-3V-mKU" secondAttribute="bottom" constant="15" id="Kyh-Wc-hrD"/>
                                                             <constraint firstAttribute="trailing" secondItem="gew-vd-I8e" secondAttribute="trailing" constant="25" id="NjU-4O-J2E"/>
+                                                            <constraint firstAttribute="centerX" secondItem="daT-W8-my1" secondAttribute="centerX" id="ThC-fJ-3sf"/>
+                                                            <constraint firstItem="ghF-3V-mKU" firstAttribute="top" secondItem="bZV-m1-F5v" secondAttribute="bottom" constant="15" id="ZDk-Vm-ouf"/>
                                                             <constraint firstItem="gew-vd-I8e" firstAttribute="leading" secondItem="dpo-m9-Nsk" secondAttribute="leading" constant="25" id="b4y-yc-zty"/>
+                                                            <constraint firstAttribute="bottom" secondItem="daT-W8-my1" secondAttribute="bottom" constant="20" id="c7r-x4-ukG"/>
                                                             <constraint firstAttribute="trailing" secondItem="zaH-Bj-LTO" secondAttribute="trailing" constant="25" id="dlz-yF-VLM"/>
+                                                            <constraint firstAttribute="bottom" secondItem="daT-W8-my1" secondAttribute="bottom" priority="250" constant="20" id="eYR-kx-Pyj"/>
                                                             <constraint firstItem="zaH-Bj-LTO" firstAttribute="leading" secondItem="dpo-m9-Nsk" secondAttribute="leading" constant="25" id="h8v-H9-Gi3"/>
                                                             <constraint firstItem="zaH-Bj-LTO" firstAttribute="top" secondItem="dpo-m9-Nsk" secondAttribute="top" constant="20" id="i0x-dg-kdX"/>
+                                                            <constraint firstAttribute="centerX" secondItem="ghF-3V-mKU" secondAttribute="centerX" id="lw4-o7-fEl"/>
                                                             <constraint firstItem="gew-vd-I8e" firstAttribute="top" secondItem="zaH-Bj-LTO" secondAttribute="bottom" constant="20" id="mia-ib-9MW"/>
+                                                            <constraint firstItem="bZV-m1-F5v" firstAttribute="top" secondItem="gew-vd-I8e" secondAttribute="bottom" constant="15" id="uHQ-Cg-daH"/>
                                                             <constraint firstAttribute="centerX" secondItem="gew-vd-I8e" secondAttribute="centerX" id="ufA-6V-MY2"/>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="ATb-PA-mfi"/>
                                                                 <exclude reference="1kD-fN-hdt"/>
+                                                                <exclude reference="4se-Nx-h5f"/>
                                                                 <exclude reference="CGQ-Nl-Sbg"/>
                                                                 <exclude reference="NjU-4O-J2E"/>
                                                                 <exclude reference="b4y-yc-zty"/>
+                                                                <exclude reference="c7r-x4-ukG"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -717,8 +824,31 @@
                                                     </mask>
                                                 </variation>
                                             </view>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unknown" translatesAutoresizingMaskIntoConstraints="NO" id="KJH-aa-FOu">
+                                                <rect key="frame" x="200" y="35" width="200" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="6Oa-sg-mp7"/>
+                                                    <constraint firstAttribute="width" constant="200" id="Lte-Bb-c7Q"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="100"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friend" translatesAutoresizingMaskIntoConstraints="NO" id="3s2-Zt-c1p">
+                                                <rect key="frame" x="358" y="193" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="akY-l7-2pB"/>
+                                                    <constraint firstAttribute="height" constant="30" id="r6z-L9-0pg"/>
+                                                </constraints>
+                                            </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CK5-ox-kgg">
-                                                <rect key="frame" x="25" y="450" width="550" height="600"/>
+                                                <rect key="frame" x="25" y="640" width="550" height="600"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnl-24-YQD">
                                                         <rect key="frame" x="25" y="15" width="500" height="24"/>
@@ -775,29 +905,6 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unknown" translatesAutoresizingMaskIntoConstraints="NO" id="KJH-aa-FOu">
-                                                <rect key="frame" x="200" y="35" width="200" height="200"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="6Oa-sg-mp7"/>
-                                                    <constraint firstAttribute="width" constant="200" id="Lte-Bb-c7Q"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="100"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                        <integer key="value" value="3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friend" translatesAutoresizingMaskIntoConstraints="NO" id="3s2-Zt-c1p">
-                                                <rect key="frame" x="358" y="193" width="30" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="akY-l7-2pB"/>
-                                                    <constraint firstAttribute="height" constant="30" id="r6z-L9-0pg"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -860,14 +967,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="Laf-gV-82u"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="1143"/>
+                    <size key="freeformSize" width="600" height="1336"/>
                     <connections>
                         <outlet property="facebookButton" destination="gew-vd-I8e" id="8lZ-nX-MJb"/>
+                        <outlet property="container" destination="dpo-m9-Nsk" id="tzF-1p-3Vh"/>
                         <outlet property="facebookImage" destination="3s2-Zt-c1p" id="dDm-FY-Win"/>
                         <outlet property="map" destination="OhY-yq-hib" id="n0A-xB-UvP"/>
+                        <outlet property="messageButton" destination="bZV-m1-F5v" id="61a-bd-Wg3"/>
                         <outlet property="mutualFriendsLabel" destination="zaH-Bj-LTO" id="ovw-lj-cr3"/>
                         <outlet property="name" destination="Q9M-IA-S2J" id="tQA-oH-AdB"/>
                         <outlet property="profilePicture" destination="KJH-aa-FOu" id="nBZ-MZ-UwH"/>
+                        <outlet property="snapchatButton" destination="daT-W8-my1" id="ib8-Dl-yrX"/>
+                        <outlet property="twitterButton" destination="ghF-3V-mKU" id="N4S-xz-CFq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbk-sH-Dcy" userLabel="First Responder" sceneMemberID="firstResponder"/>
