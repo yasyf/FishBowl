@@ -25,14 +25,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             println(err)
         } else if !result.isCancelled {
             self.setUserData({
-                self.dismissViewControllerAnimated(false, completion: nil)
+                let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                appDelegate.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UIViewController
             })
         }
     }
 
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        // settings.clear()
-        // redirect to login page
     }
 
     func setUserData(completion: () -> Void) {

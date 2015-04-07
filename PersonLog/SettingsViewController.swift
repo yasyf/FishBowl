@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var name: UILabel!
@@ -29,9 +29,30 @@ class SettingsViewController: UIViewController {
         profilePicture.sd_setImageWithURL(photoURL, placeholderImage: UIImage(named: "Unknown.png"))
         
         name.text = "\(settings.firstName()!) \(settings.lastName()!)"
-        number.text = "\(settings.phone()!)"
-//        twitter.text = "\(settings.twitter()!)"
-//        snapchat.text = "\(settings.snapchat()!)"
+        if let phone = settings.phone() {
+            number.text = phone
+        }
+        if let handle = settings.twitter() {
+            twitter.text = handle
+        }
+        if let snap = settings.snapchat() {
+            snapchat.text = snap
+        }
+        
+        logoutView.readPermissions = ["public_profile", "user_friends"]
+        logoutView.delegate = self
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        println("logout")
+        
+        // broadcast kill and discoverer kill
+        
+        settings.logout()
+        self.performSegueWithIdentifier("logout", sender: nil)
     }
     
     /*

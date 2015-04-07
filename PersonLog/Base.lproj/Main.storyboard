@@ -19,7 +19,6 @@
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
-            <string>Bariol-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -69,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DH4-gq-2i9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-173" y="-860"/>
+            <point key="canvasLocation" x="-173" y="-899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fsi-wh-riP">
@@ -290,7 +289,7 @@
                                                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipO-Y2-En8">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number Filler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipO-Y2-En8">
                                                                 <rect key="frame" x="75" y="45" width="400" height="20"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -308,7 +307,7 @@
                                                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuL-Wd-8Ls">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitter Filler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuL-Wd-8Ls">
                                                                 <rect key="frame" x="75" y="105" width="400" height="20"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -326,7 +325,7 @@
                                                                 <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snapchat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3t-bh-uyN">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snapchat Filler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3t-bh-uyN">
                                                                 <rect key="frame" x="75" y="165" width="400" height="20"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -371,24 +370,11 @@
                                                         <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fiT-Fs-Z5g">
-                                                        <rect key="frame" x="492" y="12" width="46" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="46" id="ZR3-cg-l7A"/>
-                                                            <constraint firstAttribute="height" constant="30" id="qwX-XO-UPA"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
-                                                        <state key="normal" title="Edit">
-                                                            <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.90588235859999999" green="0.56862747670000002" blue="0.1647058874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="ZZw-ZQ-881" firstAttribute="top" secondItem="awR-L8-VKy" secondAttribute="top" constant="50" id="0eR-mr-idz"/>
                                                     <constraint firstAttribute="height" constant="250" id="2kM-fJ-waH"/>
-                                                    <constraint firstItem="fiT-Fs-Z5g" firstAttribute="top" secondItem="awR-L8-VKy" secondAttribute="top" constant="12" id="69j-sH-xha"/>
                                                     <constraint firstAttribute="centerX" secondItem="6Z0-ik-R89" secondAttribute="centerX" id="IQD-ab-Ckh"/>
                                                     <constraint firstItem="ZZw-ZQ-881" firstAttribute="leading" secondItem="awR-L8-VKy" secondAttribute="leading" constant="50" id="JJR-RB-KCu"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZZw-ZQ-881" secondAttribute="trailing" id="Mss-ID-mr6"/>
@@ -397,7 +383,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="6Z0-ik-R89" secondAttribute="trailing" constant="25" id="gso-pX-Gxj"/>
                                                     <constraint firstItem="ZZw-ZQ-881" firstAttribute="leading" secondItem="awR-L8-VKy" secondAttribute="leading" id="lhY-ah-Sbg"/>
                                                     <constraint firstItem="6Z0-ik-R89" firstAttribute="leading" secondItem="awR-L8-VKy" secondAttribute="leading" constant="25" id="qfw-wn-bJ3"/>
-                                                    <constraint firstAttribute="trailing" secondItem="fiT-Fs-Z5g" secondAttribute="trailing" constant="12" id="wpH-f7-Ijr"/>
                                                     <constraint firstItem="ZZw-ZQ-881" firstAttribute="width" secondItem="awR-L8-VKy" secondAttribute="width" id="x8T-Ai-UaD"/>
                                                     <constraint firstAttribute="centerX" secondItem="ZZw-ZQ-881" secondAttribute="centerX" id="zDD-HK-XUg"/>
                                                 </constraints>
@@ -524,11 +509,12 @@
                         <outlet property="profilePicture" destination="Dtj-4X-fNf" id="x4Q-tZ-ssx"/>
                         <outlet property="snapchat" destination="z3t-bh-uyN" id="ydd-i1-8JM"/>
                         <outlet property="twitter" destination="yuL-Wd-8Ls" id="TTM-4r-fyA"/>
+                        <segue destination="BDv-qp-roc" kind="showDetail" identifier="logout" id="4Al-3H-Yzw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkP-H9-Xha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="-886"/>
+            <point key="canvasLocation" x="1266" y="-899"/>
         </scene>
         <!--Profile-->
         <scene sceneID="cgA-gJ-qPX">
@@ -554,7 +540,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpo-m9-Nsk">
                                                         <rect key="frame" x="0.0" y="50" width="550" height="135"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutual Friends: —" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-Bj-LTO">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutual Friends: —" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-Bj-LTO">
                                                                 <rect key="frame" x="25" y="20" width="500" height="20"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
