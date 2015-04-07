@@ -146,24 +146,24 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hc6-Bo-4Xh">
-                                                    <rect key="frame" x="322" y="93" width="34" height="33"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friend" translatesAutoresizingMaskIntoConstraints="NO" id="Hc6-Bo-4Xh">
+                                                    <rect key="frame" x="317" y="87" width="33" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="33" id="Jxi-cb-exC"/>
-                                                        <constraint firstAttribute="width" constant="34" id="eDR-nJ-pYR"/>
+                                                        <constraint firstAttribute="width" constant="33" id="eDR-nJ-pYR"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="bB8-gy-kbj" firstAttribute="trailing" secondItem="Hc6-Bo-4Xh" secondAttribute="trailing" constant="-6" id="2QV-7s-aRl"/>
+                                                <constraint firstItem="bB8-gy-kbj" firstAttribute="trailing" secondItem="Hc6-Bo-4Xh" secondAttribute="trailing" id="2QV-7s-aRl"/>
                                                 <constraint firstItem="bB8-gy-kbj" firstAttribute="top" secondItem="inj-Wl-IUI" secondAttribute="top" constant="20" id="FY7-44-mEx"/>
                                                 <constraint firstAttribute="bottom" secondItem="bB8-gy-kbj" secondAttribute="bottom" constant="20" id="If8-bN-DOC"/>
                                                 <constraint firstAttribute="trailing" secondItem="hrh-nG-cp3" secondAttribute="trailing" constant="20" id="Lvd-Oc-fsR"/>
                                                 <constraint firstItem="hrh-nG-cp3" firstAttribute="leading" secondItem="bB8-gy-kbj" secondAttribute="trailing" constant="20" id="VJN-Wd-DOS"/>
                                                 <constraint firstAttribute="centerY" secondItem="bB8-gy-kbj" secondAttribute="centerY" id="cT2-aU-DFi"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Hc6-Bo-4Xh" secondAttribute="bottom" constant="24" id="cfD-ZE-CCJ"/>
-                                                <constraint firstItem="bB8-gy-kbj" firstAttribute="bottom" secondItem="Hc6-Bo-4Xh" secondAttribute="bottom" constant="-6" id="cll-J2-ln3"/>
+                                                <constraint firstItem="bB8-gy-kbj" firstAttribute="bottom" secondItem="Hc6-Bo-4Xh" secondAttribute="bottom" id="cll-J2-ln3"/>
                                                 <constraint firstItem="68k-uX-ouM" firstAttribute="centerY" secondItem="bB8-gy-kbj" secondAttribute="centerY" id="ftK-6z-cz6"/>
                                                 <constraint firstItem="bB8-gy-kbj" firstAttribute="centerY" secondItem="Hc6-Bo-4Xh" secondAttribute="centerY" constant="-21.5" id="jct-e1-QPe"/>
                                                 <constraint firstItem="bB8-gy-kbj" firstAttribute="leading" secondItem="68k-uX-ouM" secondAttribute="trailing" constant="20" id="mLh-kt-aJS"/>
@@ -236,28 +236,22 @@
                         <viewControllerLayoutGuide type="bottom" id="oqs-VP-rJm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="e95-6n-tql">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1066"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="1079"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ri-It-UUF">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="1066"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="1079"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWU-0a-fet" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1070"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1080"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbe-Q3-8oJ">
-                                                <rect key="frame" x="25" y="255" width="550" height="175"/>
+                                                <rect key="frame" x="25" y="255" width="550" height="185"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9M-IA-S2J">
-                                                        <rect key="frame" x="25" y="15" width="500" height="24"/>
-                                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="24"/>
-                                                        <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpo-m9-Nsk">
-                                                        <rect key="frame" x="0.0" y="50" width="550" height="125"/>
+                                                        <rect key="frame" x="0.0" y="50" width="550" height="135"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutual Friends: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-Bj-LTO">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutual Friends: —" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-Bj-LTO">
                                                                 <rect key="frame" x="25" y="20" width="500" height="20"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -267,14 +261,14 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gew-vd-I8e">
-                                                                <rect key="frame" x="150" y="50" width="250" height="50"/>
+                                                                <rect key="frame" x="150" y="60" width="250" height="50"/>
                                                                 <color key="backgroundColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="bE9-cx-Lr6"/>
                                                                     <constraint firstAttribute="width" constant="250" id="x4G-7g-FvQ"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="20"/>
-                                                                <state key="normal" title="See Profile">
+                                                                <state key="normal" title="Visit Facebook">
                                                                     <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
@@ -299,7 +293,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="zaH-Bj-LTO" secondAttribute="trailing" constant="25" id="dlz-yF-VLM"/>
                                                             <constraint firstItem="zaH-Bj-LTO" firstAttribute="leading" secondItem="dpo-m9-Nsk" secondAttribute="leading" constant="25" id="h8v-H9-Gi3"/>
                                                             <constraint firstItem="zaH-Bj-LTO" firstAttribute="top" secondItem="dpo-m9-Nsk" secondAttribute="top" constant="20" id="i0x-dg-kdX"/>
-                                                            <constraint firstItem="gew-vd-I8e" firstAttribute="top" secondItem="zaH-Bj-LTO" secondAttribute="bottom" constant="10" id="mia-ib-9MW"/>
+                                                            <constraint firstItem="gew-vd-I8e" firstAttribute="top" secondItem="zaH-Bj-LTO" secondAttribute="bottom" constant="20" id="mia-ib-9MW"/>
                                                             <constraint firstAttribute="centerX" secondItem="gew-vd-I8e" secondAttribute="centerX" id="ufA-6V-MY2"/>
                                                         </constraints>
                                                         <variation key="default">
@@ -312,6 +306,12 @@
                                                             </mask>
                                                         </variation>
                                                     </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9M-IA-S2J">
+                                                        <rect key="frame" x="25" y="15" width="500" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="24"/>
+                                                        <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.90588235859999999" green="0.56862747670000002" blue="0.1647058874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -343,7 +343,7 @@
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CK5-ox-kgg">
-                                                <rect key="frame" x="25" y="440" width="550" height="600"/>
+                                                <rect key="frame" x="25" y="450" width="550" height="600"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnl-24-YQD">
                                                         <rect key="frame" x="25" y="15" width="500" height="24"/>
@@ -400,6 +400,13 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friend" translatesAutoresizingMaskIntoConstraints="NO" id="3s2-Zt-c1p">
+                                                <rect key="frame" x="355" y="190" width="33" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="33" id="akY-l7-2pB"/>
+                                                    <constraint firstAttribute="height" constant="33" id="r6z-L9-0pg"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -407,8 +414,10 @@
                                             <constraint firstItem="Xbe-Q3-8oJ" firstAttribute="top" secondItem="KJH-aa-FOu" secondAttribute="bottom" constant="20" id="8I2-Wd-gXY"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xbe-Q3-8oJ" secondAttribute="bottom" constant="431" id="EfA-hr-HJO"/>
                                             <constraint firstItem="Xbe-Q3-8oJ" firstAttribute="leading" secondItem="gWU-0a-fet" secondAttribute="leading" constant="25" id="HyF-zm-SgO"/>
+                                            <constraint firstItem="KJH-aa-FOu" firstAttribute="bottom" secondItem="3s2-Zt-c1p" secondAttribute="bottom" constant="12" id="J7f-Mb-I8f"/>
                                             <constraint firstItem="KJH-aa-FOu" firstAttribute="top" secondItem="gWU-0a-fet" secondAttribute="top" constant="35" id="MRh-VE-P0d"/>
                                             <constraint firstAttribute="bottom" secondItem="CK5-ox-kgg" secondAttribute="bottom" constant="30" id="RYG-nf-4gZ"/>
+                                            <constraint firstItem="KJH-aa-FOu" firstAttribute="trailing" secondItem="3s2-Zt-c1p" secondAttribute="trailing" constant="12" id="VCr-AT-gb5"/>
                                             <constraint firstItem="CK5-ox-kgg" firstAttribute="top" secondItem="Xbe-Q3-8oJ" secondAttribute="bottom" constant="10" id="dPU-RD-s2o"/>
                                             <constraint firstAttribute="trailing" secondItem="CK5-ox-kgg" secondAttribute="trailing" constant="25" id="idl-Yx-C1f"/>
                                             <constraint firstAttribute="bottom" secondItem="Xbe-Q3-8oJ" secondAttribute="bottom" constant="461" id="k67-Ic-DUB"/>
@@ -458,10 +467,11 @@
                             <constraint firstItem="oqs-VP-rJm" firstAttribute="top" secondItem="1Ri-It-UUF" secondAttribute="bottom" id="jrR-wB-2UQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="2Go-fz-Lja"/>
+                    <navigationItem key="navigationItem" title="Profile" id="ViK-Mf-R6T"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="1130"/>
+                    <size key="freeformSize" width="600" height="1143"/>
                     <connections>
+                        <outlet property="facebookImage" destination="3s2-Zt-c1p" id="dDm-FY-Win"/>
                         <outlet property="fbButton" destination="gew-vd-I8e" id="OFh-ah-eiK"/>
                         <outlet property="map" destination="OhY-yq-hib" id="n0A-xB-UvP"/>
                         <outlet property="mutualFriendsLabel" destination="zaH-Bj-LTO" id="ovw-lj-cr3"/>
@@ -475,7 +485,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="facebook.png" width="512" height="512"/>
+        <image name="Friend" width="136" height="136"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

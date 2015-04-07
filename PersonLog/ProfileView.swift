@@ -13,6 +13,7 @@ import SDWebImage
 class ProfileView: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var facebookImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var map: MKMapView!
@@ -25,43 +26,36 @@ class ProfileView: UIViewController, MKMapViewDelegate {
     var person:Person!
     var lat:NSNumber!
     var lon:NSNumber!
+    var friend:Bool!
     let settings = Settings()
     
-    required init(coder aDecoder: NSCoder) {
-        self.person = nil
-        self.lat = nil
-        self.lon = nil
-        super.init(coder: aDecoder)
-    }
-
-    override init() {
-        self.person = nil
-        self.lat = nil
-        self.lon = nil
-        super.init()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "\(person.f_name)'s Profile"
+        
         profilePicture.layer.borderColor = settings.lineColor
         
         let photoURL = NSURL(string: person.photo_url)
         let placeholderImage = UIImage(named: "unknown.png")
         profilePicture.sd_setImageWithURL(photoURL, placeholderImage: placeholderImage)
+
+        if friend! {
+            facebookImage.hidden = false
+        }
         
         name.text = "\(person.f_name) \(person.l_name)"
         
-        fbButton.setTitle("See \(person.f_name)'s Profile", forState: UIControlState.Normal)
+        fbButton.setTitle("Visit \(person.f_name)'s Facebook", forState: UIControlState.Normal)
 
-        let mutualFriendGraphRequest = FBSDKGraphRequest(graphPath: "/\(person.fb_id)", parameters: ["fields": "context.fields(mutual_friends)"])
-        mutualFriendGraphRequest.startWithCompletionHandler({(_, result, error) in
-            let summary = result.objectForKey("summary") as NSMutableDictionary
-            let mutualFriendCount = summary.objectForKey("total_count") as Int
-            dispatch_async(dispatch_get_main_queue(), {
-                self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
-            })
-        })
+//        let mutualFriendGraphRequest = FBSDKGraphRequest(graphPath: "/\(person.fb_id)", parameters: ["fields": "context.fields(mutual_friends)"])
+//        mutualFriendGraphRequest.startWithCompletionHandler({(_, result, error) in
+//            let summary = result.objectForKey("summary") as NSMutableDictionary
+//            let mutualFriendCount = summary.objectForKey("total_count") as Int
+//            dispatch_async(dispatch_get_main_queue(), {
+//                self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
+//            })
+//        })
         
         map.delegate = self
         map.mapType = MKMapType.Standard
