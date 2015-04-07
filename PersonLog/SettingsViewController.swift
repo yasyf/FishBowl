@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate {
             profilePicture.sd_setImageWithURL(NSURL(string: photoUrl), placeholderImage: settings.unknownImage)
         }
         
-        name.text = "\(settings.firstName()) \(settings.lastName())"
+        name.text = "\(settings.firstName()!) \(settings.lastName()!)"
         
         if let phone = settings.phone() {
             number.text = phone

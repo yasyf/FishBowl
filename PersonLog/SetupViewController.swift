@@ -47,7 +47,9 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == snapchat {
+            settings.doneSetup()
             textField.resignFirstResponder()
+            self.performSegueWithIdentifier("completed", sender: nil)
             return true
         }
         return false
