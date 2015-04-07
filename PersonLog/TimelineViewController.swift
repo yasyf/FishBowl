@@ -28,7 +28,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let footer = UIView()
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
@@ -52,6 +51,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                     }
                 })
             })
+            
+            discoverer!.onOtherUpdate(self.updateInteractions)
+            
             broadcaster!.broadcast()
             discoverer!.discover()
         }

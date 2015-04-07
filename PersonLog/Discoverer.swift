@@ -21,6 +21,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     var peers: [Peer] = []
     var peripherals: [CBPeripheral] = []
     var peerCallbacks: [(Peer) -> Void] = []
+    var otherUpdateCallbacks: [() -> Void] = []
     var isDiscovering: Bool = false
     var locManager = CLLocationManager()
     
@@ -37,6 +38,16 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     func onPeer(callback: (Peer) -> Void) {
         peerCallbacks.append(callback)
         peers.map(callback)
+    }
+    
+    func onOtherUpdate(callback: () -> Void) {
+        otherUpdateCallbacks.append(callback)
+    }
+    
+    func triggerUpdate() {
+        for callback in otherUpdateCallbacks {
+            callback()
+        }
     }
     
     func startDiscoveringWithManager() {
