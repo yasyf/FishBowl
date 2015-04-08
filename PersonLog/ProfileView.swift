@@ -73,23 +73,32 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
 
         // Buttons
         var bottomButton = facebookButton
+        
         if let phone = interaction.person.phone {
-            messageButton.setTitle("iMessage \(interaction.person.f_name)", forState: .Normal)
-            messageButton.hidden = false
-            container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: messageButton, attribute: .Top, multiplier: 1.0, constant: -15))
-            bottomButton = messageButton
+            if phone != "" {
+                messageButton.setTitle("iMessage \(interaction.person.f_name)", forState: .Normal)
+                messageButton.hidden = false
+                container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: messageButton, attribute: .Top, multiplier: 1.0, constant: -15))
+                bottomButton = messageButton
+            }
         }
+        
         if let twitter = interaction.person.twitter {
-            twitterButton.setTitle("@\(twitter) on Twitter", forState: .Normal)
-            twitterButton.hidden = false
-            container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: twitterButton, attribute: .Top, multiplier: 1.0, constant: -15))
-            bottomButton = twitterButton
+            if twitter != "" {
+                twitterButton.setTitle("@\(twitter) on Twitter", forState: .Normal)
+                twitterButton.hidden = false
+                container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: twitterButton, attribute: .Top, multiplier: 1.0, constant: -15))
+                bottomButton = twitterButton
+            }
         }
+        
         if let snapchat = interaction.person.snapchat {
-            snapchatButton.setTitle("\(snapchat) on Snapchat", forState: .Normal)
-            snapchatButton.hidden = false
-            container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: snapchatButton, attribute: .Top, multiplier: 1.0, constant: -15))
-            bottomButton = snapchatButton
+            if snapchat != "" {
+                snapchatButton.setTitle("\(snapchat) on Snapchat", forState: .Normal)
+                snapchatButton.hidden = false
+                container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: snapchatButton, attribute: .Top, multiplier: 1.0, constant: -15))
+                bottomButton = snapchatButton
+            }
         }
 
         container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -20))
