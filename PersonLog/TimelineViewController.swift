@@ -46,9 +46,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
             discoverer!.onPeer({(otherPeer: Peer) in
                 self.peer!.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
-                    if interaction != nil {
+                    if let inter = interaction {
                         self.updateInteractions()
-                        otherPeer.showLocalFrequencyNotification(2)
+                        otherPeer.showLocalFrequencyNotification(inter, minCount: 2)
                     }
                 })
             })
@@ -108,13 +108,13 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "viewProfile" {
-            let cell = sender as PersonCell
-            if let destination = segue.destinationViewController as? ProfileView {
+        if let destination = segue.destinationViewController as? ProfileViewController {
+            if let cell = sender as? PersonCell {
                 if let index = table.indexPathForSelectedRow()?.row {
                     destination.interaction = interactions[index]
-                    destination.isFriend = !cell.facebookImage.hidden
                 }
+            } else if let interaction = sender as? Interaction {
+                destination.interaction = interaction
             }
         }
     }

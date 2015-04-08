@@ -172,6 +172,7 @@ class Peer: NSObject {
                 return
             }
         }
+        
         if person.fb_id == otherPerson.fb_id {
             println("Skipping interaction due to self interaction")
             callback?(nil)
@@ -219,7 +220,10 @@ class Peer: NSObject {
         })
     }
     
-    func showLocalFrequencyNotification(minCount: Int) {
+    func showLocalFrequencyNotification(interaction: Interaction, minCount: Int) {
+        if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
+            return
+        }
         self.onPerson({(person: Person) in
             if let lastNotificationDate = person.last_notification {
                 let dayAgo = NSDate(timeIntervalSinceNow: -86400)
@@ -239,6 +243,8 @@ class Peer: NSObject {
                     
                     let ordinal = ordinalFormatter.stringFromNumber(count)!
                     var notification = UILocalNotification()
+                    let identifier = interaction.objectID.URIRepresentation().absoluteString!
+                    notification.userInfo = ["identifier": identifier]
                     notification.alertTitle = "\(person.f_name) \(person.l_name)"
                     notification.alertBody = "That's the \(ordinal) time you've seen \(person.f_name) today!"
                     notification.fireDate = NSDate(timeIntervalSinceNow: 1.0)

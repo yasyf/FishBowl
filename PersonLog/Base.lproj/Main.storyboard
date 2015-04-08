@@ -640,7 +640,7 @@
         <!--Profile-->
         <scene sceneID="cgA-gJ-qPX">
             <objects>
-                <viewController title="Profile" id="bB4-vH-Rgs" customClass="ProfileView" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" title="Profile" id="bB4-vH-Rgs" customClass="ProfileViewController" customModule="FishBowl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zON-J3-dCt"/>
                         <viewControllerLayoutGuide type="bottom" id="oqs-VP-rJm"/>

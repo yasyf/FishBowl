@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  ProfileViewController.swift
 //  FishBowl
 //
 //  Created by Larry Zhang on 4/5/15.
@@ -12,7 +12,7 @@ import MapKit
 import SDWebImage
 import MessageUI
 
-class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewControllerDelegate {
+class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageComposeViewControllerDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var facebookImage: UIImageView!
@@ -26,7 +26,6 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
     @IBOutlet weak var mutualFriendsLabel: UILabel!
 
     var interaction: Interaction!
-    var isFriend: Bool!
     let settings = Settings()
     let api = API()
     let messageViewController = MFMessageComposeViewController()
@@ -40,8 +39,6 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
 
         let photoURL = NSURL(string: interaction.person.photo_url)
         profilePicture.sd_setImageWithURL(photoURL, placeholderImage: settings.unknownImage)
-
-        facebookImage.hidden = !isFriend!
 
         name.text = "\(interaction.person.f_name) \(interaction.person.l_name)"
 
@@ -57,6 +54,18 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
                 println(error)
             }
         )
+        
+        let friendGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(interaction.person.fb_id)", parameters: nil)
+        friendGraphRequest.startWithCompletionHandler({(_, result, error) in
+            if let err = error {
+                println("Error: \(err)")
+            } else {
+                let friends = result.objectForKey("data") as [NSMutableDictionary]
+                if friends.count > 0 {
+                    self.facebookImage.hidden = false
+                }
+            }
+        })
         
         messageViewController.messageComposeDelegate = self
 

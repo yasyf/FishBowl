@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notificationSettings = UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
         
+        application.applicationIconBadgeNumber = 0
+        
         if !settings.isLoggedIn() {
             self.showLoginScreen()
         } else if !settings.isDoneSetup() {
@@ -51,6 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        application.applicationIconBadgeNumber = 0
+        if let identifier = notification.userInfo?["identifier"] as? String {
+            let url = NSURL(string: identifier)
+            let interactionObjectID = persistentStoreCoordinator?.managedObjectIDForURIRepresentation(url!)
+            let interaction = managedObjectContext?.objectWithID(interactionObjectID!) as Interaction
+
+            let navigationController = self.window?.rootViewController? as UINavigationController
+            let viewControllers = navigationController.viewControllers as [UIViewController]
+            let timelineViewController = viewControllers[0] as TimelineViewController
+            
+            timelineViewController.performSegueWithIdentifier("viewProfile", sender: interaction)
+        }
     }
     
     func applicationWillResignActive(application: UIApplication) {
