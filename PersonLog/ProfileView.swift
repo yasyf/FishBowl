@@ -118,12 +118,12 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
     }
 
     @IBAction func openTwitter(sender: AnyObject) {
-        let url = NSURL(string: "twitter://user?screen_name=\(interaction.person.twitter)")
+        let url = NSURL(string: "twitter://user?screen_name=\(interaction.person.twitter!)")
         UIApplication.sharedApplication().openURL(url!)
     }
 
     @IBAction func openSnapchat(sender: AnyObject) {
-        let snapchat = interaction.person.snapchat
+        let snapchat = interaction.person.snapchat!
         let url = NSURL(string: "snapchat://?u=\(snapchat)")
         UIPasteboard.generalPasteboard().string = snapchat
         var alertController = UIAlertController(title: "Snapchat \(interaction.person.f_name)", message: "\(interaction.person.f_name)'s Snapchat username has been copied to your clipboard!", preferredStyle: .Alert)
