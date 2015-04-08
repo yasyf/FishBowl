@@ -21,7 +21,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     var broadcaster: Broadcaster?
     var discoverer: Discoverer?
     var interactions = [Interaction]()
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = MyAppDelege.sharedInstance
     var dateFormatter = NSDateFormatter()
     let settings = Settings()
     

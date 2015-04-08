@@ -22,7 +22,7 @@ class Peer: NSObject {
     var peerIDCallbacks: [(MCPeerID) -> Void] = []
     var beaconInRangeCallbacks: [(MCPeerID) -> Void] = []
     var dataCallbacks: [(Dictionary<String, AnyObject>) -> Void] = []
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    let managedObjectContext = MyAppDelege.sharedInstance.managedObjectContext!
     var location: CLLocation?
     
     override init(){

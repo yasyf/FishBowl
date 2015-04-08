@@ -12,8 +12,8 @@ import CoreData
 class DemoMode: NSObject {
     let settings = Settings()
     let api = API()
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    let appDelegate = MyAppDelege.sharedInstance
+    let managedObjectContext = MyAppDelege.sharedInstance.managedObjectContext!
     
     func deleteAll() -> Int {
         let entityDescription = NSEntityDescription.entityForName("Interaction", inManagedObjectContext: managedObjectContext)
@@ -56,7 +56,7 @@ class DemoMode: NSObject {
                         let count = self.deleteAll()
                         if count > 0 {
                             println("\(count) Interactions Deleted!")
-                            (UIApplication.sharedApplication().delegate as AppDelegate).discoverer.triggerUpdate()
+                            MyAppDelege.sharedInstance.discoverer.triggerUpdate()
                         }
                         if self.settings.isLoggedIn() {
                             self.appDelegate.broadcaster.broadcast()

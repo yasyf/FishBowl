@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
     @IBOutlet weak var scrollView: UIScrollView!
 
     let settings = Settings()
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = MyAppDelege.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()

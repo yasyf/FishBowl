@@ -11,7 +11,7 @@ import CoreData
 import UIKit
 
 class Database: NSObject {
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    let managedObjectContext = MyAppDelege.sharedInstance.managedObjectContext!
     
     func allInteractions(sorted: Bool = true) -> [Interaction]? {
         let entityDescription = NSEntityDescription.entityForName("Interaction", inManagedObjectContext: managedObjectContext)

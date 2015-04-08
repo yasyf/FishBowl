@@ -13,6 +13,7 @@
 		0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */; };
 		0C0764621AB8F81900DD88A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0764601AB8F81900DD88A8 /* Main.storyboard */; };
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
+		0C0782C71AD505A200158233 /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0782C61AD505A200158233 /* MyAppDelegate.swift */; };
 		0C0EADC51AD492F000829F22 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0EADC41AD492F000829F22 /* MessageUI.framework */; };
 		0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E71AD284580055E36E /* Bariol_Regular.otf */; };
 		0C5488EA1AD284580055E36E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E81AD284580055E36E /* Info.plist */; };
@@ -60,6 +61,7 @@
 		0C07646C1AB8F81900DD88A8 /* FishBowlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishBowlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0764711AB8F81900DD88A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
+		0C0782C61AD505A200158233 /* MyAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
 		0C0EADC41AD492F000829F22 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0C5488E71AD284580055E36E /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular.otf; path = "Supporting FIles/Bariol_Regular.otf"; sourceTree = SOURCE_ROOT; };
 		0C5488E81AD284580055E36E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting FIles/Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -139,6 +141,7 @@
 		0C0764561AB8F81900DD88A8 /* PersonLog */ = {
 			isa = PBXGroup;
 			children = (
+				0C0782C61AD505A200158233 /* MyAppDelegate.swift */,
 				0C0764591AB8F81900DD88A8 /* AppDelegate.swift */,
 				461181621ACF2C5D004A0B68 /* Views */,
 				0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */,
@@ -275,7 +278,7 @@
 				TargetAttributes = {
 					0C0764531AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 7Z29FWQKX6;
+						DevelopmentTeam = SXKCTF23Q2;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -284,7 +287,7 @@
 					};
 					0C07646B1AB8F81900DD88A8 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 7Z29FWQKX6;
+						DevelopmentTeam = SXKCTF23Q2;
 						TestTargetID = 0C0764531AB8F81900DD88A8;
 					};
 				};
@@ -392,6 +395,7 @@
 				0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */,
 				4645CC391AD3998A0052C6E3 /* SettingsViewController.swift in Sources */,
 				46060D821AD153A100091817 /* ProfileView.swift in Sources */,
+				0C0782C71AD505A200158233 /* MyAppDelegate.swift in Sources */,
 				4611814B1ACF2C0B004A0B68 /* PersonCell.swift in Sources */,
 				0C9CFFDE1AB8FA6600ECAF11 /* Broadcaster.swift in Sources */,
 				0C07645D1AB8F81900DD88A8 /* PersonLog.xcdatamodeld in Sources */,
@@ -527,7 +531,7 @@
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEMOMODE\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = FishBowl;
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -552,7 +556,7 @@
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEMOMODE\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = FishBowl;
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
