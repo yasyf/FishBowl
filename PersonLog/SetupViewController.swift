@@ -13,6 +13,7 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var twitter: UITextField!
     @IBOutlet weak var snapchat: UITextField!
+    @IBOutlet weak var skipButton: UIButton!
     @IBAction func skip(sender: AnyObject) {
         settings.doneSetup()
     }
@@ -34,6 +35,7 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        skipButton.setTitle("Done", forState: .Normal)
         switch textField {
         case phone:
             settings.setPhone(phone.text)

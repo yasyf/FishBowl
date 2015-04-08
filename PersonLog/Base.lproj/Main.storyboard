@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -368,6 +368,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="phone" destination="isv-eq-Es4" id="2WD-ZR-sr8"/>
+                        <outlet property="skipButton" destination="ZdE-HR-bDF" id="AG9-4X-Tu2"/>
                         <outlet property="snapchat" destination="Ayy-Nk-7Pu" id="ovV-Zr-XVn"/>
                         <outlet property="twitter" destination="lun-rq-ajo" id="3oK-bu-0Wm"/>
                         <segue destination="17h-6J-R23" kind="showDetail" identifier="completed" id="4tY-rk-nFQ"/>
