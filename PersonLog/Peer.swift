@@ -10,9 +10,12 @@ import Foundation
 import MultipeerConnectivity
 import CoreData
 import CoreLocation
+import FormatterKit
 
 let settings = Settings()
-let api: API = API()
+let api = API()
+let database = Database()
+let ordinalFormatter = TTTOrdinalNumberFormatter()
 
 class Peer: NSObject {
     var peerID: MCPeerID?
@@ -213,6 +216,38 @@ class Peer: NSObject {
             other.onPerson({(otherPerson: Person) in
                 self.newInteraction(person, otherPerson: otherPerson, callback)
             })
+        })
+    }
+    
+    func showLocalFrequencyNotification(minCount: Int) {
+        self.onPerson({(person: Person) in
+            if let lastNotificationDate = person.last_notification {
+                let dayAgo = NSDate(timeIntervalSinceNow: -86400)
+                if lastNotificationDate.compare(dayAgo) == NSComparisonResult.OrderedDescending {
+                    return
+                }
+            }
+            let predicate = NSPredicate(format: "(person.fb_id = %@)", person.fb_id)
+            if let count = database.allInteractionsWithPredicate(false, predicate: predicate)?.count {
+                if count >= minCount {
+                    person.last_notification = NSDate()
+                    var error: NSError?
+                    self.managedObjectContext.save(&error)
+                    if let err = error {
+                        println(err)
+                    }
+                    
+                    let ordinal = ordinalFormatter.stringFromNumber(count)!
+                    var notification = UILocalNotification()
+                    notification.alertTitle = "\(person.f_name) \(person.l_name)"
+                    notification.alertBody = "That's the \(ordinal) time you've seen \(person.f_name) today!"
+                    notification.fireDate = NSDate(timeIntervalSinceNow: 1.0)
+                    notification.timeZone = NSTimeZone.defaultTimeZone()
+                    notification.soundName = UILocalNotificationDefaultSoundName
+                    notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber + 1
+                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                }
+            }
         })
     }
 }

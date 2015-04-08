@@ -13,13 +13,16 @@ import UIKit
 class Database: NSObject {
     let managedObjectContext = MyAppDelege.sharedInstance.managedObjectContext!
     
-    func allInteractions(sorted: Bool = true) -> [Interaction]? {
+    func allInteractionsWithPredicate(sorted: Bool, predicate: NSPredicate?) -> [Interaction]? {
         let entityDescription = NSEntityDescription.entityForName("Interaction", inManagedObjectContext: managedObjectContext)
         let request = NSFetchRequest()
         var error: NSError?
         request.entity = entityDescription!
         if sorted {
-            request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+            request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        }
+        if let pred = predicate {
+            request.predicate = predicate
         }
         
         let objects = managedObjectContext.executeFetchRequest(request, error: &error)
@@ -29,5 +32,9 @@ class Database: NSObject {
         } else {
             return objects as? [Interaction]
         }
+    }
+    
+    func allInteractions(sorted: Bool = true) -> [Interaction]? {
+        return allInteractionsWithPredicate(sorted, predicate: nil)
     }
 }

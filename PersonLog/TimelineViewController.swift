@@ -48,6 +48,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.peer!.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
                     if interaction != nil {
                         self.updateInteractions()
+                        otherPeer.showLocalFrequencyNotification(2)
                     }
                 })
             })
