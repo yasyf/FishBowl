@@ -29,6 +29,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
     var isFriend: Bool!
     let settings = Settings()
     let api = API()
+    let messageViewController = MFMessageComposeViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,8 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
                 println(error)
             }
         )
+        
+        messageViewController.messageComposeDelegate = self
 
         map.delegate = self
         map.mapType = MKMapType.Standard
@@ -75,7 +78,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
         var bottomButton = facebookButton
         
         if let phone = interaction.person.phone {
-            if phone != "" {
+            if phone != "" && MFMessageComposeViewController.canSendText() {
                 messageButton.setTitle("iMessage \(interaction.person.f_name)", forState: .Normal)
                 messageButton.hidden = false
                 container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: messageButton, attribute: .Top, multiplier: 1.0, constant: -15))
@@ -135,9 +138,7 @@ class ProfileView: UIViewController, MKMapViewDelegate, MFMessageComposeViewCont
     }
     
     @IBAction func openMessageView(sender: AnyObject) {
-        let messageViewController = MFMessageComposeViewController()
         messageViewController.recipients = [interaction.person.phone!]
-        messageViewController.messageComposeDelegate = self
         presentViewController(messageViewController, animated: true, completion: nil)
     }
     
