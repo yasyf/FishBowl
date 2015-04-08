@@ -68,7 +68,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        container.addConstraint(NSLayoutConstraint(item: logoutView, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -150))
+        scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -90,7 +90,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
     
     func dismissKeyboard() {
         self.view.endEditing(true)
-        container.addConstraint(NSLayoutConstraint(item: logoutView, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -30))
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
     
     /*
