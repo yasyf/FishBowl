@@ -12,6 +12,7 @@ import CoreData
 class DemoMode: NSObject {
     let settings = Settings()
     let api = API()
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
     
     func deleteAll() -> Int {
@@ -47,13 +48,20 @@ class DemoMode: NSObject {
                 let newHash = data["freshness_hash"] as String
                 if let oldHash = self.settings._string("freshness_hash") {
                     if oldHash != newHash {
+                        if self.settings.isLoggedIn() {
+                            self.appDelegate.broadcaster.kill()
+                            self.appDelegate.discoverer.kill()
+                        }
                         self.setHash(newHash)
                         let count = self.deleteAll()
                         if count > 0 {
                             println("\(count) Interactions Deleted!")
                             (UIApplication.sharedApplication().delegate as AppDelegate).discoverer.triggerUpdate()
                         }
-                        
+                        if self.settings.isLoggedIn() {
+                            self.appDelegate.broadcaster.broadcast()
+                            self.appDelegate.discoverer.discover()
+                        }
                     }
                 } else {
                     self.setHash(newHash)
