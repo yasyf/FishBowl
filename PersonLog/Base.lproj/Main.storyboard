@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -877,18 +878,35 @@
                                                             <action selector="showCurrentLocation:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="jRU-F1-dXB"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZ8-2n-vMh">
+                                                        <rect key="frame" x="8" y="5" width="40" height="40"/>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                                        </accessibility>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="40" id="PNf-xF-XIc"/>
+                                                        </constraints>
+                                                        <state key="normal" image="HistoryButton"/>
+                                                        <connections>
+                                                            <action selector="showOtherInteractions:" destination="bB4-vH-Rgs" eventType="touchUpInside" id="nyR-dT-dMF"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="OhY-yq-hib" firstAttribute="top" secondItem="pnl-24-YQD" secondAttribute="bottom" id="1RY-Id-ycY"/>
                                                     <constraint firstAttribute="height" constant="250" id="4B7-1U-Nwk"/>
+                                                    <constraint firstItem="mZ8-2n-vMh" firstAttribute="firstBaseline" secondItem="FhM-Cw-Y9s" secondAttribute="firstBaseline" id="6BO-pL-A7q"/>
                                                     <constraint firstItem="pnl-24-YQD" firstAttribute="leading" secondItem="CK5-ox-kgg" secondAttribute="leading" constant="25" id="AtC-JR-jwH"/>
                                                     <constraint firstItem="pnl-24-YQD" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="15" id="Dbh-pp-mSL"/>
                                                     <constraint firstAttribute="bottom" secondItem="OhY-yq-hib" secondAttribute="bottom" id="E3W-aG-kbH"/>
+                                                    <constraint firstItem="mZ8-2n-vMh" firstAttribute="top" secondItem="FhM-Cw-Y9s" secondAttribute="top" id="ENV-sV-EwP"/>
                                                     <constraint firstItem="FhM-Cw-Y9s" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="5" id="H3i-G6-bgb"/>
                                                     <constraint firstAttribute="centerX" secondItem="pnl-24-YQD" secondAttribute="centerX" id="M2R-I3-Etz"/>
+                                                    <constraint firstItem="mZ8-2n-vMh" firstAttribute="baseline" secondItem="FhM-Cw-Y9s" secondAttribute="baseline" id="NWr-Le-h4W"/>
                                                     <constraint firstAttribute="trailing" secondItem="pnl-24-YQD" secondAttribute="trailing" constant="25" id="QgR-nE-4Jy"/>
                                                     <constraint firstAttribute="trailing" secondItem="FhM-Cw-Y9s" secondAttribute="trailing" constant="5" id="Vdm-P4-fcK"/>
+                                                    <constraint firstItem="mZ8-2n-vMh" firstAttribute="leading" secondItem="CK5-ox-kgg" secondAttribute="leadingMargin" id="VoV-w7-dFo"/>
                                                     <constraint firstItem="OhY-yq-hib" firstAttribute="top" secondItem="CK5-ox-kgg" secondAttribute="top" constant="50" id="YBe-g9-yzK"/>
                                                     <constraint firstItem="OhY-yq-hib" firstAttribute="leading" secondItem="CK5-ox-kgg" secondAttribute="leading" id="Yf2-td-qkS"/>
                                                     <constraint firstAttribute="trailing" secondItem="OhY-yq-hib" secondAttribute="trailing" id="xXh-nG-a5q"/>
@@ -989,6 +1007,7 @@
     </scenes>
     <resources>
         <image name="Friend" width="60" height="60"/>
+        <image name="HistoryButton" width="25" height="25"/>
         <image name="LocButton" width="22" height="22"/>
         <image name="Login" width="640" height="1136"/>
         <image name="Settings" width="25" height="25"/>

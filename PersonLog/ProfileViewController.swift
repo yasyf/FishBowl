@@ -27,12 +27,19 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
 
     var interaction: Interaction!
     var isFriend: Bool?
+    var isShowingAll = false
+    var annotations = [MKPointAnnotation]()
+    var mainPin = MKPointAnnotation()
     let settings = Settings()
     let api = API()
+    let database = Database()
+    var dateFormatter = NSDateFormatter()
     let messageViewController = MFMessageComposeViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter.dateFormat = "hh:mm a"
 
         self.title = "\(interaction.person.f_name)'s Profile"
 
@@ -84,9 +91,8 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
         var startRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(spanX, spanY))
         map.setRegion(startRegion, animated: false)
 
-        let pin = MKPointAnnotation()
-        pin.setCoordinate(location)
-        map.addAnnotation(pin)
+        mainPin = pinFromInteraction(interaction)
+        map.addAnnotation(mainPin)
 
         // Buttons
         var bottomButton = facebookButton
@@ -121,6 +127,14 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
         container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -20))
     }
     
+    func pinFromInteraction(inter: Interaction) -> MKPointAnnotation {
+        let pointAnnotation = MKPointAnnotation()
+        let location = CLLocationCoordinate2DMake(inter.lat as CLLocationDegrees, inter.lon as CLLocationDegrees)
+        pointAnnotation.setCoordinate(location)
+        pointAnnotation.title = dateFormatter.stringFromDate(inter.date)
+        return pointAnnotation
+    }
+    
     func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -129,9 +143,32 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
         let url = NSURL(string: "http://facebook.com/\(interaction.person.fb_id)")
         UIApplication.sharedApplication().openURL(url!)
     }
+    
     @IBAction func showCurrentLocation(sender: AnyObject) {
         self.map.showsUserLocation = true
         self.map.setUserTrackingMode(.Follow, animated: true)
+    }
+    
+    @IBAction func showOtherInteractions(sender: AnyObject) {
+        if isShowingAll {
+            isShowingAll = false
+            for annotation in annotations {
+                if annotation != mainPin {
+                    map.removeAnnotation(annotation)
+                }
+            }
+            annotations = [mainPin]
+        } else {
+            isShowingAll = true
+            let predicate = NSPredicate(format: "(person.fb_id = %@)", interaction.person.fb_id)
+            if let interactions = database.allInteractionsWithPredicate(false, predicate: predicate) {
+                for inter in interactions {
+                    let pin = pinFromInteraction(inter)
+                    annotations.append(pin)
+                    map.addAnnotation(pin)
+                }
+            }
+        }
     }
 
     @IBAction func openTwitter(sender: AnyObject) {
@@ -156,6 +193,19 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
         presentViewController(messageViewController, animated: true, completion: nil)
     }
     
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        annotationView.canShowCallout = true
+        annotationView.draggable = false
+        if annotation.title == mainPin.title {
+            annotationView.pinColor = MKPinAnnotationColor.Red
+            annotationView.animatesDrop = false
+        } else {
+            annotationView.pinColor = MKPinAnnotationColor.Purple
+            annotationView.animatesDrop = true
+        }
+        return annotationView
+    }
 
     /*
     // MARK: - Navigation
