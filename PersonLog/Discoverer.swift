@@ -32,7 +32,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         self.characteristicID = characteristicID
         super.init()
         self.locManager.delegate = self
-        self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        self.centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionRestoreIdentifierKey: "discovererCentralManager"])
     }
     
     func onPeer(callback: (Peer) -> Void) {
@@ -102,6 +102,13 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         }
     }
     
+    func connectPeripheral(central: CBCentralManager, peripheral: CBPeripheral) {
+        println("didDiscoverPeripheral \(peripheral)")
+        peripherals.append(peripheral)
+        peripheral.delegate = self
+        central.connectPeripheral(peripheral, options: nil)
+    }
+    
     // MARK: - CBCentralManagerDelegate
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
@@ -112,10 +119,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-        println("didDiscoverPeripheral \(peripheral)")
-        peripherals.append(peripheral)
-        peripheral.delegate = self
-        centralManager!.connectPeripheral(peripheral, options: nil)
+        connectPeripheral(central, peripheral: peripheral)
     }
     
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
@@ -128,12 +132,22 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         println("didFailToConnectPeripheral \(error)")
     }
     
+    func centralManager(central: CBCentralManager!, willRestoreState dict: [NSString : AnyObject]!) {
+        println("centralManager:willRestoreState")
+        let restoredPeripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as [CBPeripheral]
+        for peripheral in restoredPeripherals {
+            connectPeripheral(central, peripheral: peripheral)
+        }
+    }
+    
     // MARK: - CBPeripheralDelegate
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
-        let service = peripheral.services[0] as CBService
-        peripheral.discoverCharacteristics([characteristicID], forService: service)
-        println("didDiscoverServices \(peripheral.services)")
+        if let service = peripheral.services[0] as? CBService {
+            println("didDiscoverServices \(peripheral.services)")
+            peripheral.discoverCharacteristics([characteristicID], forService: service)
+        }
+        
     }
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {

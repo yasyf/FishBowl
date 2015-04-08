@@ -26,7 +26,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
         self.beaconID = beaconID
         self.characteristicID = characteristicID
         super.init()
-        self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionRestoreIdentifierKey: "broadcasterPeripheralManager"])
     }
     
     func startAdvertising(deviceID: String) {
@@ -71,6 +71,10 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     
     func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager!, error: NSError!) {
         println("peripheralManagerDidStartAdvertising (Error: \(error))")
+    }
+    
+    func peripheralManager(peripheral: CBPeripheralManager!, willRestoreState dict: [NSObject : AnyObject]!) {
+        println("peripheralManager:willRestoreState")
     }
     
     // MARK: - MCNearbyServiceAdvertiserDelegate
