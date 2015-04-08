@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let settings = Settings()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Localytics.autoIntegrate("eedd3e69e87dd4feba34968-c44ff1ae-ddb8-11e4-586b-00a426b17dd8", launchOptions: launchOptions)
+        #if !arch(i386)
+            Localytics.autoIntegrate("eedd3e69e87dd4feba34968-c44ff1ae-ddb8-11e4-586b-00a426b17dd8", launchOptions: launchOptions)
+        #endif
         
         let notificationSettings = UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
