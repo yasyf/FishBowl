@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     @IBOutlet weak var mutualFriendsLabel: UILabel!
 
     var interaction: Interaction!
+    var isFriend: Bool?
     let settings = Settings()
     let api = API()
     let messageViewController = MFMessageComposeViewController()
@@ -55,18 +56,22 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
             }
         )
         
-        let friendGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(interaction.person.fb_id)", parameters: nil)
-        friendGraphRequest.startWithCompletionHandler({(_, result, error) in
-            if let err = error {
-                println("Error: \(err)")
-            } else {
-                let friends = result.objectForKey("data") as [NSMutableDictionary]
-                if friends.count > 0 {
-                    self.facebookImage.hidden = false
+        if isFriend != nil {
+            self.facebookImage.hidden = !isFriend!
+        } else {
+            let friendGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(interaction.person.fb_id)", parameters: nil)
+            friendGraphRequest.startWithCompletionHandler({(_, result, error) in
+                if let err = error {
+                    println("Error: \(err)")
+                } else {
+                    let friends = result.objectForKey("data") as [NSMutableDictionary]
+                    if friends.count > 0 {
+                        self.facebookImage.hidden = false
+                    }
                 }
-            }
-        })
-        
+            })
+        }
+
         messageViewController.messageComposeDelegate = self
 
         map.delegate = self

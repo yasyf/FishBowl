@@ -112,6 +112,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             if let cell = sender as? PersonCell {
                 if let index = table.indexPathForSelectedRow()?.row {
                     destination.interaction = interactions[index]
+                    destination.isFriend = !cell.facebookImage.hidden
                 }
             } else if let interaction = sender as? Interaction {
                 destination.interaction = interaction
