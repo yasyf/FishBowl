@@ -26,7 +26,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
         self.beaconID = beaconID
         self.characteristicID = characteristicID
         super.init()
-        self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionRestoreIdentifierKey: "broadcasterPeripheralManager"])
+        self.peripheralManager = CBPeripheralManager(delegate: self, queue: dispatch_queue_create("com.fishbowl.PeripheralManagerQueue", DISPATCH_QUEUE_SERIAL), options: [CBPeripheralManagerOptionRestoreIdentifierKey: "broadcasterPeripheralManager"])
     }
     
     func startAdvertising(deviceID: String) {
