@@ -163,9 +163,11 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
             let predicate = NSPredicate(format: "(person.fb_id = %@)", interaction.person.fb_id)
             if let interactions = database.allInteractionsWithPredicate(false, predicate: predicate) {
                 for inter in interactions {
-                    let pin = pinFromInteraction(inter)
-                    annotations.append(pin)
-                    map.addAnnotation(pin)
+                    if inter != interaction {
+                        let pin = pinFromInteraction(inter)
+                        annotations.append(pin)
+                        map.addAnnotation(pin)
+                    }
                 }
             }
         }
@@ -194,17 +196,20 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
-        annotationView.canShowCallout = true
-        annotationView.draggable = false
-        if annotation.title == mainPin.title {
-            annotationView.pinColor = MKPinAnnotationColor.Red
-            annotationView.animatesDrop = false
-        } else {
-            annotationView.pinColor = MKPinAnnotationColor.Purple
-            annotationView.animatesDrop = true
+        if let pointAnnotation = annotation as? MKPointAnnotation {
+            var annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            annotationView.canShowCallout = true
+            annotationView.draggable = false
+            if annotation.title == mainPin.title {
+                annotationView.pinColor = MKPinAnnotationColor.Red
+                annotationView.animatesDrop = false
+            } else {
+                annotationView.pinColor = MKPinAnnotationColor.Purple
+                annotationView.animatesDrop = true
+            }
+            return annotationView
         }
-        return annotationView
+        return nil
     }
 
     /*
