@@ -52,9 +52,10 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func startDiscoveringWithManager() {
         if let manager = centralManager {
-            let serviceUUID = CBUUID(NSUUID: beaconID)
-            println("scanForPeripheralsWithServices \([serviceUUID])")
-            manager.scanForPeripheralsWithServices([serviceUUID], options: nil)
+            let serviceUUIDs = [CBUUID(NSUUID: beaconID)]
+            println("scanForPeripheralsWithServices \(serviceUUIDs)")
+            let options = [CBCentralManagerScanOptionSolicitedServiceUUIDsKey:serviceUUIDs]
+            manager.scanForPeripheralsWithServices(serviceUUIDs, options: options)
         }
     }
     
