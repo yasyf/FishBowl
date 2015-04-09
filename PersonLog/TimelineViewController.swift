@@ -14,6 +14,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var line: UIView!
+    @IBOutlet weak var startText: UILabel!
     
     let serviceType = "personlog-disc"
     let database = Database()
@@ -67,6 +68,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             dispatch_async(dispatch_get_main_queue(), {
                 self.table.reloadData()
                 self.line.hidden = (newInteractions.count == 0)
+                self.startText.hidden = (newInteractions.count != 0)
             })
         }
     }

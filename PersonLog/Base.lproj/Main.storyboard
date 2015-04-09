@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="17h-6J-R23">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -118,6 +118,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bj-CO-b5L">
+                                <rect key="frame" x="139" y="161" width="323" height="215"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="323" id="IH6-n7-vQp"/>
+                                </constraints>
+                                <string key="text">Throughout the day, as you walk by other users, they will appear here, on your timeline. Come back later to see who you ran into!
+
+Note: In order for FishBowl to work, make sure you don't quit this app! Just leave it running in the background.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.23529411759999999" green="0.67843137249999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DF3-RO-gN9">
                                 <rect key="frame" x="299" y="0.0" width="3" height="536"/>
                                 <color key="backgroundColor" red="0.90588235859999999" green="0.56862747670000002" blue="0.1647058874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -236,6 +248,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="4bj-CO-b5L" secondAttribute="centerY" id="3Gu-DR-VHF"/>
                             <constraint firstAttribute="bottom" secondItem="sEA-Mg-akb" secondAttribute="bottom" constant="-64" id="EMv-Wq-E6d"/>
                             <constraint firstItem="p0y-d7-Cqo" firstAttribute="top" secondItem="DF3-RO-gN9" secondAttribute="bottom" id="NcC-IC-St2"/>
                             <constraint firstAttribute="centerX" secondItem="DF3-RO-gN9" secondAttribute="centerX" id="Q0f-Bg-9Kb"/>
@@ -243,6 +256,7 @@
                             <constraint firstItem="sEA-Mg-akb" firstAttribute="leading" secondItem="WIk-Si-HVJ" secondAttribute="leading" id="ZSF-vJ-srD"/>
                             <constraint firstItem="sEA-Mg-akb" firstAttribute="top" secondItem="6vL-Vy-ikc" secondAttribute="bottom" id="g6G-yq-yA2"/>
                             <constraint firstAttribute="bottom" secondItem="sEA-Mg-akb" secondAttribute="bottom" id="tjW-X7-t9D"/>
+                            <constraint firstAttribute="centerX" secondItem="4bj-CO-b5L" secondAttribute="centerX" id="unB-1q-F4W"/>
                             <constraint firstAttribute="trailing" secondItem="sEA-Mg-akb" secondAttribute="trailing" id="vcf-kT-rYJ"/>
                         </constraints>
                         <variation key="default">
@@ -262,6 +276,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="line" destination="DF3-RO-gN9" id="RsU-Gx-YhT"/>
+                        <outlet property="startText" destination="4bj-CO-b5L" id="giB-fr-cSO"/>
                         <outlet property="table" destination="sEA-Mg-akb" id="fUX-Wq-WBo"/>
                     </connections>
                 </viewController>
