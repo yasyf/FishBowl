@@ -14,7 +14,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var line: UIView!
-    @IBOutlet weak var startText: UILabel!
+    @IBOutlet weak var startText: UIView!
     
     let serviceType = "personlog-disc"
     let database = Database()
