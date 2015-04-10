@@ -47,10 +47,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             } else {
                 let fieldMap = ["first_name": "f_name", "last_name": "l_name", "id": "fb_id"]
                 for (facebookField, settingField) in fieldMap {
-                    let value = result.valueForKey(facebookField) as NSString
+                    let value = result.valueForKey(facebookField) as! NSString
                     self.settings.defaults.setValue(value, forKey: settingField)
                 }
-                let userID = result.valueForKey("id") as NSString
+                let userID = result.valueForKey("id") as! NSString
                 self.settings.setphotoURL("https://graph.facebook.com/\(userID)/picture?width=400&height=400")
             }
             completion()

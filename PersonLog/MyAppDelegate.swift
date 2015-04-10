@@ -22,7 +22,7 @@ class MyAppDelege {
     init() {
         let appDelegate = UIApplication.sharedApplication().delegate!
         let originalClass:AnyClass = object_setClass(appDelegate, AppDelegate.self)
-        let myAppDelegate = appDelegate as AppDelegate
+        let myAppDelegate = appDelegate as! AppDelegate
         managedObjectContext = myAppDelegate.managedObjectContext
         object_setClass(appDelegate, originalClass)
     }

@@ -54,7 +54,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
 
         let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
         api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in
-            let mutualFriendCount = data["total_count"] as Int
+            let mutualFriendCount = data["total_count"] as! Int
             dispatch_async(dispatch_get_main_queue(), {
                 self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
             })
@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
                 if let err = error {
                     println("Error: \(err)")
                 } else {
-                    let friends = result.objectForKey("data") as [NSMutableDictionary]
+                    let friends = result.objectForKey("data") as! [NSMutableDictionary]
                     if friends.count > 0 {
                         self.facebookImage.hidden = false
                     }
@@ -130,7 +130,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     func pinFromInteraction(inter: Interaction) -> MKPointAnnotation {
         let pointAnnotation = MKPointAnnotation()
         let location = CLLocationCoordinate2DMake(inter.lat as CLLocationDegrees, inter.lon as CLLocationDegrees)
-        pointAnnotation.setCoordinate(location)
+        pointAnnotation.coordinate = location
         pointAnnotation.title = dateFormatter.stringFromDate(inter.date)
         return pointAnnotation
     }

@@ -84,7 +84,7 @@ class Peer: NSObject {
                     self.dataCallbacks = []
                 }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
                     if data != nil {
-                        let message = data!["message"] as String
+                        let message = data!["message"] as! String
                         println("Error: \(message)")
                     } else {
                         println("Error: \(error)")
@@ -104,7 +104,7 @@ class Peer: NSObject {
             data[key] = settings._string(key)
         }
         api.post("/register", parameters: data, success: {(response: Dictionary) in
-                let uuid = response["uuid"] as String
+                let uuid = response["uuid"] as! String
                 println("Registered new user with uuid \(uuid)")
                 self.peerID = MCPeerID(displayName: uuid)
                 for completion in self.peerIDCallbacks {
@@ -113,7 +113,7 @@ class Peer: NSObject {
                 self.peerIDCallbacks = []
             }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
                 if data != nil {
-                    let message = data!["message"] as String
+                    let message = data!["message"] as! String
                     println("Error: \(message)")
                 } else {
                     println("Error: \(error)")
@@ -127,7 +127,7 @@ class Peer: NSObject {
         let request = NSFetchRequest()
         
         request.entity = entityDescription!
-        request.predicate = NSPredicate(format: "(fb_id = %@)", data["fb_id"] as String)
+        request.predicate = NSPredicate(format: "(fb_id = %@)", data["fb_id"] as! String)
         
         var personOptional: Person?
         
@@ -215,7 +215,7 @@ class Peer: NSObject {
     func recordInteraction(other: Peer, callback: ((Interaction?) -> Void)?) {
         self.onPerson({(person: Person) in
             other.onPerson({(otherPerson: Person) in
-                self.newInteraction(person, otherPerson: otherPerson, callback)
+                self.newInteraction(person, otherPerson: otherPerson,callback: callback)
             })
         })
     }

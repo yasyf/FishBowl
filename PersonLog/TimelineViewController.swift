@@ -79,7 +79,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PersonCell", forIndexPath: indexPath) as PersonCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("PersonCell", forIndexPath: indexPath) as! PersonCell
         
         let interaction = interactions[indexPath.row]
         let person = interaction.person
@@ -97,7 +97,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             if let err = error {
                 println("Error: \(err)")
             } else {
-                let friends = result.objectForKey("data") as [NSMutableDictionary]
+                let friends = result.objectForKey("data") as! [NSMutableDictionary]
                 if friends.count > 0 {
                     cell.facebookImage.hidden = false
                 }

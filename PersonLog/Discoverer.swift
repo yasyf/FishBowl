@@ -16,7 +16,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     let beaconID: NSUUID
     let characteristicID: CBUUID
     var browser: MCNearbyServiceBrowser?
-    let centralManager: CBCentralManager?
+    var centralManager: CBCentralManager?
     let peer: Peer
     var peers: [Peer] = []
     var peripherals: [CBPeripheral] = []
@@ -132,9 +132,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         println("didFailToConnectPeripheral \(error)")
     }
     
-    func centralManager(central: CBCentralManager!, willRestoreState dict: [NSString : AnyObject]!) {
+    func centralManager(central: CBCentralManager!, willRestoreState dict: [NSObject : AnyObject]!) {
         println("centralManager:willRestoreState")
-        let restoredPeripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as [CBPeripheral]
+        let restoredPeripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
         for peripheral in restoredPeripherals {
             connectPeripheral(central, peripheral: peripheral)
         }
@@ -151,14 +151,14 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
-        let characteristic = service.characteristics[0] as CBCharacteristic
+        let characteristic = service.characteristics[0] as! CBCharacteristic
         peripheral.readValueForCharacteristic(characteristic)
         println("didDiscoverCharacteristicsForService \(service.characteristics)")
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
         let UUIDString = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
-        let peerID = MCPeerID(displayName: UUIDString)
+        let peerID = MCPeerID(displayName: UUIDString! as String)
         let peer = Peer(peerID: peerID)
         didFindPeer(peer)
         for (i, periph) in enumerate(peripherals) {
@@ -172,8 +172,8 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     // MARK: - CLLocationManagerDelegate
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
-        self.peer.location = locations.last
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        self.peer.location = locations.last as? CLLocation
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {

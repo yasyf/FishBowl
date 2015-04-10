@@ -29,7 +29,7 @@ class DemoMode: NSObject {
             if let interactions = allInteractions {
                 let count = interactions.count
                 for interaction in interactions {
-                    managedObjectContext.deleteObject(interaction as NSManagedObject)
+                    managedObjectContext.deleteObject(interaction as! NSManagedObject)
                 }
                 managedObjectContext.save(&error)
                 return count
@@ -45,7 +45,7 @@ class DemoMode: NSObject {
     
     func checkHash() {
         api.get("/demo/freshness", parameters: nil, success: {(data) in
-                let newHash = data["freshness_hash"] as String
+                let newHash = data["freshness_hash"] as! String
                 if let oldHash = self.settings._string("freshness_hash") {
                     if oldHash != newHash {
                         if self.settings.isLoggedIn() {

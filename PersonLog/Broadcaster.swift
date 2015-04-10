@@ -17,7 +17,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     let characteristicID: CBUUID
     let peer: Peer
     var advertiser: MCNearbyServiceAdvertiser?
-    let peripheralManager: CBPeripheralManager?
+    var peripheralManager: CBPeripheralManager?
     var isBroadcasting: Bool = false
     
     init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {

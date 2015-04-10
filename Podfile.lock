@@ -22,18 +22,18 @@ PODS:
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
-  - SwiftHTTP (0.9.2)
+  - SwiftHTTP (0.9.3)
 
 DEPENDENCIES:
   - FormatterKit (~> 1.8.0)
   - Localytics (~> 3.0)
   - SDWebImage (~> 3.7)
-  - SwiftHTTP (~> 0.9.2)
+  - SwiftHTTP (~> 0.9.3)
 
 SPEC CHECKSUMS:
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   Localytics: 87268a820c285f6f5ed3fa505a176c049ed07462
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
-  SwiftHTTP: 025860414b3f0f583348734bb287f59aa84a3fc4
+  SwiftHTTP: 8330d887c0eae4f732df0f2899b61e497e7ea1d0
 
 COCOAPODS: 0.36.3
