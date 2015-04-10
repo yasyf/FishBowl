@@ -152,6 +152,12 @@ class Peer: NSObject {
             }
         }
         
+        if let twitter = person.twitter as NSString? {
+            if twitter.containsString("@") {
+                person.twitter = twitter.substringFromIndex(0)
+            }
+        }
+
         managedObjectContext.save(&error)
         if let err = error {
             println(err)
