@@ -10,6 +10,7 @@ import Foundation
 import MultipeerConnectivity
 import CoreLocation
 import CoreBluetooth
+import Localytics
 
 class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     let serviceType: String
@@ -171,13 +172,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     
     // MARK: - CLLocationManagerDelegate
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        self.peer.location = locations.last as? CLLocation
-    }
-    
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
         self.peer.location = newLocation
+        Localytics.setLocation(newLocation.coordinate)
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {

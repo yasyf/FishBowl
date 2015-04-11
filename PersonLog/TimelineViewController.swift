@@ -9,6 +9,7 @@
 import UIKit
 import MultipeerConnectivity
 import SDWebImage
+import Localytics
 
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -40,16 +41,19 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
         
+        Localytics.tagScreen("Timeline")
+        
         if settings.isLoggedIn() && broadcaster == nil {
             broadcaster = appDelegate.broadcaster
             discoverer = appDelegate.discoverer
             peer = appDelegate.peer
         
             discoverer!.onPeer({(otherPeer: Peer) in
+                Localytics.tagEvent("DiscoverPeer")
                 self.peer!.recordInteraction(otherPeer, callback: {(interaction: Interaction?) in
                     if let inter = interaction {
                         self.updateInteractions()
-                        otherPeer.showLocalFrequencyNotification(inter, minCount: 2)
+                        otherPeer.processNewInteraction(inter, minCountForNotification: 2)
                     }
                 })
             })
@@ -65,6 +69,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func updateInteractions() {
         if let newInteractions = database.allInteractions(sorted: true) {
             self.interactions = newInteractions
+            Localytics.setValue(newInteractions.count, forProfileAttribute: "Interactions")
             dispatch_async(dispatch_get_main_queue(), {
                 self.table.reloadData()
                 self.line.hidden = (newInteractions.count == 0)

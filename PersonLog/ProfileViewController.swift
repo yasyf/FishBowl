@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import SDWebImage
 import MessageUI
+import Localytics
 
 class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageComposeViewControllerDelegate {
 
@@ -39,6 +40,8 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Localytics.tagScreen("Profile")
+        
         dateFormatter.dateFormat = "hh:mm a"
 
         self.title = "\(interaction.person.f_name)'s Profile"
@@ -55,6 +58,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
         let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
         api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in
             let mutualFriendCount = data["total_count"] as! Int
+            Localytics.tagEvent("ViewProfile", attributes: ["mutual_friends": mutualFriendCount, "is_friend": Analytics.boolToString(self.isFriend)])
             dispatch_async(dispatch_get_main_queue(), {
                 self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
             })
@@ -140,11 +144,13 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     }
 
     @IBAction func openFacebook(sender: AnyObject) {
+        Localytics.tagEvent("SocialAction", attributes: ["type": "facebook"])
         let url = NSURL(string: "http://facebook.com/\(interaction.person.fb_id)")
         UIApplication.sharedApplication().openURL(url!)
     }
     
     @IBAction func showCurrentLocation(sender: AnyObject) {
+        Localytics.tagEvent("MapAction", attributes: ["type": "current location"])
         self.map.showsUserLocation = true
         self.map.setUserTrackingMode(.Follow, animated: true)
     }
@@ -159,6 +165,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
             }
             annotations = [mainPin]
         } else {
+            Localytics.tagEvent("MapAction", attributes: ["type": "other interactions"])
             isShowingAll = true
             let predicate = NSPredicate(format: "(person.fb_id = %@)", interaction.person.fb_id)
             if let interactions = database.allInteractionsWithPredicate(false, predicate: predicate) {
@@ -174,11 +181,13 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     }
 
     @IBAction func openTwitter(sender: AnyObject) {
+        Localytics.tagEvent("SocialAction", attributes: ["type": "twitter"])
         let url = NSURL(string: "twitter://user?screen_name=\(interaction.person.twitter!)")
         UIApplication.sharedApplication().openURL(url!)
     }
 
     @IBAction func openSnapchat(sender: AnyObject) {
+        Localytics.tagEvent("SocialAction", attributes: ["type": "snapchat"])
         let snapchat = interaction.person.snapchat!
         let url = NSURL(string: "snapchat://?u=\(snapchat)")
         UIPasteboard.generalPasteboard().string = snapchat
@@ -191,6 +200,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     }
     
     @IBAction func openMessageView(sender: AnyObject) {
+        Localytics.tagEvent("SocialAction", attributes: ["type": "message"])
         messageViewController.recipients = [interaction.person.phone!]
         presentViewController(messageViewController, animated: true, completion: nil)
     }

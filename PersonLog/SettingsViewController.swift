@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import Localytics
 
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
@@ -25,6 +26,8 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Localytics.tagScreen("Settings")
         
         var dismissKeyboard = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         self.view.addGestureRecognizer(dismissKeyboard)
@@ -59,6 +62,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        Localytics.tagEvent("Logout")
         if settings.isLoggedIn() {
             appDelegate.broadcaster.kill()
             appDelegate.discoverer.kill()
@@ -74,10 +78,13 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
     func textFieldDidEndEditing(textField: UITextField) {
         switch textField {
         case number:
+            Localytics.tagEvent("ChangeSettings", attributes: ["key": "phone"])
             settings.setPhone(number.text)
         case twitter:
+            Localytics.tagEvent("ChangeSettings", attributes: ["key": "twitter"])
             settings.setTwitter(twitter.text)
         case snapchat:
+            Localytics.tagEvent("ChangeSettings", attributes: ["key": "snapchat"])
             settings.setSnapchat(snapchat.text)
         default: ()
         }

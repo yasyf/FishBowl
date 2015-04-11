@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localytics
 
 class SetupViewController: UIViewController, UITextFieldDelegate {
 
@@ -14,11 +15,16 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var twitter: UITextField!
     @IBOutlet weak var snapchat: UITextField!
     @IBOutlet weak var skipButton: UIButton!
-    @IBAction func skip(sender: AnyObject) {
-        settings.doneSetup()
-    }
     
     let settings = Settings()
+    var didEnterPhone = false
+    var didEnterTwitter = false
+    var didEnterSnapchat = false
+    
+    @IBAction func skip(sender: AnyObject) {
+        Localytics.tagEvent("Setup", attributes: ["skip": true, "phone": false, "twitter": false, "snapchat": false])
+        settings.doneSetup()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +33,10 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
         snapchat.delegate = self
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        Localytics.tagScreen("Setup")
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,10 +48,16 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
         skipButton.setTitle("Done", forState: .Normal)
         switch textField {
         case phone:
+            Localytics.tagEvent("ChangeSettings", attributes: ["key": "phone"])
+            didEnterPhone = true
             settings.setPhone(phone.text)
         case twitter:
+            Localytics.tagEvent("ChangeSettings", attributes: ["key": "twitter"])
+            didEnterTwitter = true
             settings.setTwitter(twitter.text)
         case snapchat:
+            Localytics.tagEvent("ChangeSettings", attributes: ["key": "snapchat"])
+            didEnterSnapchat = true
             settings.setSnapchat(snapchat.text)
         default: ()
         }
@@ -51,6 +67,7 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
         if textField == snapchat {
             settings.doneSetup()
             textField.resignFirstResponder()
+            Localytics.tagEvent("Setup", attributes: ["skip": false, "phone": didEnterPhone, "twitter": didEnterTwitter, "snapchat": didEnterSnapchat])
             self.performSegueWithIdentifier("completed", sender: nil)
             return true
         }

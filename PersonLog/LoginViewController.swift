@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Localytics
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
@@ -16,21 +17,31 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginView.readPermissions = ["public_profile", "user_friends"]
+        loginView.readPermissions = ["public_profile", "email", "user_birthday", "user_hometown", "user_religion_politics", "user_friends"]
         loginView.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        Localytics.tagScreen("Login")
     }
 
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if let err = error {
             println(err)
-        } else if !result.isCancelled {
-            self.setUserData({
-                if self.settings.isDoneSetup() {
-                    self.performSegueWithIdentifier("login", sender: nil)
-                } else {
-                    self.performSegueWithIdentifier("setup", sender: nil)
-                }
-            })
+        }
+        else {
+            if result.isCancelled {
+                Localytics.tagEvent("Login", attributes: ["type": "facebook", "cancelled": true])
+            } else {
+                Localytics.tagEvent("Login", attributes: ["type": "facebook", "cancelled": false])
+                self.setUserData({
+                    if self.settings.isDoneSetup() {
+                        self.performSegueWithIdentifier("login", sender: nil)
+                    } else {
+                        self.performSegueWithIdentifier("setup", sender: nil)
+                    }
+                })
+            }
         }
     }
 
@@ -47,11 +58,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             } else {
                 let fieldMap = ["first_name": "f_name", "last_name": "l_name", "id": "fb_id"]
                 for (facebookField, settingField) in fieldMap {
-                    let value = result.valueForKey(facebookField) as! NSString
+                    let value = result[facebookField] as! NSString
                     self.settings.defaults.setValue(value, forKey: settingField)
                 }
-                let userID = result.valueForKey("id") as! NSString
+                let userID = result["id"] as! NSString
                 self.settings.setphotoURL("https://graph.facebook.com/\(userID)/picture?width=400&height=400")
+                Analytics.setValuesFromFacebook(result as! [NSObject: AnyObject])
             }
             completion()
         })

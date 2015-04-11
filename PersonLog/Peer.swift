@@ -11,6 +11,7 @@ import MultipeerConnectivity
 import CoreData
 import CoreLocation
 import FormatterKit
+import Localytics
 
 let settings = Settings()
 let api = API()
@@ -226,7 +227,7 @@ class Peer: NSObject {
         })
     }
     
-    func showLocalFrequencyNotification(interaction: Interaction, minCount: Int) {
+    func processNewInteraction(interaction: Interaction, minCountForNotification: Int) {
         if UIApplication.sharedApplication().applicationState == UIApplicationState.Active {
             return
         }
@@ -239,7 +240,8 @@ class Peer: NSObject {
             }
             let predicate = NSPredicate(format: "(person.fb_id = %@)", person.fb_id)
             if let count = database.allInteractionsWithPredicate(false, predicate: predicate)?.count {
-                if count >= minCount {
+                Localytics.tagEvent("Interaction", attributes: ["count": count])
+                if count >= minCountForNotification {
                     person.last_notification = NSDate()
                     var error: NSError?
                     self.managedObjectContext.save(&error)
@@ -258,6 +260,7 @@ class Peer: NSObject {
                     notification.soundName = UILocalNotificationDefaultSoundName
                     notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber + 1
                     UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                    Localytics.tagEvent("ShowLocalNotification", attributes: ["reason": "frequency", "frequency": count])
                 }
             }
         })

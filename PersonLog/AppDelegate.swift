@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         #if !arch(i386)
             Localytics.autoIntegrate("eedd3e69e87dd4feba34968-c44ff1ae-ddb8-11e4-586b-00a426b17dd8", launchOptions: launchOptions)
+            Analytics.tagLaunchSource(launchOptions)
         #endif
         
         let notificationSettings = UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil)
@@ -58,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        Localytics.tagEvent("ReceiveLocalNotification")
         application.applicationIconBadgeNumber = 0
         if let identifier = notification.userInfo?["identifier"] as? String {
             let url = NSURL(string: identifier)
@@ -80,10 +82,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        Localytics.tagEvent("AppStateChange", attributes: ["state": "background"])
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        Localytics.tagEvent("AppStateChange", attributes: ["state": "foreground"])
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -95,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        Localytics.tagEvent("AppTerminate")
         self.saveContext()
     }
 
