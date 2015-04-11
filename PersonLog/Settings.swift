@@ -86,4 +86,18 @@ class Settings {
     func logout() {
         defaults.setValue(nil, forKey: "fb_id")
     }
+    func getLocalData() -> [String:String] {
+        var data = [String:String]()
+        for key in settings.fields {
+            data[key] = settings._string(key)
+        }
+        return data
+    }
+    func updateData(success: (Dictionary<String, AnyObject>) -> Void, failure: (NSError, Dictionary<String, AnyObject>?) -> Void) {
+        if let uuid = settings.UUID() {
+            var data = getLocalData()
+            data["uuid"] = UUID()
+            api.patch("/register", parameters: data, success: success, failure: failure)
+        }
+    }
 }

@@ -89,6 +89,11 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
             settings.setSnapchat(snapchat.text)
         default: ()
         }
+        settings.updateData({(dict) in
+            println("PATCHed user settings")
+        }, failure: {(error, dict) in
+            println(error)
+        })
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -50,4 +50,10 @@ class API {
                 self.buildRequest().POST(url, parameters: parameters, success: success, failure: failure)
             }, route: route, parameters: parameters, success: success, failure: failure)
     }
+    
+    func patch(route: NSString, parameters: Dictionary<String, String>?, success: (Dictionary<String, AnyObject>) -> Void, failure: (NSError, Dictionary<String, AnyObject>?) -> Void) {
+        doRequest({(url: String, parameters: Dictionary<String, AnyObject>?, success: (HTTPResponse) -> Void, failure: (NSError, HTTPResponse?) -> Void) in
+            self.buildRequest().PATCH(url, parameters: parameters, success: success, failure: failure)
+            }, route: route, parameters: parameters, success: success, failure: failure)
+    }
 }

@@ -100,10 +100,7 @@ class Peer: NSObject {
         } else {
             isFetchingPeerID = true
         }
-        var data = [String:String]()
-        for key in settings.fields {
-            data[key] = settings._string(key)
-        }
+        let data = settings.getLocalData()
         api.post("/register", parameters: data, success: {(response: Dictionary) in
                 let uuid = response["uuid"] as! String
                 println("Registered new user with uuid \(uuid)")
