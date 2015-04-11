@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import Localytics
+import TwitterKit
 
 class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 

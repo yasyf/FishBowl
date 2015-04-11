@@ -33,6 +33,8 @@
 		0CABC8631AD3920D00037399 /* DemoMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABC8621AD3920D00037399 /* DemoMode.swift */; };
 		0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBABF821ACF3CB300D7F0F4 /* Database.swift */; };
 		0CBFBFB31AD915E000B2713A /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBFBFB21AD915E000B2713A /* LocalNotification.swift */; };
+		0CDD65A51AD9BF8D0037DE4E /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CDD65A31AD9BF8D0037DE4E /* TwitterKit.framework */; };
+		0CDD65A61AD9BF8D0037DE4E /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0CDD65A41AD9BF8D0037DE4E /* TwitterKitResources.bundle */; };
 		0CDDD8531AD8DC3B00816ACD /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDDD8521AD8DC3B00816ACD /* Analytics.swift */; };
 		46060D821AD153A100091817 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46060D811AD153A100091817 /* ProfileViewController.swift */; };
 		4611814A1ACF2C0B004A0B68 /* NavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461181461ACF2C0B004A0B68 /* NavViewController.swift */; };
@@ -85,6 +87,8 @@
 		0CABC8621AD3920D00037399 /* DemoMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMode.swift; sourceTree = "<group>"; };
 		0CBABF821ACF3CB300D7F0F4 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		0CBFBFB21AD915E000B2713A /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
+		0CDD65A31AD9BF8D0037DE4E /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		0CDD65A41AD9BF8D0037DE4E /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
 		0CDDD8521AD8DC3B00816ACD /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		454E43B44E5900429842DB84 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46060D811AD153A100091817 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				0C11B02F1AD9AE4B0048C599 /* Crashlytics.framework in Frameworks */,
 				0C8EB01A1AD0E743002B0727 /* CoreBluetooth.framework in Frameworks */,
 				0C5488ED1AD284660055E36E /* FBSDKCoreKit.framework in Frameworks */,
+				0CDD65A51AD9BF8D0037DE4E /* TwitterKit.framework in Frameworks */,
 				0C8EB0181AD0A78F002B0727 /* MultipeerConnectivity.framework in Frameworks */,
 				0C8EB0161AD0A78B002B0727 /* CoreData.framework in Frameworks */,
 				0C5488EE1AD284660055E36E /* FBSDKLoginKit.framework in Frameworks */,
@@ -211,6 +216,8 @@
 		2118CCE2E64703F770EABE27 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CDD65A31AD9BF8D0037DE4E /* TwitterKit.framework */,
+				0CDD65A41AD9BF8D0037DE4E /* TwitterKitResources.bundle */,
 				0C11B02D1AD9AE4B0048C599 /* Crashlytics.framework */,
 				0C11B02E1AD9AE4B0048C599 /* Fabric.framework */,
 				0C0EADC41AD492F000829F22 /* MessageUI.framework */,
@@ -335,6 +342,7 @@
 				463C35B21AD36A0200D31D18 /* images.xcassets in Resources */,
 				0C5488EA1AD284580055E36E /* Info.plist in Resources */,
 				0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */,
+				0CDD65A61AD9BF8D0037DE4E /* TwitterKitResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

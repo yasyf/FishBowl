@@ -12,6 +12,7 @@ import MapKit
 import SDWebImage
 import MessageUI
 import Localytics
+import TwitterKit
 
 class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageComposeViewControllerDelegate {
 
@@ -182,8 +183,12 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
 
     @IBAction func openTwitter(sender: AnyObject) {
         Localytics.tagEvent("SocialAction", attributes: ["type": "twitter"])
-        let url = NSURL(string: "twitter://user?screen_name=\(interaction.person.twitter!)")
-        UIApplication.sharedApplication().openURL(url!)
+        Twitter.sharedInstance().logInGuestWithCompletion { (session: TWTRGuestSession!, error: NSError!) in
+            let client = Twitter.sharedInstance().APIClient
+            let dataSource = TWTRUserTimelineDataSource(screenName: self.interaction.person.twitter!, APIClient: client)
+            let viewController = TWTRTimelineViewController(dataSource: dataSource)
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 
     @IBAction func openSnapchat(sender: AnyObject) {

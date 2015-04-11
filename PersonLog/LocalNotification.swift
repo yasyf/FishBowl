@@ -23,8 +23,8 @@ class LocalNotification {
     
     class func scheduleDaily() {
         var notification = getDailyNotification()
-        if let notif = notification {
-            UIApplication.sharedApplication().cancelLocalNotification(notif)
+        if let oldNotif = notification {
+            UIApplication.sharedApplication().cancelLocalNotification(oldNotif)
         } else  {
             let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
             let date = calendar?.dateBySettingHour(19, minute: 0, second: 0, ofDate: NSDate(), options: nil)
