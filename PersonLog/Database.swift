@@ -21,8 +21,12 @@ class Database: NSObject {
         if sorted {
             request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         }
+        let dayAgo = NSDate(timeIntervalSinceNow: -86400)
+        let datePredicate = NSPredicate(format: "(date > %@)", dayAgo)
         if let pred = predicate {
-            request.predicate = predicate
+            request.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([pred, datePredicate])
+        } else {
+            request.predicate = datePredicate
         }
         
         let objects = managedObjectContext.executeFetchRequest(request, error: &error)

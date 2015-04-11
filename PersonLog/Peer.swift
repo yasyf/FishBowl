@@ -252,7 +252,7 @@ class Peer: NSObject {
                     let ordinal = ordinalFormatter.stringFromNumber(count)!
                     var notification = UILocalNotification()
                     let identifier = interaction.objectID.URIRepresentation().absoluteString!
-                    notification.userInfo = ["identifier": identifier]
+                    notification.userInfo = ["identifier": identifier, "type": "frequency"]
                     notification.alertTitle = "\(person.f_name) \(person.l_name)"
                     notification.alertBody = "That's the \(ordinal) time you've seen \(person.f_name) today!"
                     notification.fireDate = NSDate(timeIntervalSinceNow: 1.0)
