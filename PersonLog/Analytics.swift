@@ -27,7 +27,7 @@ class Analytics {
                 }
             }
         }
-        Localytics.tagEvent("AppLaunch", attributes: ["Mechanism": launchMechanism])
+        Localytics.tagEvent("AppLaunch", attributes: ["mechanism": launchMechanism])
     }
     
     class func boolToString(bool: Bool?) -> String {
