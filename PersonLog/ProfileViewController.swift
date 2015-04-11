@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Localytics.tagScreen("Profile")
+        Analytics.tagScreen("Profile")
         
         dateFormatter.dateFormat = "hh:mm a"
 

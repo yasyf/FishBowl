@@ -41,7 +41,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
         
-        Localytics.tagScreen("Timeline")
+        Analytics.tagScreen("Timeline")
         
         if settings.isLoggedIn() && broadcaster == nil {
             broadcaster = appDelegate.broadcaster

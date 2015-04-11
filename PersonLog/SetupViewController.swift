@@ -36,7 +36,7 @@ class SetupViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        Localytics.tagScreen("Setup")
+        Analytics.tagScreen("Setup")
     }
 
     override func didReceiveMemoryWarning() {

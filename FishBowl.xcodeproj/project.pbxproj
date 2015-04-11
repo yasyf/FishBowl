@@ -15,6 +15,8 @@
 		0C0764731AB8F81900DD88A8 /* PersonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */; };
 		0C0782C71AD505A200158233 /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0782C61AD505A200158233 /* MyAppDelegate.swift */; };
 		0C0EADC51AD492F000829F22 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0EADC41AD492F000829F22 /* MessageUI.framework */; };
+		0C11B02F1AD9AE4B0048C599 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C11B02D1AD9AE4B0048C599 /* Crashlytics.framework */; };
+		0C11B0301AD9AE4B0048C599 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C11B02E1AD9AE4B0048C599 /* Fabric.framework */; };
 		0C5488E91AD284580055E36E /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E71AD284580055E36E /* Bariol_Regular.otf */; };
 		0C5488EA1AD284580055E36E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C5488E81AD284580055E36E /* Info.plist */; };
 		0C5488ED1AD284660055E36E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */; };
@@ -65,6 +67,8 @@
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
 		0C0782C61AD505A200158233 /* MyAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
 		0C0EADC41AD492F000829F22 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0C11B02D1AD9AE4B0048C599 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		0C11B02E1AD9AE4B0048C599 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		0C5488E71AD284580055E36E /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular.otf; path = "Supporting FIles/Bariol_Regular.otf"; sourceTree = SOURCE_ROOT; };
 		0C5488E81AD284580055E36E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting FIles/Info.plist"; sourceTree = SOURCE_ROOT; };
 		0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C0EADC51AD492F000829F22 /* MessageUI.framework in Frameworks */,
+				0C11B0301AD9AE4B0048C599 /* Fabric.framework in Frameworks */,
+				0C11B02F1AD9AE4B0048C599 /* Crashlytics.framework in Frameworks */,
 				0C8EB01A1AD0E743002B0727 /* CoreBluetooth.framework in Frameworks */,
 				0C5488ED1AD284660055E36E /* FBSDKCoreKit.framework in Frameworks */,
 				0C8EB0181AD0A78F002B0727 /* MultipeerConnectivity.framework in Frameworks */,
@@ -205,6 +211,8 @@
 		2118CCE2E64703F770EABE27 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C11B02D1AD9AE4B0048C599 /* Crashlytics.framework */,
+				0C11B02E1AD9AE4B0048C599 /* Fabric.framework */,
 				0C0EADC41AD492F000829F22 /* MessageUI.framework */,
 				0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */,
 				0C5488EC1AD284660055E36E /* FBSDKLoginKit.framework */,
@@ -245,6 +253,7 @@
 				0C0764521AB8F81900DD88A8 /* Resources */,
 				F05E74D847F4107CC3F4CDBD /* Embed Pods Frameworks */,
 				61D61FD803ACC5FC5DA1B908 /* Copy Pods Resources */,
+				0C11B02C1AD9AE0D0048C599 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -339,6 +348,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0C11B02C1AD9AE0D0048C599 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 8b2892b587d4c655c0af43d8fb28df84c0dce5b1 98afc07ea8fb3a9a1fa80130f59ed0ce0cabfb0cd0c34c070866d75eeca1c015";
+		};
 		1AEA33B52CEFD3E6861930CC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -535,6 +557,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PersonLog",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
@@ -560,6 +583,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PersonLog",
 					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;

@@ -8,6 +8,7 @@
 
 import Foundation
 import Localytics
+import Crashlytics
 
 class Analytics {
     class func tagLaunchSource(launchOptions: [NSObject: AnyObject]?) {
@@ -43,10 +44,15 @@ class Analytics {
     }
     
     class func setValuesFromFacebook(result: [NSObject: AnyObject]) {
-        Localytics.setValue(result["name"] as! String, forIdentifier: "customer_name")
-        Localytics.setCustomerId(result["id"] as! String)
+        let name = result["name"] as! String
+        let id = result["id"] as! String
+        Localytics.setValue(name, forIdentifier: "customer_name")
+        Localytics.setCustomerId(id)
+        Crashlytics.setUserName(name)
+        Crashlytics.setUserIdentifier(id)
         if let email = result["email"] as? String {
             Localytics.setValue(email, forIdentifier: "email")
+            Crashlytics.setUserEmail(email)
         }
         let fieldMapping = ["birthday": "Birthday", "hometown": "Hometown", "locale": "Locale", "timezone": "Timezone", "religion": "Religion", "political": "Political", "gender": "Gender"]
         for (key, mapping) in fieldMapping {
@@ -54,5 +60,10 @@ class Analytics {
                 Localytics.setValue(value, forProfileAttribute: mapping)
             }
         }
+    }
+    
+    class func tagScreen(screen: String) {
+        Localytics.tagScreen(screen)
+        Crashlytics.setObjectValue(screen, forKey: "screen")
     }
 }

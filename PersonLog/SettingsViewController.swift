@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Localytics.tagScreen("Settings")
+        Analytics.tagScreen("Settings")
         
         var dismissKeyboard = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         self.view.addGestureRecognizer(dismissKeyboard)

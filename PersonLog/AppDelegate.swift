@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import CoreBluetooth
 import Localytics
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 
@@ -21,9 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         #if !arch(i386)
             Localytics.autoIntegrate("eedd3e69e87dd4feba34968-c44ff1ae-ddb8-11e4-586b-00a426b17dd8", launchOptions: launchOptions)
+            Fabric.with([Crashlytics()])
             Analytics.tagLaunchSource(launchOptions)
         #endif
-        
+
         let notificationSettings = UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
         
