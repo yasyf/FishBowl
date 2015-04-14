@@ -33,6 +33,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         self.characteristicID = characteristicID
         super.init()
         self.locManager.delegate = self
+        self.locManager.pausesLocationUpdatesAutomatically = true
+        self.locManager.activityType = CLActivityType.Fitness
+        self.locManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         self.centralManager = CBCentralManager(delegate: self, queue: dispatch_queue_create("com.fishbowl.CentralManagerQueue", DISPATCH_QUEUE_SERIAL), options: [CBCentralManagerOptionRestoreIdentifierKey: "discovererCentralManager"])
     }
     
@@ -76,7 +79,6 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
                 self.browser = MCNearbyServiceBrowser(peer: peerID, serviceType: self.serviceType)
                 self.browser!.delegate = self
             }
-            self.locManager.pausesLocationUpdatesAutomatically = false
             self.isDiscovering = true
             self.locManager.requestAlwaysAuthorization()
         })
@@ -84,7 +86,6 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func kill() {
         isDiscovering = false
-        self.locManager.pausesLocationUpdatesAutomatically = true
         browser?.stopBrowsingForPeers()
         centralManager?.stopScan()
         self.locManager.stopUpdatingLocation()
