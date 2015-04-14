@@ -250,7 +250,9 @@ class Peer: NSObject {
                     var notification = UILocalNotification()
                     let identifier = interaction.objectID.URIRepresentation().absoluteString!
                     notification.userInfo = ["identifier": identifier, "type": "frequency"]
-                    notification.alertTitle = "\(person.f_name) \(person.l_name)"
+                    if (notification.respondsToSelector(Selector("setAlertTitle"))) {
+                        notification.alertTitle = "\(person.f_name) \(person.l_name)"
+                    }
                     notification.alertBody = "That's the \(ordinal) time you've seen \(person.f_name) today!"
                     notification.fireDate = NSDate(timeIntervalSinceNow: 1.0)
                     notification.timeZone = NSTimeZone.defaultTimeZone()

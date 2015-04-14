@@ -31,7 +31,9 @@ class LocalNotification {
             
             var newNotification = UILocalNotification()
             newNotification.userInfo = ["type": "daily"]
-            newNotification.alertTitle = "FishBowl Daily Digest"
+            if (newNotification.respondsToSelector(Selector("setAlertTitle"))) {
+                newNotification.alertTitle = "FishBowl Daily Digest"
+            }
             newNotification.alertBody = "You didn't see anyone today. Go out there and make some friends!"
             newNotification.fireDate = date
             newNotification.timeZone = NSTimeZone.defaultTimeZone()
