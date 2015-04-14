@@ -255,7 +255,7 @@ class Peer: NSObject {
                     notification.fireDate = NSDate(timeIntervalSinceNow: 1.0)
                     notification.timeZone = NSTimeZone.defaultTimeZone()
                     notification.soundName = UILocalNotificationDefaultSoundName
-                    notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber + 1
+                    notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
                     UIApplication.sharedApplication().scheduleLocalNotification(notification)
                     Localytics.tagEvent("ShowLocalNotification", attributes: ["reason": "frequency", "frequency": count])
                 }

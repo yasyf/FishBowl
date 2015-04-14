@@ -37,11 +37,11 @@ class LocalNotification {
             newNotification.timeZone = NSTimeZone.defaultTimeZone()
             newNotification.repeatInterval = NSCalendarUnit.CalendarUnitDay
             newNotification.soundName = UILocalNotificationDefaultSoundName
-            newNotification.applicationIconBadgeNumber = newNotification.applicationIconBadgeNumber + 1
+            newNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
             notification = newNotification
         }
         if let notif = notification {
-            notif.applicationIconBadgeNumber = notif.applicationIconBadgeNumber + 1
+            notif.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
             let allInteractions = database.allInteractions(sorted: false)
             if let interactions = allInteractions {
                 switch interactions.count {
