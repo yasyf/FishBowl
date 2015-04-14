@@ -90,9 +90,9 @@ class SettingsViewController: UIViewController, FBSDKLoginButtonDelegate, UIText
         default: ()
         }
         settings.updateData({(dict) in
-            println("PATCHed user settings")
+            NSLog("PATCHed user settings")
         }, failure: {(error, dict) in
-            println(error)
+            NSLog("settings.updateData:error: %@", error)
         })
     }
     

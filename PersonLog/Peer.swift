@@ -86,9 +86,9 @@ class Peer: NSObject {
                 }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
                     if data != nil {
                         let message = data!["message"] as! String
-                        println("Error: \(message)")
+                        NSLog("api.get:error: \(message)")
                     } else {
-                        println("Error: \(error)")
+                        NSLog("api.get:error: \(error)")
                     }
                 })
         })
@@ -103,7 +103,7 @@ class Peer: NSObject {
         let data = settings.getLocalData()
         api.post("/register", parameters: data, success: {(response: Dictionary) in
                 let uuid = response["uuid"] as! String
-                println("Registered new user with uuid \(uuid)")
+                NSLog("Registered new user with uuid \(uuid)")
                 self.peerID = MCPeerID(displayName: uuid)
                 for completion in self.peerIDCallbacks {
                     completion(self.peerID!)
@@ -112,9 +112,9 @@ class Peer: NSObject {
             }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
                 if data != nil {
                     let message = data!["message"] as! String
-                    println("Error: \(message)")
+                    NSLog("api.post:error: \(message)")
                 } else {
-                    println("Error: \(error)")
+                    NSLog("api.post:error: \(error)")
                 }
 
         })
@@ -158,7 +158,7 @@ class Peer: NSObject {
 
         managedObjectContext.save(&error)
         if let err = error {
-            println(err)
+            NSLog("managedObjectContext.save:error: %@", err)
         }
         return person
     }
@@ -171,14 +171,14 @@ class Peer: NSObject {
         if let lastInteraction = otherPerson.visited.lastObject as? Interaction {
             let hourAgo = date.dateByAddingTimeInterval(-3600)
             if lastInteraction.date.compare(hourAgo) == NSComparisonResult.OrderedDescending  {
-                println("Skipping interaction due to recent interaction")
+                NSLog("Skipping interaction due to recent interaction")
                 callback?(nil)
                 return
             }
         }
         
         if person.fb_id == otherPerson.fb_id {
-            println("Skipping interaction due to self interaction")
+            NSLog("Skipping interaction due to self interaction")
             callback?(nil)
             return
         }
@@ -201,7 +201,7 @@ class Peer: NSObject {
         self.managedObjectContext.save(&error)
         
         if let err = error {
-            println(err)
+            NSLog("managedObjectContext.save:error: %@", err)
             callback?(nil)
         } else {
             callback?(interaction)
@@ -243,7 +243,7 @@ class Peer: NSObject {
                     var error: NSError?
                     self.managedObjectContext.save(&error)
                     if let err = error {
-                        println(err)
+                        NSLog("managedObjectContext.save:error: %@", err)
                     }
                     
                     let ordinal = ordinalFormatter.stringFromNumber(count)!

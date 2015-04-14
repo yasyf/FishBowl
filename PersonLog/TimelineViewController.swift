@@ -100,7 +100,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let friendGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(person.fb_id)", parameters: nil)
         friendGraphRequest.startWithCompletionHandler({(_, result, error) in
             if let err = error {
-                println("Error: \(err)")
+                NSLog("friendGraphRequest.startWithCompletionHandler:error: \(err)")
             } else {
                 let friends = result.objectForKey("data") as! [NSMutableDictionary]
                 if friends.count > 0 {

@@ -54,7 +54,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     func startDiscoveringWithManager() {
         if let manager = centralManager {
             let serviceUUIDs = [CBUUID(NSUUID: beaconID)]
-            println("scanForPeripheralsWithServices \(serviceUUIDs)")
+            NSLog("scanForPeripheralsWithServices \(serviceUUIDs)")
             let options = [CBCentralManagerScanOptionSolicitedServiceUUIDsKey:serviceUUIDs]
             manager.scanForPeripheralsWithServices(serviceUUIDs, options: options)
         }
@@ -92,10 +92,10 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func didFindPeer(peer: Peer) {
         peer.onPeerID({(peerID: MCPeerID) in
-            println("Found peer \(peerID.displayName)")
+            NSLog("Found peer \(peerID.displayName)")
         })
         peer.onData({(data: Dictionary<String, AnyObject>) in
-            println(data)
+            NSLog("%@", data)
         })
         peers.append(peer)
         for callback in peerCallbacks {
@@ -104,7 +104,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func connectPeripheral(central: CBCentralManager, peripheral: CBPeripheral) {
-        println("didDiscoverPeripheral \(peripheral)")
+        NSLog("didDiscoverPeripheral \(peripheral)")
         peripherals.append(peripheral)
         peripheral.delegate = self
         central.connectPeripheral(peripheral, options: nil)
@@ -114,7 +114,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         if central.state == CBCentralManagerState.PoweredOn && isDiscovering {
-            println("centralManagerDidUpdateState PoweredOn")
+            NSLog("centralManagerDidUpdateState PoweredOn")
             startDiscoveringWithManager()
         }
     }
@@ -124,17 +124,17 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
-        println("didConnectPeripheral \(peripheral)")
+        NSLog("didConnectPeripheral \(peripheral)")
         let serviceUUID = CBUUID(NSUUID: beaconID)
         peripheral.discoverServices([serviceUUID])
     }
     
     func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
-        println("didFailToConnectPeripheral \(error)")
+        NSLog("didFailToConnectPeripheral \(error)")
     }
     
     func centralManager(central: CBCentralManager!, willRestoreState dict: [NSObject : AnyObject]!) {
-        println("centralManager:willRestoreState")
+        NSLog("centralManager:willRestoreState")
         let restoredPeripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
         for peripheral in restoredPeripherals {
             connectPeripheral(central, peripheral: peripheral)
@@ -145,12 +145,12 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
         if let err = error {
-            println(err)
+            NSLog("peripheral:didDiscoverServices:error: %@", err)
         }
         else {
             if peripheral.services.count > 0 {
                 if let service = peripheral.services[0] as? CBService {
-                    println("didDiscoverService \(service)")
+                    NSLog("didDiscoverService \(service)")
                     peripheral.discoverCharacteristics([characteristicID], forService: service)
                 }
             }
@@ -160,7 +160,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
         let characteristic = service.characteristics[0] as! CBCharacteristic
         peripheral.readValueForCharacteristic(characteristic)
-        println("didDiscoverCharacteristicsForService \(service.characteristics)")
+        NSLog("didDiscoverCharacteristicsForService \(service.characteristics)")
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
@@ -184,23 +184,23 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error)
+        NSLog("locationManager:didFailWithError: %@", error)
     }
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
-        println("didEnterRegion \(region)")
+        NSLog("didEnterRegion \(region)")
     }
     
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
-        println("didExitRegion \(region)")
+        NSLog("didExitRegion \(region)")
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        println("didRangeBeacons \(beacons)")
+        NSLog("didRangeBeacons \(beacons)")
     }
     
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
-        println("didStartMonitoringForRegion \(region)")
+        NSLog("didStartMonitoringForRegion \(region)")
     }
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -209,7 +209,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
                 startDiscovering()
             }
         } else {
-            println("CLLocationManager authorization failed")
+            NSLog("CLLocationManager authorization failed")
             kill()
         }
     }
@@ -222,7 +222,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
-        println("Lost peer \(peerID)")
+        NSLog("Lost peer \(peerID)")
         for (i, peer) in enumerate(peers) {
             if peer.peerID == peerID {
                 peers.removeAtIndex(i)

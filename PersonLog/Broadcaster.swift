@@ -36,7 +36,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
             let service = CBMutableService(type: serviceUUID, primary: true)
             service.characteristics = [characteristic]
             manager.addService(service)
-            println("addService \(service)")
+            NSLog("addService \(service)")
             manager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
         }
     }
@@ -70,11 +70,11 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     }
     
     func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager!, error: NSError!) {
-        println("peripheralManagerDidStartAdvertising (Error: \(error))")
+        NSLog("peripheralManagerDidStartAdvertising (Error: \(error))")
     }
     
     func peripheralManager(peripheral: CBPeripheralManager!, willRestoreState dict: [NSObject : AnyObject]!) {
-        println("peripheralManager:willRestoreState")
+        NSLog("peripheralManager:willRestoreState")
     }
     
     // MARK: - MCNearbyServiceAdvertiserDelegate

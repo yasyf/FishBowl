@@ -31,7 +31,7 @@ class Database: NSObject {
         
         let objects = managedObjectContext.executeFetchRequest(request, error: &error)
         if let err = error {
-            println(err)
+            NSLog("managedObjectContext.save:error: %@", err)
             return nil
         } else {
             return objects as? [Interaction]

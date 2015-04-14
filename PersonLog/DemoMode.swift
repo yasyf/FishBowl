@@ -24,7 +24,7 @@ class DemoMode: NSObject {
         fetchRequest.includesPropertyValues = false
         let allInteractions = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)
         if let err = error {
-            println(err)
+            NSLog("%@", err)
         } else {
             if let interactions = allInteractions {
                 let count = interactions.count
@@ -39,7 +39,7 @@ class DemoMode: NSObject {
     }
     
     func setHash(hash: String) {
-        println("DemoMode: Set new hash of \(hash)")
+        NSLog("DemoMode: Set new hash of \(hash)")
         settings.defaults.setValue(hash, forKey: "freshness_hash")
     }
     
@@ -55,7 +55,7 @@ class DemoMode: NSObject {
                         self.setHash(newHash)
                         let count = self.deleteAll()
                         if count > 0 {
-                            println("\(count) Interactions Deleted!")
+                            NSLog("\(count) Interactions Deleted!")
                             MyAppDelege.sharedInstance.discoverer.triggerUpdate()
                         }
                         if self.settings.isLoggedIn() {
@@ -67,12 +67,12 @@ class DemoMode: NSObject {
                     self.setHash(newHash)
                 }
             }, failure: {(error, data) in
-                    println(error)
+                    NSLog("api.get:error: %@", error)
                 })
     }
     
     func startLooping() -> NSTimer {
-        println("Starting in DemoMode")
+        NSLog("Starting in DemoMode")
         return NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("checkHash"), userInfo: nil, repeats: true)
     }
 }

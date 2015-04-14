@@ -27,7 +27,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if let err = error {
-            println(err)
+            NSLog("loginButton:didCompleteWithResult:error: %@", err)
         }
         else {
             if result.isCancelled {
@@ -54,7 +54,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         graphRequest.startWithCompletionHandler({(_, result, error) in
             if let err = error {
-                println("Error: \(err)")
+                NSLog("Error: \(err)")
             } else {
                 let fieldMap = ["first_name": "f_name", "last_name": "l_name", "id": "fb_id"]
                 for (facebookField, settingField) in fieldMap {

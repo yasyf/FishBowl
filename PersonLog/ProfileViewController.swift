@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
                 self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
             })
             }, failure: {(error, data) in
-                println(error)
+                NSLog("api.post:error: %@", error)
             }
         )
         
@@ -74,7 +74,7 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
             let friendGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(interaction.person.fb_id)", parameters: nil)
             friendGraphRequest.startWithCompletionHandler({(_, result, error) in
                 if let err = error {
-                    println("Error: \(err)")
+                    NSLog("friendGraphRequest.startWithCompletionHandler:error: \(err)")
                 } else {
                     let friends = result.objectForKey("data") as! [NSMutableDictionary]
                     if friends.count > 0 {
