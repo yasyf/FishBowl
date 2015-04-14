@@ -144,11 +144,17 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     // MARK: - CBPeripheralDelegate
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
-        if let service = peripheral.services[0] as? CBService {
-            println("didDiscoverServices \(peripheral.services)")
-            peripheral.discoverCharacteristics([characteristicID], forService: service)
+        if let err = error {
+            println(err)
         }
-        
+        else {
+            if peripheral.services.count > 0 {
+                if let service = peripheral.services[0] as? CBService {
+                    println("didDiscoverService \(service)")
+                    peripheral.discoverCharacteristics([characteristicID], forService: service)
+                }
+            }
+        }
     }
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
