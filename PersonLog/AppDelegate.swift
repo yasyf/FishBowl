@@ -40,6 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.showLoginScreen()
         } else if !settings.isDoneSetup() {
             self.showSetupScreen()
+        } else {
+            let discoverer =  MyAppDelege.sharedInstance.discoverer
+            if discoverer.isDiscovering && discoverer.isLowPower {
+                discoverer.goHighPower()
+            }
         }
         
         application.setStatusBarHidden(false, withAnimation: .None)
@@ -112,6 +117,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        if settings.isLoggedIn() {
+            let discoverer =  MyAppDelege.sharedInstance.discoverer
+            if discoverer.isDiscovering {
+                discoverer.goLowPower()
+            }
+        }
         Localytics.tagEvent("AppTerminate")
         LocalNotification.scheduleDaily()
         self.saveContext()

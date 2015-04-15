@@ -24,6 +24,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     var peerCallbacks: [(Peer) -> Void] = []
     var otherUpdateCallbacks: [() -> Void] = []
     var isDiscovering: Bool = false
+    var isLowPower: Bool = false
     var locManager = CLLocationManager()
     
     init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {
@@ -35,7 +36,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         self.locManager.delegate = self
         self.locManager.pausesLocationUpdatesAutomatically = true
         self.locManager.activityType = CLActivityType.Fitness
-        self.locManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        self.locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         self.centralManager = CBCentralManager(delegate: self, queue: dispatch_queue_create("com.fishbowl.CentralManagerQueue", DISPATCH_QUEUE_SERIAL), options: [CBCentralManagerOptionRestoreIdentifierKey: "discovererCentralManager"])
     }
     
@@ -82,6 +83,20 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             self.isDiscovering = true
             self.locManager.requestAlwaysAuthorization()
         })
+    }
+    
+    func goLowPower() {
+        NSLog("Going low power!")
+        self.isLowPower = true
+        self.locManager.stopUpdatingLocation()
+        self.locManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    func goHighPower() {
+        NSLog("Going high power!")
+        self.isLowPower = false
+        self.locManager.stopMonitoringSignificantLocationChanges()
+        self.locManager.startUpdatingLocation()
     }
     
     func kill() {
