@@ -69,7 +69,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func startDiscovering() {
-        self.locManager.startUpdatingLocation()
+        goHighPower()
         startDiscoveringWithBrowser()
         self.startDiscoveringWithManager()
     }
