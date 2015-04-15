@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let notificationSettings = UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
+        application.registerForRemoteNotifications()
         
         application.applicationIconBadgeNumber = 0
         
