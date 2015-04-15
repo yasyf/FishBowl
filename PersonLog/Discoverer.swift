@@ -136,9 +136,10 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func centralManager(central: CBCentralManager!, willRestoreState dict: [NSObject : AnyObject]!) {
         NSLog("centralManager:willRestoreState")
-        let restoredPeripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as! [CBPeripheral]
-        for peripheral in restoredPeripherals {
-            connectPeripheral(central, peripheral: peripheral)
+        if let restoredPeripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
+            for peripheral in restoredPeripherals {
+                connectPeripheral(central, peripheral: peripheral)
+            }
         }
     }
     
