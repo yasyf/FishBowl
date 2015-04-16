@@ -13,7 +13,7 @@ func CLS_LOG_SWIFT( _ format: String = "", _ args:[CVarArgType] = [], file: Stri
 {
     #if DEBUG
         CLSNSLogv("\(file.lastPathComponent.stringByDeletingPathExtension).\(function) line \(line) $ \(format)", getVaList(args))
-        #else
+    #else
         CLSLogv("\(file.lastPathComponent.stringByDeletingPathExtension).\(function) line \(line) $ \(format)", getVaList(args))
     #endif
     

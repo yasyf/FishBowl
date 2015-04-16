@@ -254,7 +254,6 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         if let location = locations.last as? CLLocation {
             self.peer.setLocation(location)
             Localytics.setLocation(location.coordinate)
-            println(location.horizontalAccuracy)
             if powerMode == .High && location.horizontalAccuracy < 25 {
                 goMediumPower()
                 self.highPowerTimer = NSTimer.scheduledTimerWithTimeInterval(600, target: self, selector: Selector("goHighPower"), userInfo: nil, repeats: false)
