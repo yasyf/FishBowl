@@ -207,11 +207,13 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         }
     }
     
-    
+
     // MARK: - CLLocationManagerDelegate
-    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
-        self.peer.location = newLocation
-        Localytics.setLocation(newLocation.coordinate)
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        if let location = locations.last as? CLLocation {
+            self.peer.setLocation(location)
+            Localytics.setLocation(location.coordinate)
+        }
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {

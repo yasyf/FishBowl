@@ -26,8 +26,9 @@ class Peer: NSObject {
     var peerIDCallbacks: [(MCPeerID) -> Void] = []
     var beaconInRangeCallbacks: [(MCPeerID) -> Void] = []
     var dataCallbacks: [(Dictionary<String, AnyObject>) -> Void] = []
+    var locationCallbacks: [(CLLocation) -> Void] = []
     let managedObjectContext = MyAppDelege.sharedInstance.managedObjectContext!
-    var location: CLLocation?
+    var _location: CLLocation?
     
     override init(){
         super.init()
@@ -36,6 +37,22 @@ class Peer: NSObject {
     
     init(peerID: MCPeerID) {
         self.peerID = peerID
+    }
+    
+    func onLocation(completion: ((CLLocation) -> Void)) {
+        if let loc = _location {
+            completion(loc)
+        } else {
+            locationCallbacks.append(completion)
+        }
+    }
+    
+    func setLocation(location: CLLocation) {
+        self._location = location
+        for callback in locationCallbacks {
+            callback(location)
+        }
+        locationCallbacks = []
     }
 
     func onData(completion: (Dictionary<String, AnyObject> -> Void)) {
@@ -190,23 +207,20 @@ class Peer: NSObject {
         interaction.owner = person
         interaction.person = otherPerson
         interaction.date = NSDate()
-
-        if let lat = location?.coordinate.latitude {
-            if let lon = location?.coordinate.longitude {
-                interaction.lat = lat
-                interaction.lon = lon
+        
+        self.onLocation({(location) in
+            interaction.lat = location.coordinate.latitude
+            interaction.lon = location.coordinate.longitude
+            
+            self.managedObjectContext.save(&error)
+            
+            if let err = error {
+                CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
+                callback?(nil)
+            } else {
+                callback?(interaction)
             }
-        }
-        
-        self.managedObjectContext.save(&error)
-        
-        if let err = error {
-            CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
-            callback?(nil)
-        } else {
-            callback?(interaction)
-        }
-        
+        })
     }
     
     func onPerson(callback: (Person) -> Void) {
