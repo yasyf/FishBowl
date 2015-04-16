@@ -18,12 +18,14 @@ class MyAppDelege {
     let characteristicID = CBUUID(string: "C7F7729A-F744-49E7-AE94-649D14FE2327")
     
     let managedObjectContext: NSManagedObjectContext?
+    let window: UIWindow?
     
     init() {
         let appDelegate = UIApplication.sharedApplication().delegate!
         let originalClass:AnyClass = object_setClass(appDelegate, AppDelegate.self)
         let myAppDelegate = appDelegate as! AppDelegate
         managedObjectContext = myAppDelegate.managedObjectContext
+        window = myAppDelegate.window
         object_setClass(appDelegate, originalClass)
     }
     

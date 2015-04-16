@@ -42,7 +42,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidAppear(false)
         
         Analytics.tagScreen("Timeline")
-        
+
         if settings.isLoggedIn() && broadcaster == nil {
             broadcaster = appDelegate.broadcaster
             discoverer = appDelegate.discoverer
@@ -63,7 +63,12 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             broadcaster!.broadcast()
             discoverer!.discover()
         }
+        
         updateInteractions()
+        
+        if discoverer?.lastState == .PoweredOff {
+            LocalNotification.presentGeneric("Your phone relies on low-energy Bluetooth to find other phones. Please enable Bluetooth to prevent missing people!", title: "Bluetooth Is Disabled!", viewController: self)
+        }
     }
     
     func updateInteractions() {

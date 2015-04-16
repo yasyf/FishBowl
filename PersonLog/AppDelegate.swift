@@ -123,6 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 discoverer.goLowPower()
             }
         }
+        LocalNotification.sendGeneric("Watch out! Quitting FishBowl will prevent you from discovering other users!")
         Localytics.tagEvent("AppTerminate")
         LocalNotification.scheduleDaily()
         self.saveContext()

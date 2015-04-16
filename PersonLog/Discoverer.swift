@@ -26,6 +26,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     var isDiscovering: Bool = false
     var isLowPower: Bool = false
     var locManager = CLLocationManager()
+    var lastState = CBCentralManagerState.Unknown
     
     init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {
         self.peer = peer
@@ -129,7 +130,8 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     // MARK: - CBCentralManagerDelegate
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
-        if central.state == CBCentralManagerState.PoweredOn && isDiscovering {
+        lastState = central.state
+        if lastState == .PoweredOn && isDiscovering {
             NSLog("centralManagerDidUpdateState PoweredOn")
             startDiscoveringWithManager()
         }

@@ -7,9 +7,28 @@
 //
 
 import Foundation
+import Localytics
 
 class LocalNotification {
     static let database = Database()
+    
+    class func presentGeneric(message: String, title: String, viewController: UIViewController) {
+        var alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        viewController.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    class func sendGeneric(body: String) {
+        var notification = UILocalNotification()
+        notification.alertBody = body
+        notification.userInfo = ["type": "generic"]
+        notification.fireDate = NSDate(timeIntervalSinceNow: 1.0)
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        Localytics.tagEvent("ShowLocalNotification", attributes: ["reason": "generic"])
+        
+    }
     
     class func getDailyNotification() -> UILocalNotification? {
         let notifications = UIApplication.sharedApplication().scheduledLocalNotifications as! [UILocalNotification]
