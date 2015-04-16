@@ -36,7 +36,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
             let service = CBMutableService(type: serviceUUID, primary: true)
             service.characteristics = [characteristic]
             manager.addService(service)
-            NSLog("addService \(service)")
+            CLS_LOG_SWIFT("addService \(service)")
             manager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [serviceUUID]])
         }
     }
@@ -70,17 +70,17 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     }
     
     func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager!, error: NSError!) {
-        NSLog("peripheralManagerDidStartAdvertising (Error: \(error))")
+        CLS_LOG_SWIFT("peripheralManagerDidStartAdvertising (Error: \(error))")
     }
     
     func peripheralManager(peripheral: CBPeripheralManager!, willRestoreState dict: [NSObject : AnyObject]!) {
-        NSLog("peripheralManager:willRestoreState")
+        CLS_LOG_SWIFT("peripheralManager:willRestoreState")
     }
     
     // MARK: - MCNearbyServiceAdvertiserDelegate
     
     func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
-        NSLog("Ignoring invitation from \(peerID)")
+        CLS_LOG_SWIFT("Ignoring invitation from \(peerID)")
         invitationHandler(false, nil)
     }
     

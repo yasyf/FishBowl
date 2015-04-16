@@ -32,6 +32,7 @@
 		0C9CFFE41AB90C9400ECAF11 /* Discoverer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */; };
 		0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CFFE51AB90D2600ECAF11 /* Peer.swift */; };
 		0CABC8631AD3920D00037399 /* DemoMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABC8621AD3920D00037399 /* DemoMode.swift */; };
+		0CB791401ADF9223007BCE9B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB7913F1ADF9223007BCE9B /* Logger.swift */; };
 		0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBABF821ACF3CB300D7F0F4 /* Database.swift */; };
 		0CBFBFB31AD915E000B2713A /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBFBFB21AD915E000B2713A /* LocalNotification.swift */; };
 		0CC7A9311ADE0CB900C8A72C /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0CC7A9301ADE0CB900C8A72C /* TwitterKitResources.bundle */; };
@@ -86,6 +87,7 @@
 		0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discoverer.swift; sourceTree = "<group>"; };
 		0C9CFFE51AB90D2600ECAF11 /* Peer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
 		0CABC8621AD3920D00037399 /* DemoMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMode.swift; sourceTree = "<group>"; };
+		0CB7913F1ADF9223007BCE9B /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		0CBABF821ACF3CB300D7F0F4 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		0CBFBFB21AD915E000B2713A /* LocalNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
 		0CC7A9301ADE0CB900C8A72C /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = Frameworks/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				0C88E5B11AC4A6C100671E49 /* API.swift */,
 				0C9CFFDD1AB8FA6600ECAF11 /* Broadcaster.swift */,
 				0C9CFFE31AB90C9400ECAF11 /* Discoverer.swift */,
+				0CB7913F1ADF9223007BCE9B /* Logger.swift */,
 				0C9CFFDF1AB8FDFF00ECAF11 /* Settings.swift */,
 				0CBABF821ACF3CB300D7F0F4 /* Database.swift */,
 				0CABC8621AD3920D00037399 /* DemoMode.swift */,
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C04FC411ACE9A730059336D /* Person.swift in Sources */,
+				0CB791401ADF9223007BCE9B /* Logger.swift in Sources */,
 				0CBABF831ACF3CB300D7F0F4 /* Database.swift in Sources */,
 				0C9CFFE61AB90D2600ECAF11 /* Peer.swift in Sources */,
 				0CABC8631AD3920D00037399 /* DemoMode.swift in Sources */,
@@ -570,9 +574,9 @@
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
 				PRODUCT_NAME = FishBowl;
-				PROVISIONING_PROFILE = "0efd6703-5f22-4837-8dfc-ccbf547e582c";
+				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PersonLog/Bridging-Header.h";
 			};
@@ -598,7 +602,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = FishBowl;
-				PROVISIONING_PROFILE = "0efd6703-5f22-4837-8dfc-ccbf547e582c";
+				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PersonLog/Bridging-Header.h";
 			};

@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 import CoreBluetooth
 
-private let _myAppDelegate = MyAppDelege()
-
 class MyAppDelege {
+    private static let _myAppDelegate = MyAppDelege()
+    
     let serviceType = "personlog-disc"
     let beaconID = NSUUID(UUIDString: "F8F1A882-14FF-4F5D-A4A2-0308AB0644D8")!
     let characteristicID = CBUUID(string: "C7F7729A-F744-49E7-AE94-649D14FE2327")

@@ -9,6 +9,7 @@
 import Foundation
 
 class Settings {
+    let api = API()
     let defaults = NSUserDefaults.standardUserDefaults()
     let fields = ["f_name", "l_name", "phone", "photo_url", "fb_id", "twitter", "snapchat"]
     let lineColor = UIColor(red: 231.0/255.0, green: 145.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
@@ -88,13 +89,13 @@ class Settings {
     }
     func getLocalData() -> [String:String] {
         var data = [String:String]()
-        for key in settings.fields {
-            data[key] = settings._string(key)
+        for key in fields {
+            data[key] = _string(key)
         }
         return data
     }
     func updateData(success: (Dictionary<String, AnyObject>) -> Void, failure: (NSError, Dictionary<String, AnyObject>?) -> Void) {
-        if let uuid = settings.UUID() {
+        if let uuid = UUID() {
             var data = getLocalData()
             data["uuid"] = UUID()
             api.patch("/register", parameters: data, success: success, failure: failure)

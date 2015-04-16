@@ -13,12 +13,12 @@ import CoreLocation
 import FormatterKit
 import Localytics
 
-let settings = Settings()
-let api = API()
-let database = Database()
-let ordinalFormatter = TTTOrdinalNumberFormatter()
-
 class Peer: NSObject {
+    let settings = Settings()
+    let api = API()
+    let database = Database()
+    let ordinalFormatter = TTTOrdinalNumberFormatter()
+    
     var peerID: MCPeerID?
     var isFetchingPeerID = false
     var isFetchingData = false
@@ -60,7 +60,7 @@ class Peer: NSObject {
         var uuid = settings.UUID()
         if uuid == nil {
             peerIDCallbacks.append({(peerID: MCPeerID) in
-                settings.setUUID(peerID.displayName)
+                self.settings.setUUID(peerID.displayName)
             })
             fetchNewID()
             return nil
@@ -77,7 +77,7 @@ class Peer: NSObject {
         }
         onPeerID({(peerID: MCPeerID) in
             let uuid = peerID.displayName
-            api.get("/\(uuid)", parameters: nil, success: {(response: Dictionary) in
+            self.api.get("/\(uuid)", parameters: nil, success: {(response: Dictionary) in
                     self.data = response["user"] as? Dictionary
                     for completion in self.dataCallbacks {
                         completion(self.data!)
@@ -86,9 +86,9 @@ class Peer: NSObject {
                 }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
                     if data != nil {
                         let message = data!["message"] as! String
-                        NSLog("api.get:error: \(message)")
+                        CLS_LOG_SWIFT("api.get:error: \(message)")
                     } else {
-                        NSLog("api.get:error: \(error)")
+                        CLS_LOG_SWIFT("api.get:error: \(error)")
                     }
                 })
         })
@@ -103,7 +103,7 @@ class Peer: NSObject {
         let data = settings.getLocalData()
         api.post("/register", parameters: data, success: {(response: Dictionary) in
                 let uuid = response["uuid"] as! String
-                NSLog("Registered new user with uuid \(uuid)")
+                CLS_LOG_SWIFT("Registered new user with uuid \(uuid)")
                 self.peerID = MCPeerID(displayName: uuid)
                 for completion in self.peerIDCallbacks {
                     completion(self.peerID!)
@@ -112,9 +112,9 @@ class Peer: NSObject {
             }, failure: {(error: NSError, data: Dictionary<String, AnyObject>?) in
                 if data != nil {
                     let message = data!["message"] as! String
-                    NSLog("api.post:error: \(message)")
+                    CLS_LOG_SWIFT("api.post:error: \(message)")
                 } else {
-                    NSLog("api.post:error: \(error)")
+                    CLS_LOG_SWIFT("api.post:error: \(error)")
                 }
 
         })
@@ -158,7 +158,7 @@ class Peer: NSObject {
 
         managedObjectContext.save(&error)
         if let err = error {
-            NSLog("managedObjectContext.save:error: %@", err)
+            CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
         }
         return person
     }
@@ -171,14 +171,14 @@ class Peer: NSObject {
         if let lastInteraction = otherPerson.visited.lastObject as? Interaction {
             let hourAgo = date.dateByAddingTimeInterval(-3600)
             if lastInteraction.date.compare(hourAgo) == NSComparisonResult.OrderedDescending  {
-                NSLog("Skipping interaction due to recent interaction")
+                CLS_LOG_SWIFT("Skipping interaction due to recent interaction")
                 callback?(nil)
                 return
             }
         }
         
         if person.fb_id == otherPerson.fb_id {
-            NSLog("Skipping interaction due to self interaction")
+            CLS_LOG_SWIFT("Skipping interaction due to self interaction")
             callback?(nil)
             return
         }
@@ -201,7 +201,7 @@ class Peer: NSObject {
         self.managedObjectContext.save(&error)
         
         if let err = error {
-            NSLog("managedObjectContext.save:error: %@", err)
+            CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
             callback?(nil)
         } else {
             callback?(interaction)
@@ -236,17 +236,17 @@ class Peer: NSObject {
                 }
             }
             let predicate = NSPredicate(format: "(person.fb_id = %@)", person.fb_id)
-            if let count = database.allInteractionsWithPredicate(false, predicate: predicate)?.count {
+            if let count = self.database.allInteractionsWithPredicate(false, predicate: predicate)?.count {
                 Localytics.tagEvent("Interaction", attributes: ["count": count])
                 if count >= minCountForNotification {
                     person.last_notification = NSDate()
                     var error: NSError?
                     self.managedObjectContext.save(&error)
                     if let err = error {
-                        NSLog("managedObjectContext.save:error: %@", err)
+                        CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
                     }
                     
-                    let ordinal = ordinalFormatter.stringFromNumber(count)!
+                    let ordinal = self.ordinalFormatter.stringFromNumber(count)!
                     var notification = UILocalNotification()
                     let identifier = interaction.objectID.URIRepresentation().absoluteString!
                     notification.userInfo = ["identifier": identifier, "type": "frequency"]
