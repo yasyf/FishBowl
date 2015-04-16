@@ -257,7 +257,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             println(location.horizontalAccuracy)
             if powerMode == .High && location.horizontalAccuracy < 25 {
                 goMediumPower()
-                self.highPowerTimer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: Selector("goHighPower"), userInfo: nil, repeats: false)
+                self.highPowerTimer = NSTimer.scheduledTimerWithTimeInterval(600, target: self, selector: Selector("goHighPower"), userInfo: nil, repeats: false)
             } else if powerMode == .Medium {
                 stopLocationServices()
                 self.mediumPowerTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("goMediumPower"), userInfo: nil, repeats: false)

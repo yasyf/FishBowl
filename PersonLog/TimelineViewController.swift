@@ -26,6 +26,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     let appDelegate = MyAppDelege.sharedInstance
     var dateFormatter = NSDateFormatter()
     let settings = Settings()
+    var timer: NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let footer = UIView()
         footer.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: 25))
         table.tableFooterView = footer
-        self.updateInteractions()
+        
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: Selector("updateInteractions"), userInfo: nil, repeats: true)
         
         dateFormatter.dateFormat = "hh:mm a"
     }
@@ -63,7 +65,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             broadcaster!.broadcast()
             discoverer!.discover()
         }
-        
+
         updateInteractions()
         
         if discoverer?.lastState == .PoweredOff {
