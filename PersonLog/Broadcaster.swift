@@ -19,6 +19,8 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     var advertiser: MCNearbyServiceAdvertiser?
     var peripheralManager: CBPeripheralManager?
     var isBroadcasting: Bool = false
+    var isAdvertising: Bool = false
+    var peripheralManagerState = CBPeripheralManagerState.Unknown
     
     init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {
         self.peer = peer
@@ -30,6 +32,7 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     }
     
     func startAdvertising(deviceID: String) {
+        self.isAdvertising = true
         if let manager = self.peripheralManager {
             let serviceUUID = CBUUID(NSUUID: beaconID)
             let characteristic = CBMutableCharacteristic(type: characteristicID, properties: CBCharacteristicProperties.Read, value: deviceID.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), permissions: CBAttributePermissions.Readable)
@@ -48,13 +51,16 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
                 self.advertiser!.delegate = self
             }
             self.advertiser!.startAdvertisingPeer()
-            self.startAdvertising(peerID.displayName)
             self.isBroadcasting = true
+            if self.peripheralManagerState == .PoweredOn {
+                self.startAdvertising(peerID.displayName)
+            }
         })
     }
     
     func kill() {
         isBroadcasting = false
+        isAdvertising = false
         advertiser?.stopAdvertisingPeer()
         peripheralManager!.stopAdvertising()
     }
@@ -62,7 +68,8 @@ class Broadcaster: NSObject, MCNearbyServiceAdvertiserDelegate, CBPeripheralMana
     // MARK: - CBPeripheralManagerDelegate
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
-        if peripheral.state == CBPeripheralManagerState.PoweredOn && isBroadcasting {
+        peripheralManagerState = peripheral.state
+        if peripheralManagerState == .PoweredOn && isBroadcasting && !isAdvertising {
             self.peer.onPeerID({(peerID: MCPeerID) in
                 self.startAdvertising(peerID.displayName)
             })

@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.showSetupScreen()
         } else {
             let discoverer =  MyAppDelege.sharedInstance.discoverer
-            if discoverer.isDiscovering && discoverer.isLowPower {
+            if discoverer.isDiscovering && discoverer.powerMode == .Low {
                 discoverer.goHighPower()
             }
         }

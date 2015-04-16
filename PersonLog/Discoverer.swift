@@ -12,6 +12,12 @@ import CoreLocation
 import CoreBluetooth
 import Localytics
 
+enum PowerMode {
+    case Low
+    case Medium
+    case High
+}
+
 class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     let serviceType: String
     let beaconID: NSUUID
@@ -24,9 +30,13 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     var peerCallbacks: [(Peer) -> Void] = []
     var otherUpdateCallbacks: [() -> Void] = []
     var isDiscovering: Bool = false
-    var isLowPower: Bool = false
+    var isLocating: Bool = false
+    var powerMode: PowerMode = .High
     var locManager = CLLocationManager()
     var lastState = CBCentralManagerState.Unknown
+    var highPowerTimer: NSTimer?
+    var mediumPowerTimer: NSTimer?
+    var locManagerAuthorizationStatus = CLAuthorizationStatus.NotDetermined
     
     init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {
         self.peer = peer
@@ -70,6 +80,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func startDiscovering() {
+        self.isLocating = true
         goHighPower()
         startDiscoveringWithBrowser()
         self.startDiscoveringWithManager()
@@ -82,29 +93,58 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
                 self.browser!.delegate = self
             }
             self.isDiscovering = true
-            self.locManager.requestAlwaysAuthorization()
+            if self.locManagerAuthorizationStatus == .AuthorizedAlways {
+                self.startDiscovering()
+            } else {
+                self.locManager.requestAlwaysAuthorization()
+            }
         })
     }
     
-    func goLowPower() {
-        CLS_LOG_SWIFT("Going low power!")
-        self.isLowPower = true
+    func stopLocationServices() {
+        CLS_LOG_SWIFT("Stopping location services!")
         self.locManager.stopUpdatingLocation()
+        self.locManager.stopMonitoringSignificantLocationChanges()
+    }
+    
+    func goLowPower() {
+        CLS_LOG_SWIFT("Going low power for location services!")
+        self.powerMode = .Low
+        stopLocationServices()
         self.locManager.startMonitoringSignificantLocationChanges()
     }
     
-    func goHighPower() {
-        CLS_LOG_SWIFT("Going high power!")
-        self.isLowPower = false
-        self.locManager.stopMonitoringSignificantLocationChanges()
+    func goMediumPower() {
+        CLS_LOG_SWIFT("Going medium power for location services!")
+        self.powerMode = .Medium
+        killTimer(mediumPowerTimer)
+        stopLocationServices()
+        self.locManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         self.locManager.startUpdatingLocation()
+    }
+    
+    func goHighPower() {
+        CLS_LOG_SWIFT("Going high power for location services!")
+        self.powerMode = .High
+        killTimer(mediumPowerTimer)
+        killTimer(highPowerTimer)
+        stopLocationServices()
+        self.locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locManager.startUpdatingLocation()
+    }
+    
+    func killTimer(timerOptional: NSTimer?) {
+        if let timer = timerOptional {
+            timer.invalidate()
+        }
     }
     
     func kill() {
         isDiscovering = false
+        isLocating = false
         browser?.stopBrowsingForPeers()
         centralManager?.stopScan()
-        self.locManager.stopUpdatingLocation()
+        stopLocationServices()
     }
     
     func didFindPeer(peer: Peer) {
@@ -209,10 +249,19 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
 
     // MARK: - CLLocationManagerDelegate
+    
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.last as? CLLocation {
             self.peer.setLocation(location)
             Localytics.setLocation(location.coordinate)
+            println(location.horizontalAccuracy)
+            if powerMode == .High && location.horizontalAccuracy < 25 {
+                goMediumPower()
+                self.highPowerTimer = NSTimer.scheduledTimerWithTimeInterval(1800, target: self, selector: Selector("goHighPower"), userInfo: nil, repeats: false)
+            } else if powerMode == .Medium {
+                stopLocationServices()
+                self.mediumPowerTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("goMediumPower"), userInfo: nil, repeats: false)
+            }
         }
     }
     
@@ -237,8 +286,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.AuthorizedAlways {
-            if isDiscovering {
+        locManagerAuthorizationStatus = status
+        if locManagerAuthorizationStatus == .AuthorizedAlways {
+            if isDiscovering && !isLocating {
                 startDiscovering()
             }
         } else {
