@@ -131,9 +131,14 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         lastState = central.state
-        if lastState == .PoweredOn && isDiscovering {
-            CLS_LOG_SWIFT("centralManagerDidUpdateState PoweredOn")
-            startDiscoveringWithManager()
+        if lastState == .PoweredOn {
+            Localytics.tagEvent("BluetoothStatus", attributes: ["status": "enabled"])
+            if isDiscovering {
+                CLS_LOG_SWIFT("centralManagerDidUpdateState PoweredOn")
+                startDiscoveringWithManager()
+            }
+        } else if lastState == .PoweredOff {
+            Localytics.tagEvent("BluetoothStatus", attributes: ["status": "disabled"])
         }
     }
     
