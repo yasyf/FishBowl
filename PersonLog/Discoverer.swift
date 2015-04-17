@@ -279,7 +279,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.last as? CLLocation {
-            if location.horizontalAccuracy <= 10 {
+            if location.horizontalAccuracy <= 25 {
                 self.peer.setLocation(location)
                 Localytics.setLocation(location.coordinate)
                 let savedCallbacks = newLocationCallbacks

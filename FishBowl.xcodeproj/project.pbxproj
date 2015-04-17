@@ -70,6 +70,7 @@
 		0C0764721AB8F81900DD88A8 /* PersonLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLogTests.swift; sourceTree = "<group>"; };
 		0C0782C61AD505A200158233 /* MyAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
 		0C0EADC41AD492F000829F22 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0C4AFB291AE0C65D00AAB4B0 /* PersonLog 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PersonLog 2.xcdatamodel"; sourceTree = "<group>"; };
 		0C5488E71AD284580055E36E /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bariol_Regular.otf; path = "Supporting FIles/Bariol_Regular.otf"; sourceTree = SOURCE_ROOT; };
 		0C5488E81AD284580055E36E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting FIles/Info.plist"; sourceTree = SOURCE_ROOT; };
 		0C5488EB1AD284660055E36E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Frameworks/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -676,9 +677,10 @@
 		0C07645B1AB8F81900DD88A8 /* PersonLog.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0C4AFB291AE0C65D00AAB4B0 /* PersonLog 2.xcdatamodel */,
 				0C07645C1AB8F81900DD88A8 /* PersonLog.xcdatamodel */,
 			);
-			currentVersion = 0C07645C1AB8F81900DD88A8 /* PersonLog.xcdatamodel */;
+			currentVersion = 0C4AFB291AE0C65D00AAB4B0 /* PersonLog 2.xcdatamodel */;
 			path = PersonLog.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

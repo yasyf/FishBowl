@@ -2,8 +2,8 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Interaction" representedClassName="FishBowl.Interaction" syncable="YES">
         <attribute name="date" attributeType="Date" syncable="YES"/>
-        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lat" attributeType="Double" syncable="YES"/>
+        <attribute name="lon" attributeType="Double" syncable="YES"/>
         <relationship name="owner" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="interactions" inverseEntity="Person" syncable="YES"/>
         <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="visited" inverseEntity="Person" syncable="YES"/>
     </entity>
