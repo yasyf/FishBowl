@@ -28,14 +28,14 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     var peers: [Peer] = []
     var peripherals: [CBPeripheral] = []
     var peerCallbacks: [(Peer) -> Void] = []
+    var newLocationCallbacks: [() -> Void] = []
     var otherUpdateCallbacks: [() -> Void] = []
     var isDiscovering: Bool = false
     var isLocating: Bool = false
     var powerMode: PowerMode = .High
     var locManager = CLLocationManager()
     var lastState = CBCentralManagerState.Unknown
-    var highPowerTimer: NSTimer?
-    var mediumPowerTimer: NSTimer?
+    var timer: NSTimer?
     var locManagerAuthorizationStatus = CLAuthorizationStatus.NotDetermined
     
     init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {
@@ -47,13 +47,17 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         self.locManager.delegate = self
         self.locManager.pausesLocationUpdatesAutomatically = true
         self.locManager.activityType = CLActivityType.Fitness
-        self.locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locManager.desiredAccuracy = kCLLocationAccuracyBest
         self.centralManager = CBCentralManager(delegate: self, queue: dispatch_queue_create("com.fishbowl.CentralManagerQueue", DISPATCH_QUEUE_SERIAL), options: [CBCentralManagerOptionRestoreIdentifierKey: "discovererCentralManager"])
     }
     
     func onPeer(callback: (Peer) -> Void) {
         peerCallbacks.append(callback)
         peers.map(callback)
+    }
+
+    func onNewLocation(callback: () -> Void) {
+        newLocationCallbacks.append(callback)
     }
     
     func onOtherUpdate(callback: () -> Void) {
@@ -103,39 +107,38 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func stopLocationServices() {
         CLS_LOG_SWIFT("Stopping location services!")
+        self.killTimer()
         self.locManager.stopUpdatingLocation()
         self.locManager.stopMonitoringSignificantLocationChanges()
     }
     
     func goLowPower() {
-        CLS_LOG_SWIFT("Going low power for location services!")
         self.powerMode = .Low
         stopLocationServices()
+        CLS_LOG_SWIFT("Going low power for location services!")
         self.locManager.startMonitoringSignificantLocationChanges()
     }
     
     func goMediumPower() {
-        CLS_LOG_SWIFT("Going medium power for location services!")
         self.powerMode = .Medium
-        killTimer(mediumPowerTimer)
         stopLocationServices()
+        CLS_LOG_SWIFT("Going medium power for location services!")
         self.locManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         self.locManager.startUpdatingLocation()
     }
     
     func goHighPower() {
-        CLS_LOG_SWIFT("Going high power for location services!")
         self.powerMode = .High
-        killTimer(mediumPowerTimer)
-        killTimer(highPowerTimer)
         stopLocationServices()
-        self.locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        CLS_LOG_SWIFT("Going high power for location services!")
+        self.locManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locManager.startUpdatingLocation()
     }
     
-    func killTimer(timerOptional: NSTimer?) {
-        if let timer = timerOptional {
+    func killTimer() {
+        if let timer = self.timer {
             timer.invalidate()
+            self.timer = nil
         }
     }
     
@@ -155,9 +158,12 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             CLS_LOG_SWIFT("%@", [data])
         })
         peers.append(peer)
-        for callback in peerCallbacks {
-            callback(peer)
-        }
+        newLocationCallbacks.append({
+            for callback in self.peerCallbacks {
+                callback(peer)
+            }
+        })
+        goHighPower()
     }
     
     func connectPeripheral(central: CBCentralManager, peripheral: CBPeripheral) {
@@ -252,14 +258,18 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.last as? CLLocation {
-            self.peer.setLocation(location)
-            Localytics.setLocation(location.coordinate)
-            if powerMode == .High && location.horizontalAccuracy < 25 {
-                goMediumPower()
-                self.highPowerTimer = NSTimer.scheduledTimerWithTimeInterval(600, target: self, selector: Selector("goHighPower"), userInfo: nil, repeats: false)
-            } else if powerMode == .Medium {
+            if location.horizontalAccuracy <= 10 {
+                self.peer.setLocation(location)
+                Localytics.setLocation(location.coordinate)
+                let savedCallbacks = newLocationCallbacks
+                newLocationCallbacks.removeAll(keepCapacity: false)
+                for callback in savedCallbacks {
+                    callback()
+                }
+            }
+            if powerMode != .Low {
                 stopLocationServices()
-                self.mediumPowerTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("goMediumPower"), userInfo: nil, repeats: false)
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(600, target: self, selector: Selector("goMediumPower"), userInfo: nil, repeats: false)
             }
         }
     }
