@@ -18,6 +18,26 @@ enum PowerMode {
     case High
 }
 
+class PeerTask: NSObject {
+    let callback: () -> Void
+    var completed = false
+    
+    init(callback: () -> Void) {
+        self.callback = callback
+        super.init()
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(60 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), self.run)
+    }
+    
+    func run() {
+        objc_sync_enter(completed)
+        if !completed {
+            completed = true
+            callback()
+        }
+        objc_sync_exit(completed)
+    }
+}
+
 class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     let serviceType: String
     let beaconID: NSUUID
@@ -158,11 +178,12 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             CLS_LOG_SWIFT("%@", [data])
         })
         peers.append(peer)
-        newLocationCallbacks.append({
+        let peerTask = PeerTask(callback: {
             for callback in self.peerCallbacks {
                 callback(peer)
             }
         })
+        newLocationCallbacks.append(peerTask.run)
         goHighPower()
     }
     
