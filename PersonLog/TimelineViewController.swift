@@ -56,6 +56,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                     if let inter = interaction {
                         self.updateInteractions()
                         otherPeer.processNewInteraction(inter, minCountForNotification: 2)
+                        LocalNotification.scheduleDaily()
                     }
                 })
             })
