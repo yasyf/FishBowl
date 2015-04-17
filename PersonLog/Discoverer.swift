@@ -289,7 +289,7 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
                 }
             }
             if powerMode != .Low {
-                stopLocationServices()
+                goLowPower()
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(600, target: self, selector: Selector("goMediumPower"), userInfo: nil, repeats: false)
             }
         }
