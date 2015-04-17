@@ -55,7 +55,8 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     var powerMode: PowerMode = .High
     var locManager = CLLocationManager()
     var lastState = CBCentralManagerState.Unknown
-    var timer: NSTimer?
+    var processLocationTimer: NSTimer?
+    var medPowerTimer: NSTimer?
     var locManagerAuthorizationStatus = CLAuthorizationStatus.NotDetermined
     
     init(peer: Peer, serviceType: String, beaconID: NSUUID, characteristicID: CBUUID) {
@@ -127,7 +128,8 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func stopLocationServices() {
         CLS_LOG_SWIFT("Stopping location services!")
-        self.killTimer()
+        self.killTimer(processLocationTimer)
+        self.killTimer(medPowerTimer)
         self.locManager.stopUpdatingLocation()
         self.locManager.stopMonitoringSignificantLocationChanges()
     }
@@ -155,10 +157,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         self.locManager.startUpdatingLocation()
     }
     
-    func killTimer() {
-        if let timer = self.timer {
+    func killTimer(timerOptional: NSTimer?) {
+        if let timer = timerOptional {
             timer.invalidate()
-            self.timer = nil
         }
     }
     
@@ -184,7 +185,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             }
         })
         newLocationCallbacks.append(peerTask.run)
-        goHighPower()
+        if powerMode != .High {
+            goHighPower()
+        }
     }
     
     func connectPeripheral(central: CBCentralManager, peripheral: CBPeripheral) {
@@ -277,20 +280,43 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
 
     // MARK: - CLLocationManagerDelegate
     
+    func goLowWithSchedule() {
+        goLowPower()
+        medPowerTimer = NSTimer.scheduledTimerWithTimeInterval(600, target: self, selector: Selector("goMediumPower"), userInfo: nil, repeats: false)
+    }
+    
+    func processLocation(location: CLLocation) {
+        self.peer.setLocation(location)
+        Localytics.setLocation(location.coordinate)
+        let savedCallbacks = newLocationCallbacks
+        newLocationCallbacks.removeAll(keepCapacity: false)
+        for callback in savedCallbacks {
+            callback()
+        }
+        goLowWithSchedule()
+    }
+    
+    func processLocationFromTimer(timer: NSTimer) {
+        let location = timer.userInfo as! CLLocation
+        processLocation(location)
+    }
+    
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.last as? CLLocation {
-            if location.horizontalAccuracy <= 25 {
-                self.peer.setLocation(location)
-                Localytics.setLocation(location.coordinate)
-                let savedCallbacks = newLocationCallbacks
-                newLocationCallbacks.removeAll(keepCapacity: false)
-                for callback in savedCallbacks {
-                    callback()
+            println(location.horizontalAccuracy)
+            if location.horizontalAccuracy > 0 && location.horizontalAccuracy <= 50 {
+                if location.horizontalAccuracy <= 25 {
+                    processLocationTimer?.invalidate()
+                    processLocation(location)
+                } else {
+                    if !(processLocationTimer?.valid == true) {
+                        processLocationTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: Selector("processLocationFromTimer:"), userInfo: location, repeats: false)
+                    }
                 }
-            }
-            if powerMode != .Low {
-                goLowPower()
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(600, target: self, selector: Selector("goMediumPower"), userInfo: nil, repeats: false)
+            } else {
+                if powerMode == .Medium {
+                    goLowWithSchedule()
+                }
             }
         }
     }
