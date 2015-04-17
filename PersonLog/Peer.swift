@@ -173,7 +173,9 @@ class Peer: NSObject {
             }
         }
 
-        managedObjectContext.save(&error)
+        dispatch_sync(dispatch_get_main_queue(), {
+            self.managedObjectContext.save(&error)
+        })
         if let err = error {
             CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
         }
@@ -212,7 +214,9 @@ class Peer: NSObject {
             interaction.lat = location.coordinate.latitude
             interaction.lon = location.coordinate.longitude
             
-            self.managedObjectContext.save(&error)
+            dispatch_sync(dispatch_get_main_queue(), {
+               self.managedObjectContext.save(&error)
+            })
             
             if let err = error {
                 CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
@@ -255,7 +259,9 @@ class Peer: NSObject {
                 if count >= minCountForNotification {
                     person.last_notification = NSDate()
                     var error: NSError?
-                    self.managedObjectContext.save(&error)
+                    dispatch_sync(dispatch_get_main_queue(), {
+                        self.managedObjectContext.save(&error)
+                    })
                     if let err = error {
                         CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
                     }

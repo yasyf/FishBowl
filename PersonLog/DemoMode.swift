@@ -31,7 +31,9 @@ class DemoMode: NSObject {
                 for interaction in interactions {
                     managedObjectContext.deleteObject(interaction as! NSManagedObject)
                 }
-                managedObjectContext.save(&error)
+                dispatch_sync(dispatch_get_main_queue(), {
+                    self.managedObjectContext.save(&error)
+                })
                 return count
             }
         }
