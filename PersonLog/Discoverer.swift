@@ -28,7 +28,7 @@ class PeerTask: NSObject {
         self.callback = callback
         self.peer = peer
         super.init()
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(60 * Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), self.run)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(30 * Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), self.run)
     }
     
     func run() {
@@ -318,13 +318,13 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             if !(location.horizontalAccuracy > peer._location?.horizontalAccuracy) {
                 processLocation(location)
             }
-            else if location.horizontalAccuracy > 0 && location.horizontalAccuracy <= 50 {
+            else if location.horizontalAccuracy > 0 && location.horizontalAccuracy <= 75 {
                 if location.horizontalAccuracy <= 30 {
                     processLocationTimer?.invalidate()
                     processLocation(location)
                 } else {
                     if !(processLocationTimer?.valid == true) {
-                        processLocationTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: Selector("processLocationFromTimer:"), userInfo: location, repeats: false)
+                        processLocationTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("processLocationFromTimer:"), userInfo: location, repeats: false)
                     }
                 }
             } else {
