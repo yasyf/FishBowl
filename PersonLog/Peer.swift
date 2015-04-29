@@ -190,14 +190,14 @@ class Peer: NSObject {
         if let lastInteraction = otherPerson.visited.lastObject as? Interaction {
             let hourAgo = date.dateByAddingTimeInterval(-3600)
             if lastInteraction.date.compare(hourAgo) == NSComparisonResult.OrderedDescending  {
-                CLS_LOG_SWIFT("Skipping interaction due to recent interaction")
+                CLS_LOG_SWIFT("Skipping interaction with \(otherPerson.f_name) \(otherPerson.l_name) due to recent interaction")
                 callback?(nil)
                 return
             }
         }
         
         if person.fb_id == otherPerson.fb_id {
-            CLS_LOG_SWIFT("Skipping interaction due to self interaction")
+            CLS_LOG_SWIFT("Skipping interaction with \(otherPerson.f_name) \(otherPerson.l_name) due to self interaction")
             callback?(nil)
             return
         }
@@ -222,6 +222,7 @@ class Peer: NSObject {
                 CLS_LOG_SWIFT("managedObjectContext.save:error: %@", [err])
                 callback?(nil)
             } else {
+                CLS_LOG_SWIFT("Saved new interaction with \(otherPerson.f_name) \(otherPerson.l_name).")
                 callback?(interaction)
             }
         })

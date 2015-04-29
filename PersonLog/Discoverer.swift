@@ -13,6 +13,7 @@ import CoreBluetooth
 import Localytics
 
 enum PowerMode {
+    case Unknown
     case Low
     case Medium
     case High
@@ -21,20 +22,20 @@ enum PowerMode {
 class PeerTask: NSObject {
     let callback: () -> Void
     var completed = false
+    let peer: Peer
     
-    init(callback: () -> Void) {
+    init(peer: Peer, callback: () -> Void) {
         self.callback = callback
+        self.peer = peer
         super.init()
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(60 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), self.run)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(60 * Double(NSEC_PER_SEC))), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), self.run)
     }
     
     func run() {
-        objc_sync_enter(completed)
         if !completed {
             completed = true
             callback()
         }
-        objc_sync_exit(completed)
     }
 }
 
@@ -49,10 +50,11 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     var peripherals: [CBPeripheral] = []
     var peerCallbacks: [(Peer) -> Void] = []
     var newLocationCallbacks: [() -> Void] = []
+    let newLocationCallbackLock = 0
     var otherUpdateCallbacks: [() -> Void] = []
     var isDiscovering: Bool = false
     var isLocating: Bool = false
-    var powerMode: PowerMode = .High
+    var powerMode: PowerMode = .Unknown
     var locManager = CLLocationManager()
     var lastState = CBCentralManagerState.Unknown
     var processLocationTimer: NSTimer?
@@ -135,6 +137,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func goLowPower() {
+        if powerMode == .Low {
+            return
+        }
         self.powerMode = .Low
         stopLocationServices()
         CLS_LOG_SWIFT("Going low power for location services!")
@@ -142,6 +147,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func goMediumPower() {
+        if powerMode == .Medium {
+            return
+        }
         self.powerMode = .Medium
         stopLocationServices()
         CLS_LOG_SWIFT("Going medium power for location services!")
@@ -150,6 +158,9 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func goHighPower() {
+        if powerMode == .High {
+            return
+        }
         self.powerMode = .High
         stopLocationServices()
         CLS_LOG_SWIFT("Going high power for location services!")
@@ -179,15 +190,15 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             CLS_LOG_SWIFT("%@", [data])
         })
         peers.append(peer)
-        let peerTask = PeerTask(callback: {
+        let peerTask = PeerTask(peer: peer, callback: {
             for callback in self.peerCallbacks {
                 callback(peer)
             }
         })
-        newLocationCallbacks.append(peerTask.run)
-        if powerMode != .High {
-            goHighPower()
-        }
+        onNewLocation({
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), peerTask.run)
+        })
+        goHighPower()
     }
     
     func connectPeripheral(central: CBCentralManager, peripheral: CBPeripheral) {
@@ -217,7 +228,6 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     }
     
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
-        CLS_LOG_SWIFT("didConnectPeripheral \(peripheral)")
         let serviceUUID = CBUUID(NSUUID: beaconID)
         peripheral.discoverServices([serviceUUID])
     }
@@ -244,7 +254,6 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
         else {
             if peripheral.services.count > 0 {
                 if let service = peripheral.services[0] as? CBService {
-                    CLS_LOG_SWIFT("didDiscoverService \(service)")
                     peripheral.discoverCharacteristics([characteristicID], forService: service)
                 }
             }
@@ -258,7 +267,6 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
             if service.characteristics.count > 0 {
                 if let characteristic = service.characteristics[0] as? CBCharacteristic {
                     peripheral.readValueForCharacteristic(characteristic)
-                    CLS_LOG_SWIFT("didDiscoverCharacteristicsForService \(service.characteristics)")
                 }
             }
         }
@@ -288,8 +296,12 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     func processLocation(location: CLLocation) {
         self.peer.setLocation(location)
         Localytics.setLocation(location.coordinate)
+        
+        objc_sync_enter(newLocationCallbackLock)
         let savedCallbacks = newLocationCallbacks
         newLocationCallbacks.removeAll(keepCapacity: false)
+        objc_sync_exit(newLocationCallbackLock)
+        
         for callback in savedCallbacks {
             callback()
         }
@@ -303,9 +315,11 @@ class Discoverer: NSObject, MCNearbyServiceBrowserDelegate, CLLocationManagerDel
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.last as? CLLocation {
-            println(location.horizontalAccuracy)
-            if location.horizontalAccuracy > 0 && location.horizontalAccuracy <= 50 {
-                if location.horizontalAccuracy <= 25 {
+            if !(location.horizontalAccuracy > peer._location?.horizontalAccuracy) {
+                processLocation(location)
+            }
+            else if location.horizontalAccuracy > 0 && location.horizontalAccuracy <= 50 {
+                if location.horizontalAccuracy <= 30 {
                     processLocationTimer?.invalidate()
                     processLocation(location)
                 } else {
