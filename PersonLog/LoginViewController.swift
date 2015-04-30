@@ -13,19 +13,24 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet var loginView: FBSDKLoginButton!
     let settings = Settings()
+    let permissions = MyAppDelege.sharedInstance.facebookPermissions + MyAppDelege.sharedInstance.additionalFacebookPermissions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginView.readPermissions = MyAppDelege.sharedInstance.facebookPermissions + MyAppDelege.sharedInstance.additionalFacebookPermissions
+        loginView.readPermissions = permissions
         loginView.delegate = self
+        
+        if FBSDKAccessToken.currentAccessToken() != nil {
+            FBSDKLoginManager().logInWithReadPermissions(permissions, handler: loginHandler)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         Analytics.tagScreen("Login")
     }
-
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    
+    func loginHandler(result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if let err = error {
             CLS_LOG_SWIFT("loginButton:didCompleteWithResult:error: %@", [err])
         }
@@ -44,6 +49,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 })
             }
         }
+    }
+
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        loginHandler(result, error: error)
     }
 
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {

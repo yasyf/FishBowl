@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.applicationIconBadgeNumber = 0
         
+        let returnValue = FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         if !settings.isLoggedIn() || !checkFacebookPermissions() {
             self.showLoginScreen()
         } else if !settings.isDoneSetup() {
@@ -54,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         LocalNotification.scheduleDaily()
         
-        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        return returnValue
     }
     
     func checkFacebookPermissions() -> Bool {
