@@ -17,7 +17,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginView.readPermissions = ["public_profile", "email", "user_birthday", "user_hometown", "user_religion_politics", "user_friends"]
+        loginView.readPermissions = MyAppDelege.sharedInstance.facebookPermissions + MyAppDelege.sharedInstance.additionalFacebookPermissions
         loginView.delegate = self
     }
     
@@ -34,6 +34,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 Localytics.tagEvent("Login", attributes: ["type": "facebook", "cancelled": true])
             } else {
                 Localytics.tagEvent("Login", attributes: ["type": "facebook", "cancelled": false])
+                FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
                 self.setUserData({
                     if self.settings.isDoneSetup() {
                         self.performSegueWithIdentifier("login", sender: nil)
