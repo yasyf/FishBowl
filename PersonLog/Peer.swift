@@ -146,7 +146,10 @@ class Peer: NSObject {
         
         var personOptional: Person?
         
-        var objects = managedObjectContext.executeFetchRequest(request, error: nil)
+        var objects: [AnyObject]?
+        dispatch_sync(dispatch_get_main_queue(), {
+            objects = self.managedObjectContext.executeFetchRequest(request, error: nil)
+        })
         if let results = objects {
             if results.count > 0 {
                 personOptional = results[0] as? Person
