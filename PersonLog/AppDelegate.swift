@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else if !settings.isDoneSetup() {
             self.showSetupScreen()
         } else {
+            FBSDKAccessToken.refreshCurrentAccessToken(nil)
             let discoverer =  MyAppDelege.sharedInstance.discoverer
             if discoverer.isDiscovering && discoverer.powerMode == .Low {
                 discoverer.goHighPower()
