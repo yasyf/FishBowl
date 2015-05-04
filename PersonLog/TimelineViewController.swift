@@ -111,9 +111,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 CLS_LOG_SWIFT("friendGraphRequest.startWithCompletionHandler:error: \(err)")
             } else {
                 let friends = result.objectForKey("data") as! [NSMutableDictionary]
-                if friends.count > 0 {
-                    cell.facebookImage.hidden = false
-                }
+                cell.facebookImage.hidden = (friends.count == 0)
             }
         })
         
