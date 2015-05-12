@@ -170,6 +170,15 @@ class Peer: NSObject {
             }
         }
         
+        let metaFields = ["real_fb_id"]
+        var meta = [String:AnyObject]()
+        for field in metaFields {
+            if let value: AnyObject = data[field] {
+                meta.updateValue(value, forKey: field)
+            }
+        }
+        person.meta = meta
+        
         if let twitter = person.twitter as NSString? {
             if twitter.containsString("@") {
                 person.twitter = twitter.substringFromIndex(0)

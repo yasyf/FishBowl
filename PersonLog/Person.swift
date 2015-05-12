@@ -15,7 +15,7 @@ class Person: NSManagedObject {
     @NSManaged var fb_id: String
     @NSManaged var l_name: String
     @NSManaged var last_notification: NSDate?
-    @NSManaged var meta: AnyObject?
+    @NSManaged var meta: [String:AnyObject]?
     @NSManaged var phone: String?
     @NSManaged var photo_url: String
     @NSManaged var twitter: String?

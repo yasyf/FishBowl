@@ -105,15 +105,21 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.profilePicture.layer.borderColor = settings.lineColor
         cell.name.text = person.f_name
         
-        let friendGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(person.fb_id)", parameters: nil)
-        friendGraphRequest.startWithCompletionHandler({(_, result, error) in
-            if let err = error {
-                CLS_LOG_SWIFT("friendGraphRequest.startWithCompletionHandler:error: \(err)")
-            } else {
-                let friends = result.objectForKey("data") as! [NSMutableDictionary]
-                cell.facebookImage.hidden = (friends.count == 0)
-            }
-        })
+        if let isFriend = person.meta?["is_friend"] as? Bool {
+            cell.facebookImage.hidden = !isFriend
+        } else {
+            let friendGraphRequest = FBSDKGraphRequest(graphPath: "/me/friends/\(person.fb_id)", parameters: nil)
+            friendGraphRequest.startWithCompletionHandler({(_, result, error) in
+                if let err = error {
+                    CLS_LOG_SWIFT("friendGraphRequest.startWithCompletionHandler:error: \(err)")
+                } else {
+                    let friends = result.objectForKey("data") as! [NSMutableDictionary]
+                    let isFriend = (friends.count != 0)
+                    person.meta?.updateValue(isFriend, forKey: "is_friend")
+                    cell.facebookImage.hidden = !(isFriend)
+                }
+            })
+        }
         
         return cell
     }

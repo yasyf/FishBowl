@@ -37,6 +37,8 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
     let database = Database()
     var dateFormatter = NSDateFormatter()
     let messageViewController = MFMessageComposeViewController()
+    var mutualFriendCount: Int?
+    var realFacebookID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,18 +57,42 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
         name.text = "\(interaction.person.f_name) \(interaction.person.l_name)"
 
         facebookButton.setTitle("\(interaction.person.f_name)'s Facebook", forState: .Normal)
-
-        let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-        api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in
-            let mutualFriendCount = data["total_count"] as! Int
-            Localytics.tagEvent("ViewProfile", attributes: ["mutual_friends": mutualFriendCount, "is_friend": Analytics.boolToString(self.isFriend)])
-            dispatch_async(dispatch_get_main_queue(), {
-                self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
-            })
-            }, failure: {(error, data) in
-                CLS_LOG_SWIFT("api.post:error: %@", [error])
+        
+        if let meta = interaction.person.meta {
+            if let storedRealFacebookID = meta["real_fb_id"] as? String {
+                self.realFacebookID = storedRealFacebookID
             }
-        )
+            if let isFriend = meta["is_friend"] as? Bool {
+                self.isFriend = isFriend
+            }
+            if let storedMutualFriendCount = meta["mutual_friend_count"] as? Int {
+                self.mutualFriendCount = storedMutualFriendCount
+                setMutualFriendCount(storedMutualFriendCount)
+            }
+        }
+        
+        if self.mutualFriendCount == nil {
+            let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+            api.post("/friends/\(interaction.person.fb_id)/mutual", parameters: ["access_token": accessToken], success: {(data) in
+                let mutualFriendCount = data["total_count"] as! Int
+                self.setMutualFriendCount(mutualFriendCount)
+                self.interaction.person.meta?.updateValue(mutualFriendCount, forKey: "mutual_friend_count")
+                }, failure: {(error, data) in
+                    CLS_LOG_SWIFT("api.post:error: %@", [error])
+                }
+            )
+        }
+        
+        if realFacebookID == nil {
+            api.get("/fb_id/\(interaction.person.fb_id)", parameters: nil, success: {(data) in
+                if let realId = data["fb_id"] as? String {
+                    self.realFacebookID = realId
+                    self.interaction.person.meta?.updateValue(realId, forKey: "real_fb_id")
+                }
+            }, failure: {(error, data) in
+                CLS_LOG_SWIFT("api.get:error: %@", [error])
+            })
+        }
         
         if isFriend != nil {
             self.facebookImage.hidden = !isFriend!
@@ -77,7 +103,9 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
                     CLS_LOG_SWIFT("friendGraphRequest.startWithCompletionHandler:error: \(err)")
                 } else {
                     let friends = result.objectForKey("data") as! [NSMutableDictionary]
-                    self.facebookImage.hidden = (friends.count == 0)
+                    self.isFriend = (friends.count != 0)
+                    self.facebookImage.hidden = !(self.isFriend!)
+                    self.interaction.person.meta?.updateValue(self.isFriend!, forKey: "is_friend")
                 }
             })
         }
@@ -130,6 +158,13 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
         container.addConstraint(NSLayoutConstraint(item: bottomButton, attribute: .Bottom, relatedBy: .Equal, toItem: container, attribute: .Bottom, multiplier: 1.0, constant: -20))
     }
     
+    func setMutualFriendCount(mutualFriendCount: Int) {
+        Localytics.tagEvent("ViewProfile", attributes: ["mutual_friends": mutualFriendCount, "is_friend": Analytics.boolToString(self.isFriend)])
+        dispatch_async(dispatch_get_main_queue(), {
+            self.mutualFriendsLabel.text = "Mutual Friends: \(mutualFriendCount)"
+        })
+    }
+    
     func pinFromInteraction(inter: Interaction) -> MKPointAnnotation {
         let pointAnnotation = MKPointAnnotation()
         let location = CLLocationCoordinate2DMake(inter.lat as CLLocationDegrees, inter.lon as CLLocationDegrees)
@@ -144,7 +179,12 @@ class ProfileViewController: UIViewController, MKMapViewDelegate, MFMessageCompo
 
     @IBAction func openFacebook(sender: AnyObject) {
         Localytics.tagEvent("SocialAction", attributes: ["type": "facebook"])
-        let url = NSURL(string: "http://facebook.com/\(interaction.person.fb_id)")
+        var url: NSURL?
+        if let facebookID = realFacebookID {
+            url = NSURL(string: "fb://profile/\(facebookID)")
+        } else {
+            url = NSURL(string: "http://facebook.com/\(interaction.person.fb_id)")
+        }
         UIApplication.sharedApplication().openURL(url!)
     }
     
