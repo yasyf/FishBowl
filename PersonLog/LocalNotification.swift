@@ -30,52 +30,45 @@ class LocalNotification {
         
     }
     
-    class func getDailyNotification() -> UILocalNotification? {
+    class func getDailyNotifications() -> [UILocalNotification] {
         let notifications = UIApplication.sharedApplication().scheduledLocalNotifications as! [UILocalNotification]
-        for notification in notifications {
-            if (notification.userInfo?["type"] as? String) == "daily" {
-                return notification
-            }
-        }
-        return nil
+        return notifications.filter({($0.userInfo?["type"] as? String) == "daily"})
     }
     
     class func scheduleDaily() {
-        var notification = getDailyNotification()
-        if let oldNotif = notification {
-            UIApplication.sharedApplication().cancelLocalNotification(oldNotif)
-        } else  {
-            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-            let date = calendar?.dateBySettingHour(19, minute: 0, second: 0, ofDate: NSDate(), options: nil)
-            
-            var newNotification = UILocalNotification()
-            newNotification.userInfo = ["type": "daily"]
-            if (newNotification.respondsToSelector(Selector("setAlertTitle"))) {
-                newNotification.alertTitle = "FishBowl Daily Digest"
-            }
-            newNotification.alertBody = "You didn't see anyone today. Go out there and make some friends!"
-            newNotification.fireDate = date
-            newNotification.timeZone = NSTimeZone.defaultTimeZone()
-            newNotification.repeatInterval = NSCalendarUnit.CalendarUnitDay
-            newNotification.soundName = UILocalNotificationDefaultSoundName
-            newNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-            notification = newNotification
+        var notifications = getDailyNotifications()
+        for notif in notifications {
+            UIApplication.sharedApplication().cancelLocalNotification(notif)
         }
-        if let notif = notification {
-            notif.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-            let allInteractions = database.allInteractions(sorted: false)
-            if let interactions = allInteractions {
-                switch interactions.count {
-                case 0:
-                    notif.alertBody = "You didn't see anyone today. Go out there and make some friends!"
-                case 1:
-                    notif.alertBody = "View today's interaction with \(interactions.first!.person.f_name)!"
-                default:
-                    notif.alertBody = "View your interactions with \(interactions.first!.person.f_name) and \(interactions.count - 1) others!"
-                }
-            }
-            UIApplication.sharedApplication().scheduleLocalNotification(notif)
-        }
+
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let date = calendar?.dateBySettingHour(19, minute: 0, second: 0, ofDate: NSDate(), options: nil)
         
+        var newNotification = UILocalNotification()
+        newNotification.userInfo = ["type": "daily"]
+        if (newNotification.respondsToSelector(Selector("setAlertTitle"))) {
+            newNotification.alertTitle = "FishBowl Daily Digest"
+        }
+        newNotification.alertBody = "You didn't see anyone today. Go out there and make some friends!"
+        newNotification.fireDate = date
+        newNotification.timeZone = NSTimeZone.defaultTimeZone()
+        newNotification.repeatInterval = NSCalendarUnit.CalendarUnitDay
+        newNotification.soundName = UILocalNotificationDefaultSoundName
+        newNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+
+
+        newNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        let allInteractions = database.allInteractions(sorted: false)
+        if let interactions = allInteractions {
+            switch interactions.count {
+            case 0:
+                newNotification.alertBody = "You didn't see anyone today. Go out there and make some friends!"
+            case 1:
+                newNotification.alertBody = "View today's interaction with \(interactions.first!.person.f_name)!"
+            default:
+                newNotification.alertBody = "View your interactions with \(interactions.first!.person.f_name) and \(interactions.count - 1) others!"
+            }
+        }
+        UIApplication.sharedApplication().scheduleLocalNotification(newNotification)
     }
 }
