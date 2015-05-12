@@ -48,11 +48,11 @@ class Analytics {
         let id = result["id"] as! String
         Localytics.setValue(name, forIdentifier: "customer_name")
         Localytics.setCustomerId(id)
-        Crashlytics.setUserName(name)
-        Crashlytics.setUserIdentifier(id)
+        Crashlytics.sharedInstance().setUserName(name)
+        Crashlytics.sharedInstance().setUserIdentifier(id)
         if let email = result["email"] as? String {
             Localytics.setValue(email, forIdentifier: "email")
-            Crashlytics.setUserEmail(email)
+            Crashlytics.sharedInstance().setUserEmail(email)
         }
         let fieldMapping = ["birthday": "Birthday", "hometown": "Hometown", "locale": "Locale", "timezone": "Timezone", "religion": "Religion", "political": "Political", "gender": "Gender"]
         for (key, mapping) in fieldMapping {
@@ -64,6 +64,6 @@ class Analytics {
     
     class func tagScreen(screen: String) {
         Localytics.tagScreen(screen)
-        Crashlytics.setObjectValue(screen, forKey: "screen")
+        Crashlytics.sharedInstance().setObjectValue(screen, forKey: "screen")
     }
 }
